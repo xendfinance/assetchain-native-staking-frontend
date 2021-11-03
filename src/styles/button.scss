@@ -1,0 +1,80 @@
+
+
+button {
+  padding: 2px;
+  cursor: pointer;
+  background: linear-gradient(92.28deg, #2042B8 0.63%, #FF6600 109.77%);
+  border-radius: 30px;
+  @include flex(column, center, center);
+  border: none;
+  outline: none;
+  @include screen("inbetween") {
+  }
+  p{
+    padding: 1.5vh 3vw;
+    color: #ffff;
+    font-style: normal;
+    @include fonts(18, 23, bold);
+    text-align: center;
+    margin: 0;
+    @include screen("inbetween") {
+      @include fonts(14, 20, bold);
+    }
+  }
+  @include screen("inbetween") {
+    min-width: 0;
+  }
+  
+  //// secondary /////
+  &.secondary{
+    box-shadow: none;
+    @include screen("inbetween") {
+    }
+    .btn-inside{
+      width: 100%;
+      // background-color: white;
+      border-radius: 30px;
+      @include flex(column, center, center);
+      p{
+        padding: 1.5vh 3vw;
+        margin: 0;
+        @include fonts(18, 23, bold);
+        background: linear-gradient(44.25deg, #E8433D 25.64%, #FF6600 53.43%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        @include screen("inbetween") {
+          font-size: 0.8rem;
+          padding: 1vh 5vh;
+        }
+      }
+    }
+  }
+
+
+
+  ////// tertiary buttons //////// 
+  &.tertiary{
+    // border: 2px solid red;
+    box-sizing: border-box;
+    border-radius: 51px;
+    background: transparent;
+    background-color: transparent;
+    padding: 0;
+    .btn-inside{
+      // background-color: #ffff;
+      padding: 0;
+      border-radius: 51px;
+      p{
+        @include fonts(14, 18, bold);
+        // color: #1F1F20;
+        // background: #ffff;
+        padding: 1vh 1vw;
+        /// white-space: nowrap;
+        border-radius: 51px;
+        margin: 0;
+      }
+    }
+  }
+}
+
+
