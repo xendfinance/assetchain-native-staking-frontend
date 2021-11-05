@@ -1,0 +1,152 @@
+
+.home {
+    .home-main {
+        width: 100%;
+        height: auto;
+        @include flex(column, nill, center);
+        box-sizing: border-box;
+        @include screen("inbetween") {
+            padding: 5%;
+        }
+        .step-1 {
+            width: 92%;
+            margin-top: 5%;
+            @include flex(row, space-between, center);
+            @include screen("inbetween") {
+                width: 100%;
+                @include flex(column, nill, flex-start);
+                margin-bottom: 8vh;
+            }
+            #topic{
+                width: 28%;
+                margin-left: 2.5%;
+                @include fonts(32, 50, 800);
+                border: 1px solid red;
+                @include screen("inbetween") {
+                    width: 100%;
+                    margin: 0 0 5vh 0;
+                    @include fonts(24, 30, 800);
+                    text-align: center;
+                }
+            }
+            .locker{
+                background: rgba(255, 255, 255, 0.05);
+                box-shadow: 0px 14px 40px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                padding: 1.5vh 2vw;
+                @include flex(row, center, flex-start);
+                box-sizing: border-box;
+                @include screen("inbetween") {
+                    width: 80%;
+                    margin: 0 auto;
+                }
+                .lock-left{
+                    margin-right: 3.5vw;
+                    #title{
+                        @include fonts(13, 20, bold);
+                        margin-bottom: 1.5vh;
+                    }
+                    #value{
+                        @include fonts(24, 30, 600);
+                    }
+                }
+            }
+        }
+
+        .step-2{
+            width: 92%;
+            margin-top: 5%;
+            padding: 2vw;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0px 14px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            border: 1px solid red;
+            @include screen("inbetween") {
+                width: 100%;
+                margin-bottom: 8vh;
+                padding: 5vw;
+                box-sizing: border-box;
+            }
+            #connect{
+                @include fonts(24, 30, 500);
+                text-align: center;
+            }
+            #dets{
+                @include fonts(14, 30, 500);
+                text-align: center;
+                color: #8E93A4;
+            }
+
+            .non-empty {
+                width: 100%;
+                @include flex(row, space-between, center);
+                @include screen("inbetween") {
+                    @include flex(column, nill, flex-start);
+                }
+                .left-2{
+                    @include flex(row, nill, center);
+                    @include screen("inbetween") {
+                        @include flex(column, nill, flex-start);
+                        margin-bottom: 5vh;
+                    }
+                    .box-2{
+                        margin-right: 5vw;
+                        @include screen("inbetween") {
+                            margin: 0 0 5vh 0;
+                        }
+                        .prop{
+                            color: #8E93A4;
+                            @include fonts(14, 20, 500);
+                            margin-bottom: 2vh;
+                            @include screen("inbetween") {
+                                margin-bottom: 1vh;
+                                @include fonts(12, 20, 500);
+                            }
+                        }
+                        .val{
+                            @include fonts(24, 30, bold);
+                            @include screen("inbetween") {
+                                @include fonts(18, 25, bold);
+                            }
+                        }
+                        .amount{
+                            @include fonts(14, 20, 500);
+                            @include screen("inbetween") {
+                                @include fonts(12, 20, 500);
+                            }
+                        }
+                    }
+                }
+                .right-2{
+                    align-self: flex-end;
+                    @include flex(row, nill, center);
+                    @include screen("inbetween") {
+                        align-self: flex-start;
+                        width: 100%;
+                        @include flex(row, space-between, center);
+                    }
+                    .pointer{
+                        @include flex(row, nill, center);
+                        cursor: pointer;
+                        margin-right: 2.5vw;
+                        .label{
+                            margin-right: 0.5vw;
+                            @include fonts(14, 20, 500);
+                        }
+                    }
+                }
+            }
+        }
+
+        .step-3 {
+            width:  92%;
+            height: auto;
+            margin-top: 5%;
+            @include flex(row, space-between, center);
+            @include screen("inbetween") {
+                @include flex(column, nill, flex-start);
+            }
+        }
+    }
+}

@@ -7,8 +7,7 @@
 }
 
 @mixin fonts($size, $height, $weight ) {
-	// font-family: 'Clan Pro Bold';
-	font-family: 'Sarabun', sans-serif;
+	font-family: 'Fira Sans', sans-serif;
 	font-style: normal;
 	font-size: ($size / 16) + rem;
 	line-height: ($height / 16) + rem;

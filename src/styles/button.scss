@@ -11,7 +11,7 @@ button {
   @include screen("inbetween") {
   }
   p{
-    padding: 1.5vh 3vw;
+    padding: 1.3vh 3vw;
     color: #ffff;
     font-style: normal;
     @include fonts(18, 23, bold);
@@ -50,31 +50,87 @@ button {
     }
   }
 
-
-
   ////// tertiary buttons //////// 
   &.tertiary{
-    // border: 2px solid red;
+    border: 2px solid #FFFFFF;
     box-sizing: border-box;
-    border-radius: 51px;
+    border-radius: 28px;
     background: transparent;
     background-color: transparent;
     padding: 0;
     .btn-inside{
       // background-color: #ffff;
       padding: 0;
-      border-radius: 51px;
+      border-radius: 28px;
       p{
         @include fonts(14, 18, bold);
         // color: #1F1F20;
         // background: #ffff;
-        padding: 1vh 1vw;
+        padding: 1.3vh 2vw;
         /// white-space: nowrap;
-        border-radius: 51px;
+        border-radius: 28px;
         margin: 0;
+      }
+    }
+    &.card-btn{
+      justify-self: center;
+      margin: 0 auto;
+      @include screen("inbetween") {
+        width: 100%;
       }
     }
   }
 }
 
+//// capsule btn ////////
+.capsule-btn{
+  // min-width: 15vw;
+  min-width: 18%;
+  position: relative;
+  @include screen("inbetween") {
+    min-width: 25%;
+    border: 1px solid red;
+  }
+
+  .left-capsule{
+    // background: linear-gradient(44.25deg, #E8433D 25.64%, #FF6600 53.43%);
+    background: rgba(255, 255, 255, 0.14);
+    color: #FFFFFF;
+    // width: 9vw;
+    width: 60%;
+    padding: 1.3vh 1vw 1.3vh 1vw;
+    box-sizing: border-box;
+    border-radius: 60px;
+    @include fonts(13, 16, bold);
+    cursor: pointer;
+  }
+  .right-capsule{
+    background: #5A5F6E;
+    color: #FFFFFF;
+    // width: 9vw;
+    width: 55%;
+    padding: 1.3vh 1vw 1.3vh 1vw;
+    box-sizing: border-box;
+    border-radius: 60px;
+    z-index: 50;
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 45%;
+    @include fonts(13, 16, bold);
+    cursor: pointer;
+    text-align: center;
+    @include screen("inbetween") {
+      // left: 60%;
+    }
+  }
+}
+
+
+.connect-wallet {
+  @include flex(row, space-between, center);
+  .wallet-img {
+    margin-right: 1vw;
+  }
+}
 

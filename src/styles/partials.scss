@@ -1,0 +1,63 @@
+
+//////// Packages card ///// 
+.package-card {
+    width: 31%;
+    border-radius: 8px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding: 2.5%;
+    box-sizing: border-box;
+    z-index: 100;
+    border: 1px solid cyan;
+    @include screen("inbetween") {
+        width: 100%;
+        padding: 5%;
+        margin-bottom: 5vh;
+    }
+
+    .card-type{
+        @include fonts(18, 20, 500);
+        margin-bottom: 2.5vh;
+        @include screen("inbetween") {
+            @include fonts(15, 20, 500);
+        }
+    }
+    .card-apy{
+        @include fonts(81, 90, 600);
+        margin-bottom: 10%;
+        @include screen("inbetween") {
+            @include fonts(50, 70, 600);
+        }
+        #apy{
+            @include fonts(18, 20, 500);
+            @include screen("inbetween") {
+                @include fonts(15, 20, 500);
+            }
+        }
+    }
+}
+
+
+////// Footer //////// 
+footer {
+    @include flex(row, space-between, center);
+    margin-top: 5vh;
+    padding: 5% 5% 2% 5%;
+    box-sizing: border-box;
+    #copy{
+        @include fonts(12, 14, 500);
+        color: #D1D1D1;
+    }
+    .foot-menu{
+        @include flex(row, nill, center);
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        .foot-list{
+            margin-right: 2vw;
+            @include fonts(14, 17, 500);
+            cursor: pointer;
+        }
+    }
+}

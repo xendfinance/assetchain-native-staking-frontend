@@ -1,0 +1,139 @@
+.modal-cont {
+    display: block;
+    min-width: 100vw;
+    min-height: 100vh;
+    @include flex(column, center, center);
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.62);
+    // background-color: yellow;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    @include screen("inbetween") {
+      width: 100%;
+    }
+  
+    &.hidden {
+      display: none; 
+    }
+  
+    .content-cont {
+      min-width: 30%;
+      //   min-width: 10%;
+      min-height: 45vh;
+      max-height: 95vh;
+      z-index: 3000;
+      background-color: #1C1D21;
+      padding: 1rem 1.5rem;
+      @include flex(column, nill, nill);
+      // color: black;
+      border-radius: 4px;
+      overflow-y: auto;
+      box-sizing: border-box;
+    //   border: 1px solid red;
+      @include screen("inbetween") {
+        min-width: 95%;
+        max-width: 100%;
+        width: 100%;
+        max-height: 75vh;
+      }
+      .header {
+        @include flex(row, space-between, center);
+        margin-bottom: 5vh;
+        #modal-title{
+          justify-self: flex-start;
+          @include fonts(24, 31, bold);
+        }
+        #close-modal {
+          // width: 2.5rem;
+          // height: 2.5rem;
+          cursor: pointer;
+          justify-self: flex-end;
+        //   border: 1px solid #d3d1d1;
+          padding: 0.5rem;
+          border-radius: 6px;
+        }
+      }
+    }
+ }
+
+
+
+ ////// ConnectWalletForm //////
+.wallet-form-1{
+    // border: 1px solid red;
+  #title-1{
+      @include fonts(24, 31, bold);
+      margin-bottom: 7vh;
+  }
+  .wallet-box{
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0px 17.8125px 18.525px rgba(0, 0, 0, 0.1);
+    border-radius: 5.44429px;
+      @include flex(row, nill, center);
+      margin-bottom: 3vh;
+      padding: 1.5vw;
+      box-sizing: border-box;
+      cursor: pointer;
+    //   border: 1px solid cyan;
+      #wallet-img{
+          margin-right: 2vw;
+          min-width: 5vw;
+          min-height: 4vh;
+        //   border: 1px solid red;
+      }
+      .details{
+          #wallet{
+              @include fonts(18, 23, bold);
+              margin-bottom: 1vh;
+          }
+          #info{
+              @include fonts(13, 17, 600);
+          }
+      }
+  }
+}
+
+
+////// WalletConnectedForm ////////
+.wallet-form-2{
+  .wallet-details{
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0px 17.8125px 18.525px rgba(0, 0, 0, 0.1);
+    border-radius: 5.44429px;
+      padding: 2vw;
+      margin-bottom: 5vh;
+      box-sizing: border-box;
+      #chain{
+          @include fonts(14, 18, 600);
+          // color: #6D6D6D;
+          margin-bottom: 1vh;
+      }
+      #value{
+          @include fonts(18, 23, bold);
+          margin-bottom: 10vh;
+      }
+      #wallet-address{
+          @include fonts(14, 18, 600);
+          margin-bottom: 1vh;
+          // color: #6D6D6D;
+      }
+      #wallet{
+          @include fonts(18, 23, bold);
+      }
+  }
+  .btn-cont{
+      @include flex(row, center, center);
+      #disconnect-btn{
+          @include fonts(18, 23, bold);
+          color: #FF6600;
+          margin-bottom: 5vh;
+          padding: 0 0.2vw;
+          cursor: pointer;
+      }
+  }
+  
+}
+  
