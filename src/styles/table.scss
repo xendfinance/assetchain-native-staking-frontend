@@ -1,0 +1,124 @@
+
+.table-cont {
+	box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.08);
+	border-radius: 6px;
+	position: relative;
+	.table-scroll {
+		position: relative;
+		@include screen("inbetween") {
+			overflow: auto;
+		}
+	}
+	table {
+		width: 100%;
+		position: relative;
+		padding: 1rem;
+        border-collapse: collapse;
+
+		thead {
+			height: 4.06rem;
+			z-index: 100;
+            
+			tr {
+				height: 10vh;
+                
+				th {
+					font-weight: 500;
+					margin-bottom: 10rem;
+                    @include fonts(14, 20, bold);
+				}
+			}
+		}
+		tbody {
+			overflow: scroll;
+			margin-top: 30vh;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0px 14px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            
+			tr {
+				height: 10vh;
+                border-bottom: 1px solid rgba(102, 102, 102, 0.91);
+				padding: 0.2vh 0;
+			}
+			tr:last-child {
+				border-bottom: none;
+			}
+            td{
+                @include fonts(14, 20, bold);
+            }
+		}
+		th {
+			text-align: left;
+			padding-left: 2.81rem;
+		}
+		td {
+			padding-left: 2.81rem;
+		}
+		@include screen("small") {
+			th {
+				padding: 0.937rem;
+				white-space: nowrap;
+			}
+			td {
+				padding: 0.937rem;
+				white-space: nowrap;
+			}
+		}
+	}
+	.empty-cont {
+		padding: 2.5rem;
+		background: #f8f8f8;
+	}
+	.pagination {
+		background-color: #fff;
+		padding: 2rem 3rem;
+		display: flex;
+		justify-content: flex-end;
+		overflow-x: scroll;
+		.pages {
+			overflow-x: scroll;
+			.page {
+				margin: 0 0.09rem;
+				border-radius: 2px;
+				text-align: center;
+				padding: 0.15rem 0.3rem;
+				color: #c7c7c7;
+				border: 1px solid pink;
+				&.ellipse {
+					margin: 0;
+					border: 0;
+					padding: 0.15rem 0;
+				}
+				&.active {
+					background-color: pink;
+					color: #fff;
+				}
+			}
+			img {
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+#table-user{
+	@include flex(row, nill, center);
+	text-transform: capitalize;
+	padding: 0.7vh;
+		img{
+		margin-right: 0.5vw;
+	}
+}
+#red-status{
+	@include fonts(18, 23, 500);
+	text-transform: capitalize;
+	color: #E8433D;
+}
+#green-status{
+	@include fonts(18, 23, 500);
+	text-transform: capitalize;
+	color: #23A65A;
+}
+
+

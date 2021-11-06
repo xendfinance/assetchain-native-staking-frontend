@@ -1,0 +1,71 @@
+
+.filter{
+    .label{
+        width: 100%;
+        @include fonts(18, 23, bold);
+        display: flex;
+        align-items: center;
+        // color: #000000;
+        margin: 0 0 0.5rem 0;
+        @include flex(row, nill, flex-start);
+    
+        .asterik{
+          display: block;
+          margin-left: 0.2vw;
+          color: #FF6600;
+        }
+        .hide{
+          display: none;
+        }
+      }
+    .select{
+        width: 100%;
+        padding: 0 1.5vw;
+        display: flex;
+        justify-content: center;
+        height: 2.8rem;
+        outline: none;
+        box-sizing: border-box;
+        border-radius: 40.8111px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 0.812rem;
+        cursor: pointer;
+        background: linear-gradient(44.25deg, #E8433D 25.64%, #FF6600 53.43%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    &.ship-filter-long{
+        width: 100%;
+        margin-bottom: 1.5rem;
+        .select{
+            border: 2px solid #C1C1C1;
+            // padding: 2.5vh 1vw;
+            height: 3rem;
+            @include fonts(18, 23, bold);
+            color: #6D6D6D;
+            background: none;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: #6D6D6D;
+        }
+    }
+    &.ship-filter-short{
+        width: 47%;
+        box-sizing: border-box;
+        margin-bottom: 1rem;
+        @include screen("inbetween") {
+            width: 100%;
+        }
+        .select{
+            border: 2px solid #C1C1C1;
+            // padding: 2.5vh 1vw;
+            height: 3rem;
+            margin-bottom: 1rem;
+            @include fonts(18, 23, bold);
+            color: #6D6D6D;
+            background: none;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: #6D6D6D;
+        }
+    }
+}

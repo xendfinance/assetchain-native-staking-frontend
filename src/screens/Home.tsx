@@ -5,12 +5,15 @@ import redBg from "../images/card-orange-bg.svg"
 import blueBg from "../images/card-blue-bg.svg"
 import blackBg from "../images/card-black-bg.svg"
 import blackBg2 from "../images/card-black-bg.png"
+import {useNavigate} from "react-router-dom"
 
 interface Props {
     
 }
 
 export const Home = (props: Props) => {
+    const navigate = useNavigate()
+
     const [wallet, setWallet] = React.useState(true)
     const toggleWallet = () => setWallet(!wallet)
 
@@ -52,11 +55,11 @@ export const Home = (props: Props) => {
                                     </div>
                                 </div>
                                 <div className="right-2">
-                                    <div className="pointer active">
+                                    <div className="pointer active" onClick={() => navigate("/active-staking")}>
                                         <p className="label">Active Staking</p>
                                         <img src="/icons/arrow-right.svg" alt="click" id="arrow" />
                                     </div>
-                                    <div className="pointer">
+                                    <div className="pointer" onClick={() => navigate("/history")}>
                                         <p className="label">History</p>
                                         <img src="/icons/arrow-right.svg" alt="click" id="arrow" />
                                     </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, CapsuleBtn, Modal, WalletConnectedForm, ConnectWalletForm } from 'components'
+import {useNavigate} from "react-router-dom"
 
 interface Props {
     wallet?: boolean;
@@ -14,6 +15,8 @@ const ConnectWallet = () => (
 )
 
 export const Navbar = ({wallet, toggleWallet}: Props) => {
+    const navigate = useNavigate()
+
     const [modal, setModal] = React.useState({open: false, type: ""})
     const openModal = (open: boolean, type: string) => setModal({open, type})
     const closeModal = () => setModal({open: false, type: ""})
@@ -21,7 +24,9 @@ export const Navbar = ({wallet, toggleWallet}: Props) => {
     return (
         <div>
             <nav>
-            <img src="/icons/xend-logo-white.svg" alt="logo" className="logo" />
+            <img src="/icons/xend-logo-white.svg" alt="logo" className="logo" 
+                onClick={() => navigate("/")}
+            />
             {wallet ?
                 (<CapsuleBtn
                     leftText="34,000 BUSD"

@@ -1,0 +1,255 @@
+
+
+@import "./mixins.scss";
+@import "./screens.scss";
+
+.input-box {
+  width: 100%;
+  @include flex(column, nill, nill);
+  margin-bottom: 1rem;
+  &.kyc-form{
+    width: 48%;
+    @include screen("inbetween") {
+      width: 100%;
+    }
+  }
+  &.ship-form-short{
+    width: 47%;
+    @include screen("inbetween") {
+      width: 100%;
+    }
+  }
+
+  .head-box{
+    @include flex(row, space-between, center);
+    width: 100%;
+    .label-box{
+      justify-self: flex-start;
+      width: 100%;
+      .label{
+        // font-weight: 500;
+        // font-size: 14px;
+        // line-height: 17px;
+        width: 100%;
+        @include fonts(18, 23, bold);
+        display: flex;
+        align-items: center;
+        // color: #000000;
+        margin: 0 0 0.5rem 0;
+        @include flex(row, nill, flex-start);
+    
+        .asterik{
+          display: block;
+          margin-left: 0.2vw;
+          color: #FF6600;
+        }
+        .hide{
+          display: none;
+        }
+      }
+      .sub-label{
+        // color: #6D6D6D;
+        @include fonts(13, 17, 500);
+        margin-bottom: 0.4rem;
+      }
+    }
+    .input-right{
+      justify-self: flex-end;
+    }
+  }
+  
+  .phone-cont{
+    display: block;
+    @include flex(row, nill, center);
+    border: 1px solid #DBDBDB;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  #code{
+    margin: 0;
+    padding: 0.2rem 0.7rem 0.2rem 0.3rem;
+    border-right: 1px solid #DBDBDB;
+    font-size: 0.875rem;
+    line-height: 17px;
+    display: flex;
+    align-items: center;
+    color: #363636;
+  }
+  .input-cont{
+    width: 100%;
+    border: 2px solid #6D6D6D;
+    height: 4rem;
+    @include flex(row, space-between, center);
+    border-radius: 60px;
+    margin-bottom: 1rem;
+    @include screen("inbetween") {
+      height: 3rem;
+    }
+
+    .input{
+      width: 100%;
+      @include flex(row, nill, center);
+      height: 100%;
+      border: none;
+      box-sizing: border-box;
+      border-radius: 60px;
+      padding: 0 5%;
+      @include fonts(18, 23, bold);
+      display: flex;
+      align-items: center;
+      outline: none;
+      background: transparent;
+      color: #C4C4C4;
+      @include screen("inbetween") {
+        width: 100%;
+        @include fonts(15, 21, bold);
+      }
+      &.ship-form-short, &.ship-form-full {
+        color: #6D6D6D;
+        ::placeholder{
+          color: #C1C1C1;
+        }
+        :-ms-input-placeholder{
+          color: #C1C1C1;
+        }
+        ::-ms-input-placeholder{
+          color: #C1C1C1;
+        }
+        ::-webkit-input-placeholder{
+          color: #C1C1C1;
+        }
+      }
+    }
+    .suffix{
+      width: 35%;
+      height: 100%;
+      box-sizing: border-box;
+      @include flex(row, center, center);
+      border-left: 0.5px solid #6D6D6D;
+      @include screen("inbetween") {
+        width: 45%;
+      }
+    &.kyc-form{
+      border: 2px solid #C1C1C1;
+      &:hover{
+        border: 2px solid #FF6600;
+      }
+      @include screen("inbetween") {
+
+      }
+    }
+    
+  }
+  &.ship-form-short, &.ship-form-full {
+    border: 2px solid #C1C1C1;
+    height: 3rem;
+  }
+  // &.ship-form-full{
+  //   border: 2px solid #C1C1C1;
+  // }
+  
+  #phone-input{
+    border: none;
+    margin-bottom: 0rem;
+  }
+  #end{
+    align-self: flex-end;
+  }
+  &.transaction-input{
+    margin-top: 3rem;
+    border-radius: 37px;
+    input{
+      // border: 2px solid #6D6D6D;
+    }
+  }
+  &.step-input{
+    border: 2px solid #FF6600;
+      input{
+        width: 65%;
+        color: #1F1F20;
+      }
+      .suffix{
+        width: 35%;
+      }
+    @include screen("inbetween") {
+      .input-cont{
+        input{
+          width: 60%;
+        }
+        .suffix{
+          width: 40%;
+        }
+      }
+    }
+  }
+}
+
+
+  ///// label component //////
+  .label-cont{
+    @include flex(row, space-between, center);
+    padding: 0 2vw;
+    box-sizing: border-box;
+    width: 100%;
+    #label-text{
+      @include fonts(18, 23, bold);
+      // color: #6D6D6D;
+      @include screen("inbetween") {
+        @include fonts(14, 20, bold);
+    }
+    }
+    .label-right{
+      @include flex(row, nill, center);
+      p{
+        @include flex(row, nill, center);
+        #available{
+          @include fonts(12, 20, normal);
+          // color: #6D6D6D;
+        }
+        #coin{
+          @include fonts(12, 20, bold);
+          margin-left: 0.3vw;
+        }
+        #max{
+          background: #f3dbca;
+          @include fonts(12, 16, bold);
+          color: #FF6600;
+          padding: 0.6vw 0.5vw;
+          border-radius: 100px;
+          margin-left: 1vw;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .trasnaction-suffix{
+    width: 80%;
+    @include flex(row, space-between, center);
+    #arrow{
+      cursor: pointer;
+    }
+  }
+
+  .step-suffix{
+    width: 90%;
+    @include flex(row, space-around, center);
+    @include screen("inbetween") {
+      width: 90%;
+    }
+    #coin{
+      @include screen("inbetween") {
+        width: 3vw;
+        height: 3vh;
+      }
+    }
+    #currency{
+      @include fonts(15, 23, bold);
+      @include screen("inbetween") {
+        @include fonts(12, 20, bold);
+      }
+    }
+  }
+
+
+}

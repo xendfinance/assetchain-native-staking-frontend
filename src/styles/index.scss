@@ -6,6 +6,10 @@
 @import "./navbar.scss";
 @import "./home.scss";
 @import "./partials.scss";
+@import "./table.scss";
+@import "./transaction.scss";
+@import "./filter.scss";
+@import "./input.scss";
 
 
 body {
@@ -13,7 +17,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Fira Sans', sans-serif;
-  // background: #1C1D21;
+  background: #1C1D21;
   color: #ffffff;
 
   p{
