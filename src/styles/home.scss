@@ -22,7 +22,6 @@
                 width: 28%;
                 margin-left: 2.5%;
                 @include fonts(32, 50, 800);
-                border: 1px solid red;
                 @include screen("inbetween") {
                     width: 100%;
                     margin: 0 0 5vh 0;
@@ -62,7 +61,6 @@
             background: rgba(255, 255, 255, 0.05);
             box-shadow: 0px 14px 40px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            border: 1px solid red;
             @include screen("inbetween") {
                 width: 100%;
                 margin-bottom: 8vh;

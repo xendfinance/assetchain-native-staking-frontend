@@ -24,6 +24,11 @@ button {
   @include screen("inbetween") {
     min-width: 0;
   }
+  &.stake-btn{
+    width: 80%;
+    margin: 0 auto;
+    @include fonts(14, 17, 500);
+  }
   
   //// secondary /////
   &.secondary{
@@ -88,8 +93,8 @@ button {
   min-width: 18%;
   position: relative;
   @include screen("inbetween") {
-    min-width: 25%;
-    border: 1px solid red;
+    min-width: 50%;
+    border: 1px solid blue;
   }
 
   .left-capsule{
@@ -103,6 +108,10 @@ button {
     border-radius: 60px;
     @include fonts(13, 16, bold);
     cursor: pointer;
+    @include screen("inbetween") {
+      @include fonts(10, 16, bold);
+      padding-left: 5%;
+    }
   }
   .right-capsule{
     background: #5A5F6E;
@@ -121,7 +130,8 @@ button {
     cursor: pointer;
     text-align: center;
     @include screen("inbetween") {
-      // left: 60%;
+      @include fonts(10, 16, bold);
+      // padding-left: 5%;
     }
   }
 }

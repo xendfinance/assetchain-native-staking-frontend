@@ -32,7 +32,7 @@
       border-radius: 4px;
       overflow-y: auto;
       box-sizing: border-box;
-    //   border: 1px solid red;
+      // border: 1px solid red;
       @include screen("inbetween") {
         min-width: 95%;
         max-width: 100%;
@@ -55,6 +55,11 @@
           padding: 0.5rem;
           border-radius: 6px;
         }
+      }
+      &.stake-modal{
+        min-width: 70%;
+        border-radius: 22px;
+        padding: 0;
       }
     }
  }

@@ -1,0 +1,83 @@
+
+.staking{
+    width: 100%;
+    height: 100%;
+    @include flex(row, nill, nill);
+    @include screen("inbetween") {
+        flex-direction: column;
+    }
+    .stake-title{
+        @include fonts(18, 22, 500);
+        margin-bottom: 5vh;
+    }
+
+    .stake-left{
+        width: 50%;
+        border-right: 1px solid rgba(216, 216, 216, 0.05);
+        @include screen("inbetween") {
+            width: 100%;
+            padding: 5%;
+            box-sizing: border-box;
+            border-right: none;
+        }
+        .left-main{
+            padding: 1.5vw 2vw;
+            box-sizing: border-box;
+        }
+        
+    }
+    .stake-right{
+        width: 50%;
+        padding: 1.5vw 2vw 3vw 2vw;
+        box-sizing: border-box;
+        @include screen("inbetween") {
+            width: 100%;
+            padding: 5%;
+            box-sizing: border-box;
+        }
+        .box{
+            margin-top: 3vh;
+            min-height: 20vh;
+            margin-bottom: 3vh;
+            @include flex(row, nill, nill);
+            .rings{
+                margin-right: 1vw;
+            }
+            .items-main{
+                width: 100%;
+                min-height: 100%;
+                @include flex(column, space-between, nill);
+                .row{
+                    // margin-bottom: 5vh;
+                    @include flex(row, space-between, center);
+                    .item{
+                        color: #B1AFCD;
+                    }
+                    .val{
+                        color: rgba(177, 175, 205, 0.5);
+                    }
+                }
+            }
+        }
+        .row-box{
+            @include flex(row, space-between, center);
+            margin-bottom: 3vh;
+            #item{
+                color: #B1AFCD;
+            }
+            #val{
+                color: #16AB5B;
+            }
+        }
+        .check{
+            @include flex(row, nill, center);
+            margin: 5vh 0;
+            .check-img{
+                margin-right: 1vw;
+            }
+            #agree{
+                color: rgba(177, 175, 205, 0.5);
+            }
+        }
+    }
+}

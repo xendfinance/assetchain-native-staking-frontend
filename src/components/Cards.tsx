@@ -6,7 +6,7 @@ interface Props {
     type?: string;
     apy?: number;
     buttonText?: string;
-    action?: any;
+    action?: () => void;
     backgroundImage?: string;
     backgroundColor?: string;
 }
@@ -25,7 +25,7 @@ export const PackagesCard = ({type, apy, buttonText, action, backgroundImage, ba
                 text={buttonText}
                 tertiary
                 className="card-btn"
-                onClick={action && action }
+                onClick={() => action && action() }
             />
         </div>
     )

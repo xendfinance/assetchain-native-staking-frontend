@@ -1,11 +1,12 @@
 import React from 'react'
-import { Footer, Navbar } from 'components'
+import { Footer, Navbar, Modal } from 'components'
 import { PackagesCard } from 'components/Cards'
 import redBg from "../images/card-orange-bg.svg"
 import blueBg from "../images/card-blue-bg.svg"
 import blackBg from "../images/card-black-bg.svg"
 import blackBg2 from "../images/card-black-bg.png"
 import {useNavigate} from "react-router-dom"
+import {Staking} from "./Staking"
 
 interface Props {
     
@@ -13,6 +14,10 @@ interface Props {
 
 export const Home = (props: Props) => {
     const navigate = useNavigate()
+
+    const [modal, setModal] = React.useState({open: false, type: ""})
+    const openModal = (open: boolean, type: string) => setModal({open, type})
+    const closeModal = () => setModal({open: false, type: ""})
 
     const [wallet, setWallet] = React.useState(true)
     const toggleWallet = () => setWallet(!wallet)
@@ -77,6 +82,7 @@ export const Home = (props: Props) => {
                         // action={}
                         backgroundImage={redBg}
                         // backgroundColor="#FF6600"
+                        action={() => setModal({open: true, type: "stake"})}
                     />
                     <PackagesCard
                         type="Diamond"
@@ -85,6 +91,7 @@ export const Home = (props: Props) => {
                         // action={}
                         backgroundImage={blueBg}
                         // backgroundColor="#1C3BA6"
+                        action={() => setModal({open: true, type: "stake"})}
                     />
                     {console.log("image check-", redBg)}
                     <PackagesCard
@@ -94,10 +101,21 @@ export const Home = (props: Props) => {
                         // action={}
                         backgroundImage={blackBg2}
                         backgroundColor=""
+                        action={() => setModal({open: true, type: "stake"})}
                     />
                 </section>
             </main>
             <Footer/>
+
+            <Modal
+                modalOpen={modal.open}
+                modalClose={closeModal}
+                // closeIcon
+                // title={`${modal.type === "stake"  && "staking-modal"}`}
+                modalChild={modal.open && modal.type === "stake" && <Staking />
+                }
+                className={`${modal.type === "stake" && "stake-modal"}`}
+            />
         </div>
     )
 }

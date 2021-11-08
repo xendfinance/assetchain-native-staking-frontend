@@ -1,8 +1,11 @@
 
 .filter{
+    &.stake-filter{
+        margin-top: 5vh;
+    }
     .label{
         width: 100%;
-        @include fonts(18, 23, bold);
+        @include fonts(14, 17, 500);
         display: flex;
         align-items: center;
         // color: #000000;
@@ -26,41 +29,24 @@
         height: 2.8rem;
         outline: none;
         box-sizing: border-box;
-        border-radius: 40.8111px;
+        border-radius: 7px;
         font-style: normal;
-        font-weight: 600;
-        font-size: 0.812rem;
+        @include fonts(14, 17, normal);
+        // font-weight: 600;
+        // font-size: 0.812rem;
         cursor: pointer;
-        background: linear-gradient(44.25deg, #E8433D 25.64%, #FF6600 53.43%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        background-color: transparent;
+        color: #F9F9F9;
+        // background: linear-gradient(44.25deg, #E8433D 25.64%, #FF6600 53.43%);
+        // -webkit-background-clip: text;
+        // -webkit-text-fill-color: transparent;
     }
     &.ship-filter-long{
         width: 100%;
         margin-bottom: 1.5rem;
         .select{
-            border: 2px solid #C1C1C1;
-            // padding: 2.5vh 1vw;
+            border: 1px solid #707070;
             height: 3rem;
-            @include fonts(18, 23, bold);
-            color: #6D6D6D;
-            background: none;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: #6D6D6D;
-        }
-    }
-    &.ship-filter-short{
-        width: 47%;
-        box-sizing: border-box;
-        margin-bottom: 1rem;
-        @include screen("inbetween") {
-            width: 100%;
-        }
-        .select{
-            border: 2px solid #C1C1C1;
-            // padding: 2.5vh 1vw;
-            height: 3rem;
-            margin-bottom: 1rem;
             @include fonts(18, 23, bold);
             color: #6D6D6D;
             background: none;

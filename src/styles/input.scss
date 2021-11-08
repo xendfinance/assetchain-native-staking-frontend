@@ -7,17 +7,11 @@
   width: 100%;
   @include flex(column, nill, nill);
   margin-bottom: 1rem;
-  &.kyc-form{
-    width: 48%;
-    @include screen("inbetween") {
-      width: 100%;
-    }
+  &.stake-input{
+    margin-top: 5vh;
   }
-  &.ship-form-short{
-    width: 47%;
-    @include screen("inbetween") {
-      width: 100%;
-    }
+  &.stake-type{
+    margin-top: 5vh;
   }
 
   .head-box{
@@ -27,11 +21,8 @@
       justify-self: flex-start;
       width: 100%;
       .label{
-        // font-weight: 500;
-        // font-size: 14px;
-        // line-height: 17px;
         width: 100%;
-        @include fonts(18, 23, bold);
+        @include fonts(14, 17, 500);
         display: flex;
         align-items: center;
         // color: #000000;
@@ -58,29 +49,13 @@
     }
   }
   
-  .phone-cont{
-    display: block;
-    @include flex(row, nill, center);
-    border: 1px solid #DBDBDB;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-  }
-  #code{
-    margin: 0;
-    padding: 0.2rem 0.7rem 0.2rem 0.3rem;
-    border-right: 1px solid #DBDBDB;
-    font-size: 0.875rem;
-    line-height: 17px;
-    display: flex;
-    align-items: center;
-    color: #363636;
-  }
   .input-cont{
     width: 100%;
-    border: 2px solid #6D6D6D;
-    height: 4rem;
+    border: 1px solid #707070;
+    box-sizing: border-box;
+    border-radius: 7px;
+    height: 3rem;
     @include flex(row, space-between, center);
-    border-radius: 60px;
     margin-bottom: 1rem;
     @include screen("inbetween") {
       height: 3rem;
@@ -94,30 +69,19 @@
       box-sizing: border-box;
       border-radius: 60px;
       padding: 0 5%;
-      @include fonts(18, 23, bold);
+      @include fonts(14, 17, normal);
       display: flex;
       align-items: center;
       outline: none;
       background: transparent;
-      color: #C4C4C4;
+      color: #FFFFFF;
       @include screen("inbetween") {
         width: 100%;
         @include fonts(15, 21, bold);
       }
-      &.ship-form-short, &.ship-form-full {
-        color: #6D6D6D;
-        ::placeholder{
-          color: #C1C1C1;
-        }
-        :-ms-input-placeholder{
-          color: #C1C1C1;
-        }
-        ::-ms-input-placeholder{
-          color: #C1C1C1;
-        }
-        ::-webkit-input-placeholder{
-          color: #C1C1C1;
-        }
+      &.stake-type{
+        text-align: center;
+        @include fonts(18, 22, normal);
       }
     }
     .suffix{
@@ -129,39 +93,9 @@
       @include screen("inbetween") {
         width: 45%;
       }
-    &.kyc-form{
-      border: 2px solid #C1C1C1;
-      &:hover{
-        border: 2px solid #FF6600;
-      }
-      @include screen("inbetween") {
-
-      }
-    }
     
   }
-  &.ship-form-short, &.ship-form-full {
-    border: 2px solid #C1C1C1;
-    height: 3rem;
-  }
-  // &.ship-form-full{
-  //   border: 2px solid #C1C1C1;
-  // }
   
-  #phone-input{
-    border: none;
-    margin-bottom: 0rem;
-  }
-  #end{
-    align-self: flex-end;
-  }
-  &.transaction-input{
-    margin-top: 3rem;
-    border-radius: 37px;
-    input{
-      // border: 2px solid #6D6D6D;
-    }
-  }
   &.step-input{
     border: 2px solid #FF6600;
       input{
@@ -250,6 +184,17 @@
       }
     }
   }
-
-
 }
+
+.input-label{
+  width: 100%;
+  @include flex(row, space-between, center);
+  #label-right{
+    color: #B1AFCD;
+    @include fonts(10, 12, 500);
+    #suffix-span{
+      margin-left: 0.5vw;
+    }
+  }
+}
+
