@@ -1,7 +1,7 @@
 import React from 'react'
 import {Navbar, Table, Footer} from "components"
 import { useNavigate, useLocation } from 'react-router'
-import {TableHeader, tableDummyData} from "components/TableData"
+import {HistoryTableHeader, StakingTableHeader, tableDummyData} from "components/TableData"
 
 interface Props {
     page?: string;
@@ -21,16 +21,19 @@ export const Transactions = (props: Props) => {
                     />
                     <div className="page-dets">
                         <p id="topic">{pathname === "/history" ? "History" : "Active Staking"}</p>
-                        <p id="sub-topic">Details of your active staking</p>
+                        <p id="sub-topic">
+                            {pathname.includes("/history") ? "Your staking history" : "Details of your active staking"}
+                        </p>
                     </div>
                 </div>
                 <div className="table-section">
                     <Table
-                        header={TableHeader}
+                        header={pathname.includes('/history') ? HistoryTableHeader : StakingTableHeader}
                         data={tableDummyData.map((data: any, i: any) => ({
                             ...data,
                             date: data?.date,
                             coin: data.coin,
+                            package: data.package,
                             amount: data.amount,
                             locked: data.lock
                         }))}

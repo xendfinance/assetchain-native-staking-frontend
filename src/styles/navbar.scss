@@ -1,10 +1,8 @@
 
 nav {
     width: 100%;
-    border: 1px solid red;
     position: relative;
     @include flex(row, space-between, center);
-    // border: 1px solid red;
     @include screen("inbetween") {
         padding: 0 5%;
         box-sizing: border-box;

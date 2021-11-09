@@ -77,6 +77,14 @@ button {
         margin: 0;
       }
     }
+    @include screen("inbetween") {
+      .btn-inside{
+        p{
+          padding: 1vh 2vw;
+          @include fonts(11, 13, bold);
+        }
+      }
+    }
     &.card-btn{
       justify-self: center;
       margin: 0 auto;
@@ -94,7 +102,6 @@ button {
   position: relative;
   @include screen("inbetween") {
     min-width: 50%;
-    border: 1px solid blue;
   }
 
   .left-capsule{
