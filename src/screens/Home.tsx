@@ -2,6 +2,7 @@ import React from 'react'
 import { Footer, Navbar, Modal } from 'components'
 import { PackagesCard } from 'components/Cards'
 import redBg from "../images/card-orange-bg.svg"
+import orangeBg from "../images/orange-bg.png"
 import blueBg from "../images/card-blue-bg.svg"
 import blackBg from "../images/card-black-bg.svg"
 import blackBg2 from "../images/card-black-bg.png"
@@ -79,28 +80,22 @@ export const Home = (props: Props) => {
                         type="Silver"
                         apy={7}
                         buttonText="Connect Wallet"
-                        // action={}
-                        backgroundImage={redBg}
-                        // backgroundColor="#FF6600"
+                        id="orange-bg"
                         action={() => setModal({open: true, type: "stake"})}
                     />
                     <PackagesCard
                         type="Diamond"
                         apy={11}
                         buttonText="Stake"
-                        // action={}
-                        backgroundImage={blueBg}
-                        // backgroundColor="#1C3BA6"
                         action={() => setModal({open: true, type: "stake"})}
+                        id="blue-bg"
                     />
                     {console.log("image check-", redBg)}
                     <PackagesCard
                         type="Silver"
                         apy={15}
                         buttonText="Connect Wallet"
-                        // action={}
-                        backgroundImage={blackBg2}
-                        backgroundColor=""
+                        id="black-bg"
                         action={() => setModal({open: true, type: "stake"})}
                     />
                 </section>

@@ -2,19 +2,35 @@
 //////// Packages card ///// 
 .package-card {
     width: 31%;
+    min-height: 30vh;
     border-radius: 8px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
     padding: 2.5%;
     box-sizing: border-box;
-    z-index: 100;
     border: 1px solid cyan;
     @include screen("inbetween") {
         width: 100%;
         padding: 5%;
         margin-bottom: 5vh;
     }
+    &.orange-bg{
+        background-image: url("../images/orange-bg.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: initial;
+    }
+    &.blue-bg{
+        background-image: url("../images/blue-bg.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    &.black-bg{
+        background-image: url("../images/card-black-bg.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
 
     .card-type{
         @include fonts(18, 20, 500);
@@ -45,17 +61,30 @@ footer {
     margin-top: 5vh;
     padding: 5% 5% 2% 5%;
     box-sizing: border-box;
+    @include screen("inbetween") {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 0.5vh;
+    }
     #copy{
+        order: 1;
         @include fonts(12, 14, 500);
         color: #D1D1D1;
+        @include screen("inbetween") {
+            order: 2;
+        }
     }
     .foot-menu{
+        order: 2;
         @include flex(row, nill, center);
         list-style: none;
         margin: 0;
         padding: 0;
+        @include screen("inbetween") {
+            order: 1;
+        }
         .foot-list{
-            margin-right: 2vw;
+            margin: 0 2vw 1vh 0;
             @include fonts(14, 17, 500);
             cursor: pointer;
         }

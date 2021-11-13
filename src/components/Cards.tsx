@@ -9,11 +9,12 @@ interface Props {
     action?: () => void;
     backgroundImage?: string;
     backgroundColor?: string;
+    id?: string;
 }
 
-export const PackagesCard = ({type, apy, buttonText, action, backgroundImage, backgroundColor}: Props) => {
+export const PackagesCard = ({type, apy, buttonText, action, backgroundImage, backgroundColor, id}: Props) => {
     return (
-        <div className="package-card" style={{backgroundImage: `url(${backgroundImage && backgroundImage})`, background: backgroundColor}}>
+        <div className={`package-card ${id && id}`} style={{backgroundImage: `url(${backgroundImage})`, background: backgroundColor}}>
             <p className="card-type">{type} Package</p>
             <p className="card-apy">
                 {apy}%

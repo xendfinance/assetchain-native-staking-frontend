@@ -16,7 +16,7 @@ export const Transactions = (props: Props) => {
             <Navbar />
             <div className="transaction-main">
                 <div className="header">
-                    <img src="/icons/back-arrow" alt="back" className="back-img" 
+                    <img src="/icons/back-arrow.svg" alt="back" className="back-img" 
                         onClick={() => navigate(-1)}
                     />
                     <div className="page-dets">
