@@ -6,29 +6,31 @@
     border-radius: 8px;
     padding: 2.5%;
     box-sizing: border-box;
-    border: 1px solid cyan;
     @include screen("inbetween") {
         width: 100%;
         padding: 5%;
         margin-bottom: 5vh;
     }
     &.orange-bg{
-        background-image: url("../images/orange-bg.svg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: initial;
+        // background-image: url("../images/orange-bg.svg");
+        // background-repeat: no-repeat;
+        // background-position: center;
+        // background-size: initial;
+        background: linear-gradient(180deg, #FCB25B 0%, rgba(252, 178, 91, 0.05) 82.74%);
     }
     &.blue-bg{
-        background-image: url("../images/blue-bg.svg");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
+        // background-image: url("../images/blue-bg.svg");
+        // background-size: cover;
+        // background-repeat: no-repeat;
+        // background-position: center;
+        background: linear-gradient(180deg, #3A5CD3 0%, rgba(17, 49, 160, 0.3) 100%);
     }
     &.black-bg{
-        background-image: url("../images/card-black-bg.png");
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
+        // background-image: url("../images/card-black-bg.png");
+        // background-size: contain;
+        // background-repeat: no-repeat;
+        // background-position: center;
+        background: linear-gradient(236.79deg, #939B97 30.22%, rgba(147, 155, 151, 0) 69.08%); 
     }
 
 
