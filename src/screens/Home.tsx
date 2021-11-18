@@ -20,7 +20,7 @@ export const Home = (props: Props) => {
     const openModal = (open: boolean, type: string) => setModal({open, type})
     const closeModal = () => setModal({open: false, type: ""})
 
-    const [wallet, setWallet] = React.useState(true)
+    const [wallet, setWallet] = React.useState(false)
     const toggleWallet = () => setWallet(!wallet)
 
     return (
