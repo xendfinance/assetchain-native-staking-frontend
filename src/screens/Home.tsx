@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Footer, Navbar, Modal } from 'components'
 import { PackagesCard } from 'components/Cards'
 import redBg from "../images/card-orange-bg.svg"
@@ -8,6 +8,7 @@ import blackBg from "../images/card-black-bg.svg"
 import blackBg2 from "../images/card-black-bg.png"
 import {useNavigate} from "react-router-dom"
 import {Staking} from "./Staking"
+import { useSelector } from 'react-redux'
 
 interface Props {
     
@@ -20,8 +21,18 @@ export const Home = (props: Props) => {
     const openModal = (open: boolean, type: string) => setModal({open, type})
     const closeModal = () => setModal({open: false, type: ""})
 
+	const { address} = useSelector((store: any) => store.DashboardReducer)
+
+
     const [wallet, setWallet] = React.useState(true)
     const toggleWallet = () => setWallet(!wallet)
+    
+    useEffect(() => {
+		if (typeof address !== 'undefined' && address) {
+			console.log("HIT THIS WHEN ADDRESS CHANGES ");
+		}
+	}, [address]);
+
 
     return (
         <div className="home">
@@ -39,7 +50,7 @@ export const Home = (props: Props) => {
                 </section>
 
                 <section className="step-2">
-                    {!wallet ? 
+                    {!address ? 
                         (
                             <>
                                 <p id="connect">Connect Wallet</p>
@@ -59,6 +70,9 @@ export const Home = (props: Props) => {
                                         <p className="val">300 XEND</p>
                                         <p className="amount">$ 499,000</p>
                                     </div>
+                                </div>
+                                <div>
+
                                 </div>
                                 <div className="right-2">
                                     <div className="pointer active" onClick={() => navigate("/active-staking")}>
