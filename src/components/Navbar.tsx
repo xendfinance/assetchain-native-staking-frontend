@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, CapsuleBtn, Modal, WalletConnectedForm, ConnectWalletForm } from 'components'
 import {useNavigate} from "react-router-dom"
+import Wallets from './Wallets'
+import ConnectionModal from './ConnectionModal'
 
 interface Props {
     wallet?: boolean;
@@ -17,9 +19,7 @@ const ConnectWallet = () => (
 export const Navbar = ({wallet, toggleWallet}: Props) => {
     const navigate = useNavigate()
 
-    const [modal, setModal] = React.useState({open: false, type: ""})
-    const openModal = (open: boolean, type: string) => setModal({open, type})
-    const closeModal = () => setModal({open: false, type: ""})
+    const [connectModal, setConnectModal] = useState(false);
 
     return (
         <div>
@@ -27,24 +27,13 @@ export const Navbar = ({wallet, toggleWallet}: Props) => {
             <img src="/icons/xend-logo-white.svg" alt="logo" className="logo" 
                 onClick={() => navigate("/")}
             />
-            {wallet ?
-                (<CapsuleBtn
-                    leftText="34,000 BUSD"
-                    rightText="0x53d...28f9"
-                    onClick={() => setModal({open: true, type: "show-wallet"})}
-                />)
-                : (
-                    <Button
-                        text={<ConnectWallet />}
-                        tertiary
-                        type="button"
-                        onClick={() => setModal({open: true, type: "connect-wallet"})}
-                    />
-                )
-            }
+               <Wallets setOpen={setConnectModal} />
             </nav>
 
-            <Modal
+            <ConnectionModal
+                    open={connectModal}
+                    setOpen={setConnectModal} />
+            {/* <Modal
                 modalOpen={modal.open}
                 modalClose={closeModal}
                 closeIcon
@@ -55,7 +44,7 @@ export const Navbar = ({wallet, toggleWallet}: Props) => {
                     : null
                 }
                 className={`${modal.type === "connect-modal" && "connect-modal"}`}
-            />
+            /> */}
         </div>
     )
 }
