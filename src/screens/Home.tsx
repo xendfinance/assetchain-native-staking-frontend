@@ -8,7 +8,8 @@ import blackBg from "../images/card-black-bg.svg"
 import blackBg2 from "../images/card-black-bg.png"
 import {useNavigate} from "react-router-dom"
 import {Staking} from "./Staking"
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import GetCategories from 'methods/contracts/actions/getCategories'
 
 interface Props {
     
@@ -21,17 +22,24 @@ export const Home = (props: Props) => {
     const openModal = (open: boolean, type: string) => setModal({open, type})
     const closeModal = () => setModal({open: false, type: ""})
 
-	const { address} = useSelector((store: any) => store.DashboardReducer)
-
+	const { address,categories} = useSelector((store: any) => store.DashboardReducer)
+    
+    const dispatch = useDispatch();
 
     const [wallet, setWallet] = React.useState(true)
     const toggleWallet = () => setWallet(!wallet)
     
     useEffect(() => {
 		if (typeof address !== 'undefined' && address) {
-			console.log("HIT THIS WHEN ADDRESS CHANGES ");
+			
 		}
 	}, [address]);
+
+
+    useEffect(() => {
+        dispatch(GetCategories());
+	    console.log("CATEGORIES",categories)
+	}, []);
 
 
     return (
@@ -90,15 +98,30 @@ export const Home = (props: Props) => {
                 </section>
 
                 <section className="step-3">
+
+                {/* {
+                categories[0].map((entry, i) => (
                     <PackagesCard
-                        type="Silver"
+                    type={entry[0]}
+                    apy={7}
+                    buttonText="Connect Wallet"
+                    id="orange-bg"
+                    action={() => setModal({open: true, type: "stake"})}
+                />
+                ))
+                }
+ */}
+
+                    
+                    <PackagesCard
+                        type={categories[0][0][0]}
                         apy={7}
                         buttonText="Connect Wallet"
                         id="orange-bg"
                         action={() => setModal({open: true, type: "stake"})}
                     />
                     <PackagesCard
-                        type="Diamond"
+                        type={categories[0][1][0]}
                         apy={11}
                         buttonText="Stake"
                         action={() => setModal({open: true, type: "stake"})}
@@ -106,7 +129,7 @@ export const Home = (props: Props) => {
                     />
                     {console.log("image check-", redBg)}
                     <PackagesCard
-                        type="Silver"
+                        type={categories[0][2][0]}
                         apy={15}
                         buttonText="Connect Wallet"
                         id="black-bg"

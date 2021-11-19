@@ -10,7 +10,7 @@ const getNativeBalance = (address: string,chainId :any) => {
 		try {
             const Web3 = require('web3');
 			const web3 = new Web3(getNodeUrl())
-			console.log("HIT HERE ");
+			
 
 			let balance = await web3.eth.getBalance(address);
 			balance = commas(Number(balance) * Math.pow(10, -18), 2)

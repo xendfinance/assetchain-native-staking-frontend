@@ -10,7 +10,8 @@ const initialState = {
     chainId: 0,
     nativeBalance: '0.00',
     connectionDetails:[],
-    networkConnect:'97',   
+    networkConnect:'97',
+    categories:[]   
 };
 
 const DashboardReducer = (state = initialState, action: Action) => {
@@ -24,6 +25,8 @@ const DashboardReducer = (state = initialState, action: Action) => {
       
         case _const.WALLETINUSE:
             return { ...state, walletInUse: action.payload };
+        case _const.CATEGORIES:
+                return { ...state, categories: action.payload };
         case _const.CONNDETAILS:
             return { ...state, connectionDetails: action.payload };
        case _const.NETWORK_CONNECT:
