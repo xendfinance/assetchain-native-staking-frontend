@@ -1,16 +1,15 @@
 import React from 'react'
 import {Button, Input, Filter} from "components"
 
+
 interface Props {
-    type?: string;
-    apy?: number;    
+    categories?: any;    
+    categoryId?: number;   
+    userXendBalance?:any; 
 }
 
-const filterOptions = [
-    {label: "Gold", value: "gold"},
-    {label: "Silver", value: "silver"},
-    {label: "Diamond", value: "diamond"},
-]
+let xendBalanceOfUser;
+
 
 const InputLabel = () => {
     return (
@@ -18,16 +17,21 @@ const InputLabel = () => {
             <p id="label-left">Stake Amount</p>
             <p id="label-right">
             Available amount: 
-            <span id="suffix-span">0 XEND</span>
+            <span id="suffix-span">{xendBalanceOfUser} XEND</span>
         </p>
         </div>
         
     )
 }
 
-export const Staking = ({type, apy}: Props) => {
+export const Staking = ({categories,categoryId,userXendBalance}: Props) => {
     const [check, setCheck] = React.useState(false)
-    console.log()
+    const selectedCategory = categories.filter(c => 
+        c.id == categoryId
+     )
+     
+    xendBalanceOfUser = userXendBalance;
+
 
     return (
         <div className="staking">
@@ -43,7 +47,9 @@ export const Staking = ({type, apy}: Props) => {
                     />                  
                     <Input
                         name="amount"
-                        label={<InputLabel />}
+                        label={<InputLabel
+                               
+                            />}
                         placeholder="Enter Stake Amount"
                         className="stake-input"
                     />
@@ -74,7 +80,7 @@ export const Staking = ({type, apy}: Props) => {
                 </div>
                 <div className="row-box">
                     <p id="item">Best Deal Reward (APY)</p>
-                    <p id="val">{apy} APY</p>
+                    <p id="val">{selectedCategory[0].apy} % APY</p>
                 </div>
                 <div className="row-box">
                     <p id="item">Est. Accumulated Interest</p>

@@ -9,6 +9,7 @@ const initialState = {
     address: '',    
     chainId: 0,
     nativeBalance: '0.00',
+    xendBalance: '0.00',
     connectionDetails:[],
     networkConnect:'97',
     categories:[],
@@ -21,6 +22,8 @@ const DashboardReducer = (state = initialState, action: Action) => {
             return { ...state, ...action.payload };
         case _const.NATIVE_BALANCE:
             return { ...state, nativeBalance: action.payload };
+        case _const.XEND_BALANCE:
+            return { ...state, xendBalance: action.payload };
         case _const.PRISTINE:
             return { ...state, address: '', nativeBalance: '0.0000' };      
       

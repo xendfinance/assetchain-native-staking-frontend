@@ -11,6 +11,7 @@ import {Staking} from "./Staking"
 import { useDispatch, useSelector } from 'react-redux'
 import GetCategories from 'methods/contracts/actions/getCategories'
 import GetUserInfo from 'methods/contracts/actions/getUserInfo'
+import GetUserXendBalance from 'methods/contracts/actions/getUserXendBalance'
 
 interface Props {
     
@@ -19,11 +20,11 @@ interface Props {
 export const Home = (props: Props) => {
     const navigate = useNavigate()
 
-    const [modal, setModal] = React.useState({open: false, type: ""})
-    const openModal = (open: boolean, type: string) => setModal({open, type})
-    const closeModal = () => setModal({open: false, type: ""})
+    const [modal, setModal] = React.useState({open: false, type: "",categoryId:null})
+    const openModal = (open: boolean, type: string,categoryId:any) => setModal({open, type,categoryId})
+    const closeModal = () => setModal({open: false, type: "",categoryId:null})
 
-	const { address,categories,userInfo} = useSelector((store: any) => store.DashboardReducer)
+	const { address,categories,userInfo,xendBalance} = useSelector((store: any) => store.DashboardReducer)
     
     const dispatch = useDispatch();
 
@@ -33,6 +34,7 @@ export const Home = (props: Props) => {
     useEffect(() => {
 		if (typeof address !== 'undefined' && address) {
 			dispatch(GetUserInfo(address))
+            dispatch(GetUserXendBalance(address))
 		}
 	}, [address]);
 
@@ -108,33 +110,12 @@ export const Home = (props: Props) => {
                     apy={entry.apy}
                     buttonText={address?"Stake":"Connect Wallet"}                    
                     id="orange-bg"
-                    action={() => setModal({open: true, type: "stake"})}
+                    action={() => setModal({open: true, type: "stake",categoryId:i})}
                     address = {address}
                 />
                 ))
                 }
-                    {/* <PackagesCard
-                        type={categories.}
-                        apy={7}
-                        buttonText="Connect Wallet"
-                        id="orange-bg"
-                        action={() => setModal({open: true, type: "stake"})}
-                    />
-                    <PackagesCard
-                        type="Diamond"
-                        apy={11}
-                        buttonText="Stake"
-                        action={() => setModal({open: true, type: "stake"})}
-                        id="blue-bg"
-                    />
-                    {console.log("image check-", redBg)}
-                    <PackagesCard
-                        type="Silver"
-                        apy={15}
-                        buttonText="Connect Wallet"
-                        id="black-bg"
-                        action={() => setModal({open: true, type: "stake"})}
-                    /> */}
+                  
                 </section>
             </main>
             <Footer/>
@@ -142,17 +123,23 @@ export const Home = (props: Props) => {
             <Modal
                 modalOpen={modal.open}
                 modalClose={closeModal}
-                // closeIcon
-                // title={`${modal.type === "stake"  && "staking-modal"}`}
-                modalChild={modal.open && modal.type === "stake" &&
+              
+                modalChild={modal.open && modal.type === "stake" && 
+                <Staking
+                     categoryId={modal.categoryId}
+                     categories={categories}
+                     userXendBalance={xendBalance}                      
+                 />
+                }
+                
                
-                    categories.map((entry, i) => (
-                        <Staking
-                        type={entry.name}
-                        apy={entry.apy}                       
-                    />
-                    ))
-                    }
+                    // categories.map((entry, i) => (
+                    //     <Staking
+                    //     type={entry.name}
+                    //     apy={entry.apy}                       
+                    // />
+                    // ))
+                    // }
                 
                 className={`${modal.type === "stake" && "stake-modal"}`}
             />

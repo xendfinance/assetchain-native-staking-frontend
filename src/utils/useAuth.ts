@@ -18,7 +18,7 @@ export const Login = (connectorID: ConnectorNames, chainId: number, walletName: 
         try {
             let account: any = null;
             
-            console.log("HIT HERE ")
+          
             const connector: any = connectorsByName(connectorID, chainId);
 
             const dt = { chainId, connectorID, walletName }

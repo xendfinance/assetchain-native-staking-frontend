@@ -4,14 +4,14 @@
  * @param contractAddress
  */
 
+import App from "App";
 import getNodeUrl from "utils/node-url";
 
 
 
 async function createContract(abi: Array<any>, contractAddress: any) {
   
-  const Web3 = require('web3');
-	const web3Instance = new Web3(getNodeUrl())
+	const web3Instance = window.APPWEB3;
 
   if (web3Instance) {
     return new web3Instance.eth.Contract(abi, contractAddress);

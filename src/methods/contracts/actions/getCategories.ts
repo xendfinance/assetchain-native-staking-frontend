@@ -13,6 +13,7 @@ function GetCategories() {
                 let category = response[i];
                 let apy = ((category[3] * 365)/(category[1] * 100000))*100;
                 finalState.push({
+                   id:i,
                    name:category[0],
                    period:category[1],
                    withdrawTime:category[2],
