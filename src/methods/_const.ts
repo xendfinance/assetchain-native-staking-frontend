@@ -27,6 +27,7 @@ export default {
     //NewNetworkChange
     NETWORK_PROVIDER_HAS_CHANGED: 'SELECTED_NETWORK_PROVIDER',
     CATEGORIES: 'CATEGORIES',
+    USER_INFO: 'USERINFO',
     
    
   };

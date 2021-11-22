@@ -11,7 +11,8 @@ const initialState = {
     nativeBalance: '0.00',
     connectionDetails:[],
     networkConnect:'97',
-    categories:[]   
+    categories:[],
+    userInfo:{}   
 };
 
 const DashboardReducer = (state = initialState, action: Action) => {
@@ -27,6 +28,8 @@ const DashboardReducer = (state = initialState, action: Action) => {
             return { ...state, walletInUse: action.payload };
         case _const.CATEGORIES:
                 return { ...state, categories: action.payload };
+        case _const.USER_INFO:
+            return { ...state, userInfo: action.payload };
         case _const.CONNDETAILS:
             return { ...state, connectionDetails: action.payload };
        case _const.NETWORK_CONNECT:

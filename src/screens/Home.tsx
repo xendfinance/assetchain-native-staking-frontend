@@ -10,6 +10,7 @@ import {useNavigate} from "react-router-dom"
 import {Staking} from "./Staking"
 import { useDispatch, useSelector } from 'react-redux'
 import GetCategories from 'methods/contracts/actions/getCategories'
+import GetUserInfo from 'methods/contracts/actions/getUserInfo'
 
 interface Props {
     
@@ -22,7 +23,7 @@ export const Home = (props: Props) => {
     const openModal = (open: boolean, type: string) => setModal({open, type})
     const closeModal = () => setModal({open: false, type: ""})
 
-	const { address,categories} = useSelector((store: any) => store.DashboardReducer)
+	const { address,categories,userInfo} = useSelector((store: any) => store.DashboardReducer)
     
     const dispatch = useDispatch();
 
@@ -31,15 +32,13 @@ export const Home = (props: Props) => {
     
     useEffect(() => {
 		if (typeof address !== 'undefined' && address) {
-			
+			dispatch(GetUserInfo(address))
 		}
 	}, [address]);
 
 
     useEffect(() => {
         dispatch(GetCategories());
-	    console.log("CATEGORIES",categories);
-	  
 
 	}, []);
 
@@ -70,16 +69,18 @@ export const Home = (props: Props) => {
                         (
                             <div className="non-empty">
                                 <div className="left-2">
+                                   
                                     <div className="box-2">
                                         <p className="prop">Staking Balance</p>
-                                        <p className="val">300 XEND</p>
+                                        <p className="val">{userInfo.staked} XEND</p>
                                         <p className="amount">$ 499,000</p>
                                     </div>
                                     <div className="box-2">
                                         <p className="prop">Accumulated Interest</p>
-                                        <p className="val">300 XEND</p>
+                                        <p className="val">{userInfo.reward} XEND</p>
                                         <p className="amount">$ 499,000</p>
                                     </div>
+                                 
                                 </div>
                                 <div>
 
@@ -143,8 +144,16 @@ export const Home = (props: Props) => {
                 modalClose={closeModal}
                 // closeIcon
                 // title={`${modal.type === "stake"  && "staking-modal"}`}
-                modalChild={modal.open && modal.type === "stake" && <Staking />
-                }
+                modalChild={modal.open && modal.type === "stake" &&
+               
+                    categories.map((entry, i) => (
+                        <Staking
+                        type={entry.name}
+                        apy={entry.apy}                       
+                    />
+                    ))
+                    }
+                
                 className={`${modal.type === "stake" && "stake-modal"}`}
             />
         </div>

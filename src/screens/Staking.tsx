@@ -2,7 +2,8 @@ import React from 'react'
 import {Button, Input, Filter} from "components"
 
 interface Props {
-    
+    type?: string;
+    apy?: number;    
 }
 
 const filterOptions = [
@@ -24,9 +25,9 @@ const InputLabel = () => {
     )
 }
 
-export const Staking = (props: Props) => {
+export const Staking = ({type, apy}: Props) => {
     const [check, setCheck] = React.useState(false)
-
+    console.log()
 
     return (
         <div className="staking">
@@ -73,7 +74,7 @@ export const Staking = (props: Props) => {
                 </div>
                 <div className="row-box">
                     <p id="item">Best Deal Reward (APY)</p>
-                    <p id="val">15% APY</p>
+                    <p id="val">{apy} APY</p>
                 </div>
                 <div className="row-box">
                     <p id="item">Est. Accumulated Interest</p>
