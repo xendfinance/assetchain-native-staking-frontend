@@ -38,7 +38,9 @@ export const Home = (props: Props) => {
 
     useEffect(() => {
         dispatch(GetCategories());
-	    console.log("CATEGORIES",categories)
+	    console.log("CATEGORIES",categories);
+	  
+
 	}, []);
 
 
@@ -98,30 +100,27 @@ export const Home = (props: Props) => {
                 </section>
 
                 <section className="step-3">
-
-                {/* {
-                categories[0].map((entry, i) => (
+                       { 
+                categories.map((entry, i) => (
                     <PackagesCard
-                    type={entry[0]}
-                    apy={7}
-                    buttonText="Connect Wallet"
+                    type={entry.name}
+                    apy={entry.apy}
+                    buttonText={address?"Stake":"Connect Wallet"}                    
                     id="orange-bg"
                     action={() => setModal({open: true, type: "stake"})}
+                    address = {address}
                 />
                 ))
                 }
- */}
-
-                    
-                    <PackagesCard
-                        type={categories[0][0][0]}
+                    {/* <PackagesCard
+                        type={categories.}
                         apy={7}
                         buttonText="Connect Wallet"
                         id="orange-bg"
                         action={() => setModal({open: true, type: "stake"})}
                     />
                     <PackagesCard
-                        type={categories[0][1][0]}
+                        type="Diamond"
                         apy={11}
                         buttonText="Stake"
                         action={() => setModal({open: true, type: "stake"})}
@@ -129,12 +128,12 @@ export const Home = (props: Props) => {
                     />
                     {console.log("image check-", redBg)}
                     <PackagesCard
-                        type={categories[0][2][0]}
+                        type="Silver"
                         apy={15}
                         buttonText="Connect Wallet"
                         id="black-bg"
                         action={() => setModal({open: true, type: "stake"})}
-                    />
+                    /> */}
                 </section>
             </main>
             <Footer/>

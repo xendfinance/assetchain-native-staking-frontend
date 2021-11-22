@@ -39,12 +39,7 @@ export const Staking = (props: Props) => {
                         value="Locked"
                         className="stake-type"
                         disabled
-                    />
-                    <Filter
-                        label="Select Package"
-                        options={filterOptions}
-                        className="stake-filter"
-                    />
+                    />                  
                     <Input
                         name="amount"
                         label={<InputLabel />}
