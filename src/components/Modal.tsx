@@ -26,7 +26,7 @@ export const Modal: FC<Props> = ({modalChild, modalOpen, modalClose, title, clas
 			onClick={() => modalClose && modalClose()}
 		>
 			<div
-				className={`bg-secondary content-cont ${className && className}`}
+				className={`content-cont ${className && className}`}
 				onClick={(e) => e.stopPropagation()}
 			>
 				{(closeIcon || title) && 

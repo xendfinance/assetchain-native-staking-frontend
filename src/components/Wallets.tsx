@@ -13,17 +13,38 @@ import getNativeBalance from 'methods/redux/actions/getBalances';
 import { reacquireEmit } from 'methods/utils/event-fnc-recall';
 import { assignAddresses } from 'methods/utils/protocol-settings';
 import { addSettingsObjectToStorage } from 'methods/utils/intro-settings';
-
-
+import {Button, CapsuleBtn} from "components"
 
 
 
 interface WalletProps {
-	setOpen: Function
+	setOpen?: Function;
+	modal?: boolean;
+	open?: Function;
+	close?: Function;
+	icon?: string;
+	truncated?: string;
+}
+
+const ConnectWallet = () => (
+    <div className="connect-wallet">
+        <img src="/icons/connect-wallet.svg" alt="wallet" className="wallet-img" />
+        <span>Connect Wallet</span>
+    </div>
+)
+
+const CapsuleText = ({icon, truncated}: WalletProps) => {
+	return (
+		<div className="cap-text">
+			<img src={icon} alt="icon" id="wall-icon" />
+			<span id="truncated">{truncated}</span>
+		</div>
+	)
+	
 }
 
 
-const Wallets: FC<WalletProps> = ({ setOpen }) => {
+const Wallets: FC<WalletProps> = ({ setOpen, modal, open, close }) => {
 	const dispatch = useDispatch();
 	const { account } = useWeb3React();
 
@@ -33,6 +54,7 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 
 	const [walletLogo, setWalletLogo] = useState('');
 	const [networkLogo, setNetworkLogo] = useState('');
+	console.log("wall logo--", walletLogo)
 
 
 
@@ -49,8 +71,6 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 		}
 	
 	}
-
-
 
 	// main function handling the connection into the app
 	const insideConnectWallet = (account: any) => {
@@ -79,21 +99,12 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 
 	}
 
-
-
-
-
-
-
 	useEffect(() => {
 		if (typeof address !== 'undefined' && address) {
 			insideConnectWallet(address);
 			
 		}
 	}, [address]);
-
-
-
 
 
 	// runs once whenever the account is changed
@@ -185,7 +196,8 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 	useEffect(() => {
 	
 		const connectedWallet = connectors.filter(x => x.title === walletInUse);
-		connectedWallet[0] && setWalletLogo(connectedWallet[0].image);
+		connectedWallet[0] && setWalletLogo(connectedWallet[0]?.image);
+		
         
 		// const connectionDetails = JSON.parse(localStorage.getItem("CONNECTION_DETAILS"));
 		// if(connectionDetails){
@@ -209,30 +221,26 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 
 	return (
 		<>
-
-			<ConnectWalletStyle onClick={() => setOpen(true)}>
-                  
-				{!address ?
-					(<div>
-						<figure>
-							<Wallet />
-						</figure>
-						<p>Connect Wallet</p>
-					</div>
-					) : (
-						<div>
-							<span>{nativeBalance}</span>							
-							<div className="wallet">							    
-								<figure className="connected">								    
-									<img src={walletLogo} width={20} alt="" />
-								</figure>
-								<span>{truncateAddress(address)}</span>
-							</div>
-						</div>
-					)
-				}
-
-			</ConnectWalletStyle>
+		{!address ?
+			(
+				<Button
+					text={<ConnectWallet />}
+					tertiary
+					type="button"
+					// onClick={() => open && open({open: true, type: "connect-wallet"})}
+					onClick={() => setOpen(true)}
+				/>
+			)
+					
+			: (
+				<CapsuleBtn
+					leftText={nativeBalance}  
+					rightText={< CapsuleText icon={walletLogo} truncated={truncateAddress(address)}  />}
+					onClick={() => setOpen(true)}
+				/>
+			)
+					
+		}
 		</>
 	)
 }
@@ -241,7 +249,7 @@ export default Wallets;
 
 
 const ConnectWalletStyle = styled.button`
-	border: none;
+	border: 2px solid cyan;
 	margin-left: 15px;
 	display: flex;
 	align-items: center;

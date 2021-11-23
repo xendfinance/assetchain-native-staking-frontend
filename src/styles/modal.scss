@@ -67,7 +67,7 @@
 
 
  ////// ConnectWalletForm //////
-.wallet-form-1{
+.connect-wallet-form{
     // border: 1px solid red;
   #title-1{
       @include fonts(24, 31, bold);
@@ -103,7 +103,7 @@
 
 
 ////// WalletConnectedForm ////////
-.wallet-form-2{
+.disconnect-wallet-form{
   .wallet-details{
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0px 17.8125px 18.525px rgba(0, 0, 0, 0.1);
@@ -139,6 +139,11 @@
           cursor: pointer;
       }
   }
+  
+}
+
+/// conect wallet modals /////// 
+.wallet-modal {
   
 }
   

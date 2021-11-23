@@ -13,8 +13,8 @@ interface Props {
     primary?: boolean;
     secondary?: boolean;
     tertiary?: boolean
-    leftText?: string;
-    rightText?: string;
+    leftText?: string | HTMLElement | JSX.Element;
+    rightText?: string | HTMLElement | JSX.Element;
 }
 
 export const Button: FC<Props> = ({text, type, disabled, className, 

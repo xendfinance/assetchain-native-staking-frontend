@@ -11,3 +11,10 @@ nav {
         cursor: pointer;
     }
 }
+
+
+.cap-text{
+    width: 90%;
+    @include flex(row, nill, center);
+
+}

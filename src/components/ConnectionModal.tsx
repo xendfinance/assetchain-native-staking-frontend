@@ -131,8 +131,8 @@ const ConnectionModal: FC<ConnectionModalProps> = ({ open, setOpen }) => {
 				</Modal>
 			) : (
 				<Modal
-					title="Connected account"
-					desc={`You are connected with ${walletInUse}`}
+					title="Connected"
+					// desc={`You are connected with ${walletInUse}`}
 					visible={open}
 					close={() => setOpen(false)}>
 					<CardContainer>

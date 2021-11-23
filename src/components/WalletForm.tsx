@@ -12,13 +12,9 @@ export const ConnectWalletForm = ({close, toggleWallet}: Props) => {
         close && close()
     }
 
-    // const disconnectWallet = () => {
-    //     toggleWallet && toggleWallet()
-    //     close && close()
-    // }
 
     return (
-        <div className="wallet-form-1">
+        <div className="connect-wallet-form">
             {/* <div id="title-1">Connect Wallet</div> */}
             <div className="wallet-box"
                 onClick={() => walletAction()}
@@ -48,14 +44,14 @@ export const ConnectWalletForm = ({close, toggleWallet}: Props) => {
 }
 
 
-export const WalletConnectedForm = ({close, toggleWallet}: Props) => {
+export const DisconnectWalletForm = ({close, toggleWallet}: Props) => {
     const walletAction = () => {
         toggleWallet && toggleWallet()
         close && close()
     }
 
     return (
-        <div className="wallet-form-2">
+        <div className="disconnect-wallet-form">
             {/* <div id="title-1">Connected</div> */}
             <div className="bg-primary wallet-details">
                 <p className="text-secondary" id="chain">Binance Smart Chain Network</p>

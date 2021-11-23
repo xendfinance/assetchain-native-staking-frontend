@@ -48,6 +48,9 @@ const Modal: FC<Props> = ({ children, title, desc, visible, modalId, close, widt
     });
 
     return (
+        <>
+
+        
         <ModalStyles open={open} show={show} width={width} padding={padding}>
             <div ref={bodyOfModal} className="modal-cont">
                 {title && <ModalControls>
@@ -65,6 +68,7 @@ const Modal: FC<Props> = ({ children, title, desc, visible, modalId, close, widt
                 <ModalContent contentWidth={contentWidth}>{children}</ModalContent>
             </div>
         </ModalStyles>
+        </>
     );
 };
 
@@ -80,19 +84,23 @@ interface ModalStylesProps {
 const ModalStyles = styled.div<ModalStylesProps>`
 	display: none;
 	position: fixed;
-	background: rgb(255, 255, 255);
-	z-index: -1;
+	background-color: rgba(0, 0, 0, 0.62);
+    border: 2px solid red;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	overflow-y: auto;
+    z-index: 100;
 
 	& > div {
+        display: block;
+        background: #1C1D21;
+        border: 2px solid cyan;
 		position: relative;
 		overflow-y: auto;
 		padding: 30px;
-		width: 100%;
+		min-width: 50%;
 		max-width: ${({ width }) => width ? width : '640px'};
 		margin: auto;
 		margin-top: 100px;
@@ -101,7 +109,8 @@ const ModalStyles = styled.div<ModalStylesProps>`
 		opacity: 0;
 		transform: scale(0.8);
 		transition: all 300ms ease;
-        background:#1C1D21;
+        
+        z-index: 300;
 	}
 
 	${({ open, show }) => open && css`
