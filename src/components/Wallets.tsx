@@ -227,8 +227,8 @@ const Wallets: FC<WalletProps> = ({ setOpen, modal, open, close }) => {
 					text={<ConnectWallet />}
 					tertiary
 					type="button"
-					// onClick={() => open && open({open: true, type: "connect-wallet"})}
-					onClick={() => setOpen(true)}
+					onClick={() => open && open({open: true, type: "connect-wallet"})}
+					// onClick={() => setOpen(true)}
 				/>
 			)
 					
@@ -236,7 +236,8 @@ const Wallets: FC<WalletProps> = ({ setOpen, modal, open, close }) => {
 				<CapsuleBtn
 					leftText={nativeBalance}  
 					rightText={< CapsuleText icon={walletLogo} truncated={truncateAddress(address)}  />}
-					onClick={() => setOpen(true)}
+					onClick={() => open && open({open: true, type: "disconnect"})}
+					// onClick={() => setOpen(true)}
 				/>
 			)
 					

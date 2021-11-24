@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, CapsuleBtn, Modal, ConnectWalletForm, DisconnectWalletForm } from 'components'
+import { Button, CapsuleBtn, Modal, WalletForm, ConnectWalletForm, DisconnectWalletForm } from 'components'
 import {useNavigate} from "react-router-dom"
 import Wallets from './Wallets'
 import ConnectionModal from './ConnectionModal'
@@ -28,20 +28,21 @@ export const Navbar = ({wallet, toggleWallet}: Props) => {
                <Wallets setOpen={setConnectModal} open={openModal} close={closeModal} />
             </nav>
 
-            <ConnectionModal
+            {/* <ConnectionModal
                 open={connectModal}
                 setOpen={setConnectModal} 
-            />
+            /> */}
             <Modal
                 modalOpen={modal.open}
                 modalClose={closeModal}
                 closeIcon
-                title={`${modal.type === "connect-wallet" ? "Connect Wallet" : modal.type === "show-wallet" ? "Connected" : ""}`}
-                modalChild={modal.open && modal.type === "connect-wallet" 
-                    ? <ConnectionModal open={modal.open} setOpen={setModal} />
-                    : modal.type === "show-wallet" ? <DisconnectWalletForm close={closeModal} toggleWallet={toggleWallet} />
-                    : null
-                }
+                title={`${modal.type === "connect-wallet" ? "Connect Wallet" : modal.type === "disconnect" ? "Disconnect Wallet" : ""}`}
+                modalChild={<WalletForm close={closeModal} />}
+                // modalChild={modal.open && modal.type === "connect-wallet" 
+                //     ? <ConnectionModal open={modal.open} setOpen={setModal} />
+                //     : modal.type === "show-wallet" ? <DisconnectWalletForm close={closeModal} toggleWallet={toggleWallet} />
+                //     : null
+                // }
                 className={`${modal.type === "connect-modal" && "connect-modal"}`}
             />
         </div>
