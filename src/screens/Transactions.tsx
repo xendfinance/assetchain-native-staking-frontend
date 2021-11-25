@@ -2,6 +2,7 @@ import React from 'react'
 import {Navbar, Table, Footer} from "components"
 import { useNavigate, useLocation } from 'react-router'
 import {HistoryTableHeader, StakingTableHeader, tableDummyData} from "components/TableData"
+import { useSelector } from 'react-redux'
 
 interface Props {
     page?: string;
@@ -10,6 +11,7 @@ interface Props {
 export const Transactions = (props: Props) => {
     const navigate = useNavigate()
     const {pathname} = useLocation()
+    const { userCategories,userCategoriesWithdraw,address} = useSelector((store: any) => store.DashboardReducer)
 
     return (
         <div className="transactions">
@@ -28,15 +30,11 @@ export const Transactions = (props: Props) => {
                 </div>
                 <div className="table-section">
                     <Table
-                        header={pathname.includes('/history') ? HistoryTableHeader : StakingTableHeader}
-                        data={tableDummyData.map((data: any, i: any) => ({
-                            ...data,
-                            date: data?.date,
-                            coin: data.coin,
-                            package: data.package,
-                            amount: data.amount,
-                            locked: data.lock
-                        }))}
+                        //header={pathname.includes('/history') ? HistoryTableHeader : StakingTableHeader}
+                        header={pathname.includes('/history') ? "History" : "ActiveStaking"}
+                        address={address}
+                        data={userCategories}
+                        dataWithdraw={userCategoriesWithdraw}
                     />
                 </div>
             </div>

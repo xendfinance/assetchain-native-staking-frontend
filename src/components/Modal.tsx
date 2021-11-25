@@ -18,7 +18,7 @@ export const Modal: FC<Props> = ({modalChild, modalOpen, modalClose, title, clas
     useEffect(() => {
         setModal(modalOpen)
     }, [modalOpen])
-	console.log("modal stat---", modalOpen)
+	
 
     return (
         <div
