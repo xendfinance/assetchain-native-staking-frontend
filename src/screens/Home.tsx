@@ -6,12 +6,15 @@ import orangeBg from "../images/orange-bg.png"
 import blueBg from "../images/card-blue-bg.svg"
 import blackBg from "../images/card-black-bg.svg"
 import blackBg2 from "../images/card-black-bg.png"
+
 import {useNavigate} from "react-router-dom"
 import {Staking} from "./Staking"
 import { useDispatch, useSelector } from 'react-redux'
 import GetCategories from 'methods/contracts/actions/getCategories'
 import GetUserInfo from 'methods/contracts/actions/getUserInfo'
 import GetUserXendBalance from 'methods/contracts/actions/getUserXendBalance'
+import GetTotalStaked from 'methods/contracts/actions/getTotalStaked'
+import GetUserStakedCategories from 'methods/contracts/actions/getUserStakedCategories'
 
 interface Props {
     
@@ -24,7 +27,7 @@ export const Home = (props: Props) => {
     const openModal = (open: boolean, type: string,categoryId:any) => setModal({open, type,categoryId})
     const closeModal = () => setModal({open: false, type: "",categoryId:null})
 
-	const { address,categories,userInfo,xendBalance} = useSelector((store: any) => store.DashboardReducer)
+	const { address,categories,userInfo,xendBalance,totalStakedContract,totalStakedUSD} = useSelector((store: any) => store.DashboardReducer)
     
     const dispatch = useDispatch();
 
@@ -35,12 +38,15 @@ export const Home = (props: Props) => {
 		if (typeof address !== 'undefined' && address) {
 			dispatch(GetUserInfo(address))
             dispatch(GetUserXendBalance(address))
+            dispatch(GetUserStakedCategories(address))
 		}
 	}, [address]);
 
 
     useEffect(() => {
         dispatch(GetCategories());
+        dispatch(GetTotalStaked());
+        
 
 	}, []);
 
@@ -54,7 +60,8 @@ export const Home = (props: Props) => {
                     <div className="locker">
                         <div className="lock-left">
                             <p id="title">Total Value Locked</p>
-                            <p id="value">$2,000,000</p>
+                            <p className="val">{totalStakedContract} XEND</p>
+                            <p className="amount">{totalStakedUSD}</p>
                         </div>
                         <img src="/icons/wallet.svg" alt="wallet" className="wallet-img" />
                     </div>
@@ -75,12 +82,12 @@ export const Home = (props: Props) => {
                                     <div className="box-2">
                                         <p className="prop">Staking Balance</p>
                                         <p className="val">{userInfo.staked} XEND</p>
-                                        <p className="amount">$ 499,000</p>
+                                        <p className="amount">{userInfo.stakedUSD}</p>
                                     </div>
                                     <div className="box-2">
                                         <p className="prop">Accumulated Interest</p>
                                         <p className="val">{userInfo.reward} XEND</p>
-                                        <p className="amount">$ 499,000</p>
+                                        <p className="amount">{userInfo.rewardUSD}</p>
                                     </div>
                                  
                                 </div>
@@ -108,6 +115,8 @@ export const Home = (props: Props) => {
                     <PackagesCard
                     type={entry.name}
                     apy={entry.apy}
+                    limit={entry.limit}
+                    totalStakedInCategory={entry.totalStakedInCategory}
                     buttonText={address?"Stake":"Connect Wallet"}                    
                     id="orange-bg"
                     action={() => setModal({open: true, type: "stake",categoryId:i})}
@@ -128,7 +137,8 @@ export const Home = (props: Props) => {
                 <Staking
                      categoryId={modal.categoryId}
                      categories={categories}
-                     userXendBalance={xendBalance}                      
+                     userXendBalance={xendBalance}
+                     address = {address}                      
                  />
                 }
                 

@@ -1,4 +1,6 @@
 import _const from "methods/_const";
+import Web3 from "web3";
+import GetCategoryTotalTokensStaked from "../methods/getCategoryTotalTokensStaked";
 import GetStakingCategories from "../methods/getStakingCategories";
 
 
@@ -9,9 +11,15 @@ function GetCategories() {
            
             const response = await GetStakingCategories();
             let finalState: Array<any> = [];
+           
             for (let i = 0; i < response.length; i++) {
                 let category = response[i];
                 let apy = ((category[3] * 365)/(category[1] * 100000))*100;
+                
+                let limit = Web3.utils.fromWei(category[5].toString(), 'ether');
+                
+                let totalStakedInCategory = await  GetCategoryTotalTokensStaked(Number(category[1]))
+
                 finalState.push({
                    id:i,
                    name:category[0],
@@ -19,10 +27,15 @@ function GetCategories() {
                    withdrawTime:category[2],
                    tokenRewardPercent:category[3],
                    tokenPenaltyPercent:category[4],
-                   limit:category[5],
+                   limit:limit,
+                   totalStakedInCategory:totalStakedInCategory,
                    apy:Math.round(apy)
                })
             }
+
+            
+
+            localStorage.setItem("CATEGORIES_PROTOCOL", JSON.stringify(finalState))
            
             dispatch({
                 type: _const.CATEGORIES,

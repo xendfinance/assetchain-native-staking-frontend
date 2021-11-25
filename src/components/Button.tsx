@@ -28,6 +28,7 @@ export const Button: FC<Props> = ({text, type, disabled, className,
                 ${tertiary && "tertiary"}
             `}
             onClick={onClick && onClick}
+            disabled={disabled}
         >
             <div className="btn-inside">
                 <p>{text}</p>

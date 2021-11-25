@@ -1,4 +1,9 @@
+import { Button } from "components";
 import { FC } from "react";
+import { combineReducers } from "redux";
+import { TableRow } from "./TableRow";
+import Tooltip from "@material-ui/core/Tooltip";
+import { QuestionCircleOutlined } from '@ant-design/icons';
 // import { _isAnEmpytyObject } from "utils";
 // import { lightThemeLogo } from "images";
 
@@ -18,6 +23,8 @@ type TableProps = {
 	newPage?: any;
 	p2p?: any;
 	rest?: any;
+	dataWithdraw?:any;
+	address:any;
 };
 
 export const Table: FC<TableProps> = ({
@@ -29,6 +36,8 @@ export const Table: FC<TableProps> = ({
 	pagination,
 	newPage,
 	p2p,
+	dataWithdraw,
+	address,
 	...rest
 }) => {
 	// const history = useHistory();
@@ -36,45 +45,109 @@ export const Table: FC<TableProps> = ({
 		newPage(page);
 	};
 
+
+
 	return (
 		<div {...rest} className="table-cont">
 			<div className="table-scroll overflow-x-auto">
 				<table className="table">
 					<thead className="t-head">
+						{header =="ActiveStaking"?
 						<tr className="font-medium text-sm">
-							{header?.map((item: any, i: any) =>
-								item?.titleComponent ? (
-									<th key={i}>
-										{item?.titleComponent({
-											item: item?.title,
-											data: data?.[0],
-										})}
-									</th>
-								) : (
-									<th key={i}>{item?.title}</th>
-								)
-							)}
+						<th>Start Date</th>
+						<th>End Date</th>
+						<th>
+						<Tooltip
+						title='The minimum withdrawal period before you can withdraw your staked tokens. NOTE: withdrawing before end date will lead to slash of reward'
+						placement="top"
+						>
+						<div>
+						<span>Minimum Withdrawal Date</span><QuestionCircleOutlined style={{ color: '#FF6600',paddingLeft:'3px' }} />
+						</div>
+						</Tooltip>
+						</th>
+						<th>Total Staked</th>
+						<th>Total Reward</th>
+						<th>Period</th>
+						<th>Category</th>
+						<th>APR</th>
+				    	</tr>
+						:
+						<tr className="font-medium text-sm">
+						<th>Total Staked</th>
+						<th>Total Reward</th>
+						<th>Total Withdrawn</th>
+						<th>Period</th>
+						<th>Category</th>
+						<th>APR</th>
 						</tr>
+					
+					}
+						
 					</thead>
 
 					{Boolean(data?.length) && (
 						<tbody className="t-body">
-							{data?.map((data: any, i: any) => (
+							  {header =="ActiveStaking"?
+							  data.map((item) => (
+								<TableRow
+								  rowData = {item}
+								  type={header}
+								  address={address}
+								></TableRow>
+						     )):
+							 dataWithdraw.map((item) => (
+								<TableRow
+								  rowData = {item}
+								  type={header}
+								  address={address}
+								></TableRow>
+						     ))
+							 }
+							
+							{/* {data?.map((data: any, i: any) => (
 								<tr key={i} className="bg-primary font-normal text-sm">
 									{header?.map((item: any, i: any) =>
 										item?.component ? (
 											<td key={i}>
-												{item.component({ item: data[item?.key], data })}
+												{item.component({ item: data[item?.key], data })
+												}
+												
 											</td>
+											
 										) : (
-											<td key={i}>{data[item?.key]}</td>
+											<td key={i}>{data[item?.key]
+											}											
+											</td>
+											
 										)
 									)}
-								</tr>
-							))}
+									 <Button                    
+								text="Withdraw"
+								type="button"
+								className="stake-btn"
+								//onClick={Number(amount) > 0  ? () => performStaking() : undefined  }
+							 	/>
+							</tr>
+							))} */}
 						</tbody>
 					)}
 				</table>
+
+    {/* <table>
+      <tr key={"header"}>
+        {Object.keys(data[0]).map((key) => (
+          <th>{key}</th>
+        ))}
+      </tr>
+      {data.map((item) => (
+        <tr key={item.id}>
+          {Object.values(item).map((val) => (
+            <td>{val}</td>
+          ))}
+        </tr>
+      ))}
+    </table> */}
 
 				{!Boolean(data?.length) && (
 					<div className="w-full h-full empty-cont">

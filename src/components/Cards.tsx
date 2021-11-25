@@ -5,12 +5,14 @@ import React from 'react'
 interface Props {
     type?: string;
     apy?: number;
+    limit:any;
     buttonText?: string;
     action?: () => void;
     backgroundImage?: string;
     backgroundColor?: string;
     id?: string;
     address?:any;
+    totalStakedInCategory?:any;
 }
 
 const renderColor = (type:any) => {
@@ -26,8 +28,8 @@ const renderColor = (type:any) => {
     }
   }
 
-export const PackagesCard = ({type, apy, buttonText, action, backgroundImage, backgroundColor, id,address}: Props) => {
-    console.log("Address is ",address)
+export const PackagesCard = ({totalStakedInCategory,limit,type, apy, buttonText, action, backgroundImage, backgroundColor, id,address}: Props) => {
+   
     return (
         <div className={`package-card ${
             renderColor(type)
@@ -35,9 +37,11 @@ export const PackagesCard = ({type, apy, buttonText, action, backgroundImage, ba
         
         style={{backgroundImage: `url(${backgroundImage})`, background: backgroundColor}}>
             <p className="card-type">{type}</p>
+            <p className="card-type">{limit} XEND Limit</p>
+            <p className="card-type">{totalStakedInCategory} XEND Currently Staked</p>
             <p className="card-apy">
                 {apy}%
-                <span id="apy">APY</span>
+                <span id="apy">APR</span>
             </p>           
             <Button
                 type="button"
