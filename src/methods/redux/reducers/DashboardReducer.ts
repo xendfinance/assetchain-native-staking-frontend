@@ -50,8 +50,6 @@ const DashboardReducer = (state = initialState, action: Action) => {
        case _const.NETWORK_CONNECT:
                 return { ...state, networkConnect: action.payload }
 
-        case _const.CONWALLETADD:
-            return { ...state, wca: action.payload }
               
         default:
             return state;
