@@ -1,7 +1,7 @@
 import _const from "methods/_const";
 import balanceFormatter from "../balanceFormatter";
 import GetUserInfoFromContract from "../methods/getUserInfoFromContract";
-import GetUserXendBalanceFromContract from "../methods/getUserXendBalanceFromContract copy";
+import GetUserXendBalanceFromContract from "../methods/getUserXendBalanceFromContract";
 
 
 function GetUserXendBalance(ownerAddress:any) {
