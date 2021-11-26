@@ -27,7 +27,7 @@ export const PerformStakingIntoProtocol = async ({
 
         const xendContract = await createContract(abiManager.XENDToken, "0xA86A8b07f4059b4509C80Be1885EBb4FD8a2ac4b");
         const stakingContract = await createContract(abiManager.XSTAKING, "0x4150f98C94BA89Ac78eC28131Be6a0c1B41224E2");
-        console.log("TEST HIT HERE ")
+      
 		// approve
 		await xendContract.methods['approve']('0x4150f98C94BA89Ac78eC28131Be6a0c1B41224E2', formatAmount(amount,97))
 			.send({ from: client })

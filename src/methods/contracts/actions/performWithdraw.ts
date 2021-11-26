@@ -2,6 +2,7 @@ import { notify } from "components/core/Notifier";
 import _const from "methods/_const";
 import PerformStakingIntoProtocol from "../methods/performStakingContract";
 import PerformWithdrawProtocol from "../methods/performWithdrawContract";
+import Rehydrate from "./rehydrateValues";
 
 
 
@@ -19,7 +20,7 @@ function PerformWithdraw(data:IWithdrawAsset) {
             const properties = Object.keys(response);
 
 			if (properties.includes('status') && response.status) {
-				
+				dispatch(Rehydrate(data.client));
 			} else {
 				
 			}

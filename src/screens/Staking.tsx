@@ -64,6 +64,7 @@ export const Staking = ({categories,categoryId,userXendBalance,address}: Props) 
         let periodStaking = Number(selectedCategory[0].period)
         
         if (amountAdded > 0  && amount !== "") {
+          
             dispatch(PerformStaking({ amount: amount,period:periodStaking, client: address }))
             
         }

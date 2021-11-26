@@ -29,7 +29,7 @@ export const PerformWithdrawProtocol = async ({
 		return await stakingContract.methods['withdrawStakedTokens'](categoryId)
 			.send({ from: client })
 			.on('transactionHash', hash => {
-                console.log("TEST HIT HERE HASH STAKE ",hash)
+                console.log("TEST HIT Withdraw STAKE ",hash)
 				//notifyBNC.hash(hash)
                 // notification['info']({
                 //     message: 'Staking Transaction Sent 😜',

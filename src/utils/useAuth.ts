@@ -10,8 +10,6 @@ import { Dispatch } from "redux"
 import { useSelector } from 'react-redux';
 
 
-
-//Original
 export const Login = (connectorID: ConnectorNames, chainId: number, walletName: string) => {
 
     return async (dispatch: Function) => {

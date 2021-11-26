@@ -13,6 +13,7 @@ import getNativeBalance from 'methods/redux/actions/getBalances';
 import { reacquireEmit } from 'methods/utils/event-fnc-recall';
 import { assignAddresses } from 'methods/utils/protocol-settings';
 import { addSettingsObjectToStorage } from 'methods/utils/intro-settings';
+import { recreateWeb3 } from 'utils/useAuth';
 
 
 
@@ -136,6 +137,7 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 
 
 	useEffect(() => {
+		
 		assignAddresses();
 		addressWork();
 		addSettingsObjectToStorage();
@@ -183,7 +185,7 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 
 
 	useEffect(() => {
-	
+	  
 		const connectedWallet = connectors.filter(x => x.title === walletInUse);
 		connectedWallet[0] && setWalletLogo(connectedWallet[0].image);
         
