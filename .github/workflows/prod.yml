@@ -1,0 +1,17 @@
+name: Test Stke
+on:
+  push:
+    branches: [main]
+jobs:
+  hackathon-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: echo "${{ secrets.GCP_VM_PRIVATE_KEY }}" > id_rsa
+      - run: chmod -R 600 id_rsa
+      - run: yarn install && yarn build
+      - run: ssh -i id_rsa -o StrictHostKeyChecking=no franklin@35.225.70.160 "mkdir -p /var/www/teststake.xend.finance"
+      - run: scp -i id_rsa -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r build franklin@35.225.70.160:/var/www/teststake.xend.finance
