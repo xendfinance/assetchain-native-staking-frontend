@@ -39,7 +39,7 @@
     "web3modal": "^1.9.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3002 react-scripts start",
     "build": "CI=false GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
