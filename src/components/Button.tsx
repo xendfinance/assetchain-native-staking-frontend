@@ -14,7 +14,7 @@ interface Props {
     secondary?: boolean;
     tertiary?: boolean
     leftText?: string;
-    rightText?: string;
+    rightText?:  string | HTMLElement | JSX.Element;
 }
 
 export const Button: FC<Props> = ({text, type, disabled, className, 

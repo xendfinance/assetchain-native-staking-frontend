@@ -66,6 +66,7 @@ export const Staking = ({categories,categoryId,userXendBalance,address}: Props) 
         if (amountAdded > 0  && amount !== "") {
           
             dispatch(PerformStaking({ amount: amount,period:periodStaking, client: address }))
+            // close staking modal here
             
         }
     }
