@@ -3,6 +3,7 @@ nav {
     width: 100%;
     position: relative;
     @include flex(row, space-between, center);
+    // border: 1px solid blue;
     @include screen("inbetween") {
         padding: 0 5%;
         box-sizing: border-box;

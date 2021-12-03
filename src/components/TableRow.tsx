@@ -1,3 +1,4 @@
+import styled  from "styled-components";
 import { Button } from "components";
 import PerformWithdraw from "methods/contracts/actions/performWithdraw";
 import moment from "moment";
@@ -44,7 +45,7 @@ export const TableRow: FC<TableRowProps> = ({
     }
 
 	return (
-		<tr className="bg-primary font-normal text-sm">
+		<TableRowStyle>
 			    {type=="ActiveStaking"?
 				<>
 				<td>{rowData?.StartDate}</td>		  
@@ -77,8 +78,12 @@ export const TableRow: FC<TableRowProps> = ({
 			}
 				
 						
-		</tr>
+		</TableRowStyle>
 
 	)
 };
 
+
+const TableRowStyle = styled.tr`
+	min-height: 40vh;
+`

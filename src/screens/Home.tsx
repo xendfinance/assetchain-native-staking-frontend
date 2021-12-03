@@ -1,12 +1,6 @@
 import React, { useEffect } from 'react'
 import { Footer, Navbar, Modal } from 'components'
 import { PackagesCard } from 'components/Cards'
-import redBg from "../images/card-orange-bg.svg"
-import orangeBg from "../images/orange-bg.png"
-import blueBg from "../images/card-blue-bg.svg"
-import blackBg from "../images/card-black-bg.svg"
-import blackBg2 from "../images/card-black-bg.png"
-
 import {useNavigate} from "react-router-dom"
 import {Staking} from "./Staking"
 import { useDispatch, useSelector } from 'react-redux'
@@ -46,14 +40,12 @@ export const Home = (props: Props) => {
     useEffect(() => {
         dispatch(GetCategories());
         dispatch(GetTotalStaked());
-        
-
 	}, []);
 
 
     return (
         <div className="home">
-            <Navbar wallet={wallet} toggleWallet={toggleWallet} />
+            <Navbar />
             <main className="home-main">
                 <section className="step-1">
                     <p id="topic">Stake XEND and Earn upto 70% APY in XEND Token</p>

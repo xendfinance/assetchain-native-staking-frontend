@@ -12,27 +12,14 @@
         margin-bottom: 5vh;
     }
     &.orange-bg{
-        // background-image: url("../images/orange-bg.svg");
-        // background-repeat: no-repeat;
-        // background-position: center;
-        // background-size: initial;
-        background: linear-gradient(180deg, #FCB25B 0%, rgba(252, 178, 91, 0.05) 82.74%);
+        background-color: #FCB25B;
     }
     &.blue-bg{
-        // background-image: url("../images/blue-bg.svg");
-        // background-size: cover;
-        // background-repeat: no-repeat;
-        // background-position: center;
-        background: linear-gradient(180deg, #3A5CD3 0%, rgba(17, 49, 160, 0.3) 100%);
+        background-color: #3A5CD3;
     }
-    &.black-bg{
-        // background-image: url("../images/card-black-bg.png");
-        // background-size: contain;
-        // background-repeat: no-repeat;
-        // background-position: center;
-        background: linear-gradient(236.79deg, #939B97 30.22%, rgba(147, 155, 151, 0) 69.08%); 
+    &.black-bg{ 
+        background-color: #939B97;
     }
-
 
     .card-type{
         @include fonts(18, 20, 500);
@@ -60,7 +47,7 @@
 ////// Footer //////// 
 footer {
     @include flex(row, space-between, center);
-    margin-top: 5vh;
+    margin-top: auto;
     padding: 5% 5% 2% 5%;
     box-sizing: border-box;
     @include screen("inbetween") {
