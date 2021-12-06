@@ -80,38 +80,40 @@ interface ModalStylesProps {
 const ModalStyles = styled.div<ModalStylesProps>`
 	display: none;
 	position: fixed;
-	background: rgb(255, 255, 255);
-	z-index: -1;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	overflow-y: auto;
 
-	& > div {
+	& .modal-cont {
 		position: relative;
 		overflow-y: auto;
 		padding: 30px;
-		width: 100%;
-		max-width: ${({ width }) => width ? width : '640px'};
+		/* width: 100%; */
+		/* max-width: ${({ width }) => width ? width : '640px'}; */
 		margin: auto;
-		margin-top: 100px;
+		/* margin-top: 100px; */
 		border-radius: 30px;
-		min-height: 300px;
-		opacity: 0;
+		min-height: 50vh;
+		/* opacity: 0; */
 		transform: scale(0.8);
 		transition: all 300ms ease;
-        background:#1C1D21;
+        /* background:#1C1D21; */
+        max-width: 50vw;
+        box-sizing: border-box;
 	}
 
-	${({ open, show }) => open && css`
-		display: block;
-		background-color: rgba(0, 0, 0, 0.3);
-		z-index: 5;
+    ${({ open, show }) => open && css`
+		display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(61, 60, 60, 0.62);
+		z-index: 50;
 
 		& > div {
 			${show && css`
-				opacity	: 1;
+				/* opacity	: 1; */
                 background:#1C1D21;
 				transform: scale(1);
 			`}
@@ -120,12 +122,12 @@ const ModalStyles = styled.div<ModalStylesProps>`
 `;
 // padding: ${({ padding }) => padding ? padding : '30px'};
 const ModalControls = styled.div`
+    width: 100%;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #e6e6e6;
     padding-bottom: 20px;
-    margin-bottom: 10px;
-
+    margin-bottom: 5vw;
     & .heading {
         font-weight: 600;
         font-size: 1.5rem;
@@ -165,5 +167,6 @@ const ModalControls = styled.div`
 const ModalContent = styled.div<Props>`
     max-width: ${({ contentWidth }) => contentWidth && contentWidth};
     min-width: 30%;
+    width: 100%;
     margin: 0 auto;
 `;

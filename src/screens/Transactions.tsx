@@ -1,7 +1,6 @@
 import React from 'react'
 import {Navbar, Table, Footer} from "components"
 import { useNavigate, useLocation } from 'react-router'
-import {HistoryTableHeader, StakingTableHeader, tableDummyData} from "components/TableData"
 import { useSelector } from 'react-redux'
 
 interface Props {
