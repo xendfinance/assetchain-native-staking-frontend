@@ -158,7 +158,7 @@ export const Staking = ({categories,categoryId,userXendBalance,address}: Props) 
                 </div>
                 <div className="check">
                     <img 
-                        src={check ? "" :Check } 
+                        src={check ? Check : "/icons/unchecked.svg"} 
                         alt="check" className="check-img" 
                         onClick={() => setCheck(!check)}
                     />
@@ -169,7 +169,7 @@ export const Staking = ({categories,categoryId,userXendBalance,address}: Props) 
                     type="button"
                     className="stake-btn"
                     onClick={Number(amount) > 0  ? () => performStaking() : undefined  }
-                   
+                    disabled={!check}
                 />
             </div>
         </div>

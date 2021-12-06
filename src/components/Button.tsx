@@ -26,6 +26,7 @@ export const Button: FC<Props> = ({text, type, disabled, className,
                 ${className} 
                 ${secondary && "secondary"}
                 ${tertiary && "tertiary"}
+                ${disabled && "disabled"}
             `}
             onClick={onClick && onClick}
             disabled={disabled}

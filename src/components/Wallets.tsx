@@ -237,7 +237,6 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 export default Wallets;
 
 const NavButton = styled.button`
-	
 	box-sizing: border-box;
 	border-radius: 28px;
 	font-size: 14px;
@@ -259,17 +258,30 @@ const NavButton = styled.button`
 	}
 
 	& .capsule-btn{
-		min-width: 12rem;
+		width: 18rem;
 		display: flex;
 		flex-direction: row;
+		position: relative;
 
 		.left-capsule{
+			width: 55%;
+		     padding: 1.3vh 1vw 1.3vh 1vw;
+			 box-sizing: border-box;
+			 border-radius: 28px;
+			 background: rgba(255, 255, 255, 0.14);
 		}
 		.right-capsule{
 			height: 100%;
+			width: 60%;
+		     padding: 1.3vh 1vw 1.3vh 1vw;
+			 background: #5A5F6E;
+			 border-radius: 28px;
+			position: absolute;
+			left: 40%;
 			display: flex;
 			align-items: center;
-			gap: 0.2vw;
+			gap: 0.5rem;
+			box-sizing: border-box;
 		}
 	}
 

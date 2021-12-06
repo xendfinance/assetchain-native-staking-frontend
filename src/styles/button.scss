@@ -29,6 +29,10 @@
     margin: 0 auto;
     @include fonts(14, 17, 500);
   }
+  &.disabled{
+    background: grey;
+    cursor: none;
+  }
   
   //// secondary /////
   &.secondary{
@@ -95,53 +99,53 @@
   }
 }
 
-//// capsule btn ////////
-.capsule-btn{
-  // min-width: 15vw;
-  min-width: 18%;
-  position: relative;
-  @include screen("inbetween") {
-    min-width: 50%;
-  }
+// //// capsule btn ////////
+// .capsule-btn{
+//   // min-width: 15vw;
+//   min-width: 18%;
+//   position: relative;
+//   @include screen("inbetween") {
+//     min-width: 50%;
+//   }
 
-  .left-capsule{
-    // background: linear-gradient(44.25deg, #E8433D 25.64%, #FF6600 53.43%);
-    background: rgba(255, 255, 255, 0.14);
-    color: #FFFFFF;
-    // width: 9vw;
-    width: 60%;
-    padding: 1.3vh 1vw 1.3vh 1vw;
-    box-sizing: border-box;
-    border-radius: 60px;
-    @include fonts(13, 16, bold);
-    cursor: pointer;
-    @include screen("inbetween") {
-      @include fonts(10, 16, bold);
-      padding-left: 5%;
-    }
-  }
-  .right-capsule{
-    background: #5A5F6E;
-    color: #FFFFFF;
-    // width: 9vw;
-    width: 55%;
-    padding: 1.3vh 1vw 1.3vh 1vw;
-    box-sizing: border-box;
-    border-radius: 60px;
-    z-index: 50;
-    position: absolute;
-    right: 0;
-    top: 0;
-    left: 45%;
-    @include fonts(13, 16, bold);
-    cursor: pointer;
-    text-align: center;
-    @include screen("inbetween") {
-      @include fonts(10, 16, bold);
-      // padding-left: 5%;
-    }
-  }
-}
+//   .left-capsule{
+//     // background: linear-gradient(44.25deg, #E8433D 25.64%, #FF6600 53.43%);
+//     background: rgba(255, 255, 255, 0.14);
+//     color: #FFFFFF;
+//     // width: 9vw;
+//     width: 60%;
+//     padding: 1.3vh 1vw 1.3vh 1vw;
+//     box-sizing: border-box;
+//     border-radius: 60px;
+//     @include fonts(13, 16, bold);
+//     cursor: pointer;
+//     @include screen("inbetween") {
+//       @include fonts(10, 16, bold);
+//       padding-left: 5%;
+//     }
+//   }
+//   .right-capsule{
+//     background: #5A5F6E;
+//     color: #FFFFFF;
+//     // width: 9vw;
+//     width: 55%;
+//     padding: 1.3vh 1vw 1.3vh 1vw;
+//     box-sizing: border-box;
+//     border-radius: 60px;
+//     z-index: 50;
+//     position: absolute;
+//     right: 0;
+//     top: 0;
+//     left: 45%;
+//     @include fonts(13, 16, bold);
+//     cursor: pointer;
+//     text-align: center;
+//     @include screen("inbetween") {
+//       @include fonts(10, 16, bold);
+//       // padding-left: 5%;
+//     }
+//   }
+// }
 
 
 .connect-wallet {

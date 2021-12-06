@@ -11,9 +11,15 @@ export const Footer = (props: Props) => {
                 Copyright &copy; Xend Finance {new Date().getFullYear()}. All rights reserved.
             </p>
             <ul className="foot-menu">
-                <li className="foot-list">About</li>
-                <li className="foot-list">Docs</li>
-                <li className="foot-list">Github</li>
+                <li className="foot-list">
+                    <a href="#">About</a>
+                </li>
+                <li className="foot-list">
+                    <a href="#">Docs</a>
+                </li>
+                <li className="foot-list">
+                    <a href="#">Github</a>
+                </li>
             </ul>
         </footer>
     )
