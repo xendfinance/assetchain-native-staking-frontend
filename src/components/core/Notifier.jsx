@@ -1,6 +1,7 @@
 import EE from 'event-emitter';
 import React from 'react';
 import { CheckCircleFilled, CloseCircleFilled, InfoCircleOutlined, WarningOutlined } from '@ant-design/icons';
+import { Close } from '../../assets/icons/close.svg';
 
 const emitter = new EE();
 
@@ -72,6 +73,7 @@ export default class Notifications extends React.Component {
     render() {
         return (
             <div className="flex justify-center">
+              <div className="flex justify-center">
                 <div className="notification-box" style={{ top: this.state.top }}>
                     <div className="flex align-center">
                         {this.state.type === 'success' && <CheckCircleFilled className="success" />}
@@ -82,6 +84,7 @@ export default class Notifications extends React.Component {
                         <div>{this.state.message}</div>
                     </div>
                 </div>
+            </div>
             </div>
         );
     }

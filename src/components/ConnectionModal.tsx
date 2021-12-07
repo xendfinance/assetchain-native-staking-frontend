@@ -57,7 +57,7 @@ const ConnectionModal: FC<ConnectionModalProps> = ({ open, setOpen }) => {
 					title="Connect Wallet"
 					desc="You can connect your wallet to a different protocol to increase your earning"
 					visible={open}
-					width="992px"
+					// width="992px"
 					close={() => setOpen(false)}>
 					<div>
 						<InfoWrapper>
@@ -139,9 +139,7 @@ const ConnectionModal: FC<ConnectionModalProps> = ({ open, setOpen }) => {
 						<ConnectInfoWrapper>
 							<div>
 								<p style={{ color:'#edecec' }}>Network</p>
-								{chainId === 97 ? <p style={{ color:'#edecec' }}>Binance Smart Chain</p> : null}							
-								
-
+								{chainId === 97 ? (<p style={{ color:'#edecec' }}>Binance Smart Chain</p>) : null}							
 							</div>
 						</ConnectInfoWrapper>
 
@@ -151,15 +149,15 @@ const ConnectionModal: FC<ConnectionModalProps> = ({ open, setOpen }) => {
 								<div>
 									<p style={{ color:'#edecec' }}>{address}</p>
 								</div>
-								<img style={{ backgroundColor:'#edecec' }} src={Copy} alt="copy" />
+								{/* <img style={{ backgroundColor:'#edecec' }} src={Copy} alt="copy" /> */}
 							</AddressContainer>
 						</AddressInfoWrapper>
 					</CardContainer>
 
 					<ActionContainer>						
 						<div onClick={disconnectWallet}>
-							<img style={{ backgroundColor:'#edecec' }} src={Disconnect} alt="disconnect" />
-							<p style={{ color:'#edecec' }}>Disconnect</p>
+							{/* <img style={{ backgroundColor:'#edecec' }} src={Disconnect} alt="disconnect" /> */}
+							<p style={{ color:'#FF6600', fontSize: "1.5rem", fontWeight: "bold", textAlign: 'center' }}>Disconnect</p>
 						</div>
 					</ActionContainer>
                    

@@ -185,24 +185,17 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 
 
 	useEffect(() => {
-	  
-		const connectedWallet = connectors.filter(x => x.title === walletInUse);
-		connectedWallet[0] && setWalletLogo(connectedWallet[0].image);
+	
+		const connectionDetails = JSON.parse(localStorage.getItem("CONNECTION_DETAILS"));
+		if(connectionDetails){
+			const connectedWallet = connectors.filter(x => x.title === connectionDetails.walletName);
+			connectedWallet[0] && setWalletLogo(connectedWallet[0].image);
+			
+		}else{
+			const connectedWallet = connectors.filter(x => x.title === walletInUse);
+		    connectedWallet[0] && setWalletLogo(connectedWallet[0].image);
         
-		// const connectionDetails = JSON.parse(localStorage.getItem("CONNECTION_DETAILS"));
-		// if(connectionDetails){
-		// 	if(connectionDetails.chainId == 56){
-		// 		setNetworkLogo(BSC);
-		// 	}else{
-		// 		setNetworkLogo(Polygon);
-		// 	}			
-		// }else{
-		// 	if(chainId == 56){
-		// 		setNetworkLogo(BSC);
-		// 	}else{
-		// 		setNetworkLogo(Polygon);
-		// 	}
-		// }		
+		}		
 
 	}, [address, walletInUse])
 
@@ -211,35 +204,70 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 
 	return (
 		<>
-
-			<ConnectWalletStyle onClick={() => setOpen(true)}>
+			<NavButton onClick={() => setOpen(true)}>
                   
 				{!address ?
-					(<div>
-						<figure>
+					(<div className="connect-btn">
 							<Wallet />
-						</figure>
-						<p>Connect Wallet</p>
+						<span>Connect Wallet</span>
 					</div>
 					) : (
-						<div>
-							<span>{nativeBalance}</span>							
-							<div className="wallet">							    
-								<figure className="connected">								    
-									<img src={walletLogo} width={20} alt="" />
-								</figure>
-								<span>{truncateAddress(address)}</span>
+						<div className="capsule-btn">
+							<div className="left-capsule">{nativeBalance}</div>							
+							<div className="right-capsule">								    
+								<img src={walletLogo} width={20} alt="" />
+							<span>{truncateAddress(address)}</span>
 							</div>
 						</div>
 					)
 				}
 
-			</ConnectWalletStyle>
+			</NavButton>
 		</>
 	)
 }
 
 export default Wallets;
+
+const NavButton = styled.button`
+	
+	box-sizing: border-box;
+	border-radius: 28px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #ffff;
+	background: transparent;
+	cursor: pointer;
+	padding: 0;
+	border: none;
+
+	& .connect-btn{
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		gap: 1vw;
+		padding: 0.8vw 2vw;
+		border: 2px solid #FFFFFF;
+		border-radius: 28px;
+	}
+
+	& .capsule-btn{
+		min-width: 12rem;
+		display: flex;
+		flex-direction: row;
+
+		.left-capsule{
+		}
+		.right-capsule{
+			height: 100%;
+			display: flex;
+			align-items: center;
+			gap: 0.2vw;
+		}
+	}
+
+`
+
 
 
 const ConnectWalletStyle = styled.button`
@@ -247,7 +275,7 @@ const ConnectWalletStyle = styled.button`
 	margin-left: 15px;
 	display: flex;
 	align-items: center;
-	background: linear-gradient(100.89deg, #9C3F00 3.11%, #FF6600 122.62%);;
+	background: linear-gradient(100.89deg, #9C3F00 3.11%, #FF6600 122.62%);
 	min-width: max-content;
 	max-height: 46px;
 	border-radius: 38px;
@@ -256,6 +284,7 @@ const ConnectWalletStyle = styled.button`
 	font-weight: 600;
 	font-size: 12px;
 	cursor: pointer;
+	border: 2px solid red;
 
 	& > div {
 		display: inline-flex;
@@ -272,7 +301,7 @@ const ConnectWalletStyle = styled.button`
 	}
 
 	& figure {
-		margin-right: 7px;
+		margin-right: 2px;
 		background: transparent;
 		width: 24px;
 		height: 24px;
@@ -299,7 +328,7 @@ const ConnectWalletStyle = styled.button`
 	}
 
 	@media (min-width: 900px) {
-		padding: 10px;
+		// padding: 10px;
 		background: linear-gradient(
 			100.89deg, rgb(32, 66, 184) 3.11%, rgb(255, 102, 0) 122.62%);
 		font-size: 14px;

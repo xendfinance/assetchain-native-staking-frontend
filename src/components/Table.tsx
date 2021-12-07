@@ -1,11 +1,9 @@
-import { Button } from "components";
+
 import { FC } from "react";
-import { combineReducers } from "redux";
 import { TableRow } from "./TableRow";
 import Tooltip from "@material-ui/core/Tooltip";
 import { QuestionCircleOutlined } from '@ant-design/icons';
-// import { _isAnEmpytyObject } from "utils";
-// import { lightThemeLogo } from "images";
+import { useSelector } from "react-redux";
 
 type PaginationProps = {
 	pages: number;
@@ -45,6 +43,8 @@ export const Table: FC<TableProps> = ({
 		newPage(page);
 	};
 
+	const { loadingData} = useSelector((store: any) => store.DashboardReducer)
+
 
 
 	return (
@@ -62,7 +62,7 @@ export const Table: FC<TableProps> = ({
 						placement="top"
 						>
 						<div>
-						<span>Minimum Withdrawal Date</span><QuestionCircleOutlined style={{ color: '#FF6600',paddingLeft:'3px' }} />
+						<span>Min. Withdrawal Date</span><QuestionCircleOutlined style={{ color: '#FF6600',paddingLeft:'3px' }} />
 						</div>
 						</Tooltip>
 						</th>
@@ -150,12 +150,12 @@ export const Table: FC<TableProps> = ({
     </table> */}
 
 				{!Boolean(data?.length) && (
-					<div className="w-full h-full empty-cont">
+					<div className=" empty-cont">
 						{/* <img className="empty-cont" src={lightThemeLogo} alt="" /> */}
-						{loading ? (
+						{!loadingData ? (
 							<>Loading Data . . .</>
 						) : (
-							<p>No Data!</p>
+							<p>No Available Data!</p>
 						)}
 					</div>
 				)}

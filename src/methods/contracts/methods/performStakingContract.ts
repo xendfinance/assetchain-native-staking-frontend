@@ -32,32 +32,34 @@ export const PerformStakingIntoProtocol = async ({
 		await xendContract.methods['approve']('0x4150f98C94BA89Ac78eC28131Be6a0c1B41224E2', formatAmount(amount,97))
 			.send({ from: client })
 			.on('transactionHash', hash => {
-                console.log("TEST HIT HERE HASH APPROVE ",hash)
+               
 				//notifyBNC.hash(hash)
-                // notification['info']({
-                //     message: 'Approve Transaction Sent 😜',
-                //     description: hash,
-                //     placement:"bottomRight",
-                //     duration:15,
-                //     onClick: () =>
-                //     window.open(("https://testnet.bscscan.com/tx/")+hash),
-                //   });
+                notification['info']({
+                    message: 'Approve Transaction Sent Successfully',
+                    description: hash,
+                    placement:"bottomRight",
+					style:{cursor:"pointer"},
+                    duration:15,
+                    onClick: () =>
+                    window.open(("https://testnet.bscscan.com/tx/")+hash),
+                  });
 			})
 
 		// deposit
 		return await stakingContract.methods['stakeToken'](formatAmount(amount, 97),period)
 			.send({ from: client })
 			.on('transactionHash', hash => {
-                console.log("TEST HIT HERE HASH STAKE ",hash)
+              
 				//notifyBNC.hash(hash)
-                // notification['info']({
-                //     message: 'Staking Transaction Sent 😜',
-                //     description: hash,
-                //     placement:"bottomRight",
-                //     duration:15,
-                //     onClick: () =>
-                //     window.open(("https://testnet.bscscan.com/tx/")+hash),
-                //   });
+                notification['info']({
+                    message: 'Staking Transaction Sent Successfully',
+                    description: hash,
+					style:{cursor:"pointer"},
+                    placement:"bottomRight",
+                    duration:15,
+                    onClick: () =>
+                    window.open(("https://testnet.bscscan.com/tx/")+hash),
+                  });
 			})
 
 
