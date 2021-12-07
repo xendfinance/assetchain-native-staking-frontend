@@ -1,5 +1,5 @@
 import React, {FC, useState, useEffect} from 'react'
-// import {modalCloseIcon, logoMini} from "images"
+
 
 interface Props {
     modalChild?: any;
@@ -32,7 +32,9 @@ export const Modal: FC<Props> = ({modalChild, modalOpen, modalClose, title, clas
 				{(closeIcon || title) && 
 					<div className="header">
 						<p id="modal-title">{title}</p>
-                    	<img src="/icons/closeModal.svg" alt="cancel" id="close-modal" onClick={modalClose}/>
+						
+						
+                    	<img src={'../assets/icons/close.svg'} alt="cancel" id="close-modal" onClick={modalClose}/>
 					</div>
 				}
 				{/* <img src={logoMini} alt="logo" id={`${!logo ? "hide-logo" : "logo-min"}`} /> */}

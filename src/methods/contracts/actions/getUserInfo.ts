@@ -10,6 +10,11 @@ function GetUserInfo(ownerAddress:any) {
     return async (dispatch: Function) => {
         
         try {
+
+            dispatch({
+                type: _const.LOADINGDATA,
+                payload: true
+            })
            
             const response = await GetUserInfoFromContract(ownerAddress);
             
@@ -17,6 +22,7 @@ function GetUserInfo(ownerAddress:any) {
            
             let XENDPriceCurrent = parseFloat(xendUsdPrice); 
             
+
         
             let userInfo = {
                 staked: await balanceFormatter(response.staked),
@@ -31,6 +37,11 @@ function GetUserInfo(ownerAddress:any) {
             dispatch({
                 type: _const.USER_INFO,
                 payload: userInfo
+            })
+
+            dispatch({
+                type: _const.LOADINGDATA,
+                payload: false
             })
           
         } catch (err) {

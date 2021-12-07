@@ -3,6 +3,7 @@ import { FC } from "react";
 import { TableRow } from "./TableRow";
 import Tooltip from "@material-ui/core/Tooltip";
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import { useSelector } from "react-redux";
 
 type PaginationProps = {
 	pages: number;
@@ -41,6 +42,8 @@ export const Table: FC<TableProps> = ({
 	const changePage = (page: number) => {
 		newPage(page);
 	};
+
+	const { loadingData} = useSelector((store: any) => store.DashboardReducer)
 
 
 
@@ -149,7 +152,7 @@ export const Table: FC<TableProps> = ({
 				{!Boolean(data?.length) && (
 					<div className=" empty-cont">
 						{/* <img className="empty-cont" src={lightThemeLogo} alt="" /> */}
-						{loading ? (
+						{!loadingData ? (
 							<>Loading Data . . .</>
 						) : (
 							<p>No Available Data!</p>

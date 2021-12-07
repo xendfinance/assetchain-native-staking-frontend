@@ -185,24 +185,17 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 
 
 	useEffect(() => {
-	  
-		const connectedWallet = connectors.filter(x => x.title === walletInUse);
-		connectedWallet[0] && setWalletLogo(connectedWallet[0].image);
+	
+		const connectionDetails = JSON.parse(localStorage.getItem("CONNECTION_DETAILS"));
+		if(connectionDetails){
+			const connectedWallet = connectors.filter(x => x.title === connectionDetails.walletName);
+			connectedWallet[0] && setWalletLogo(connectedWallet[0].image);
+			
+		}else{
+			const connectedWallet = connectors.filter(x => x.title === walletInUse);
+		    connectedWallet[0] && setWalletLogo(connectedWallet[0].image);
         
-		// const connectionDetails = JSON.parse(localStorage.getItem("CONNECTION_DETAILS"));
-		// if(connectionDetails){
-		// 	if(connectionDetails.chainId == 56){
-		// 		setNetworkLogo(BSC);
-		// 	}else{
-		// 		setNetworkLogo(Polygon);
-		// 	}			
-		// }else{
-		// 	if(chainId == 56){
-		// 		setNetworkLogo(BSC);
-		// 	}else{
-		// 		setNetworkLogo(Polygon);
-		// 	}
-		// }		
+		}		
 
 	}, [address, walletInUse])
 

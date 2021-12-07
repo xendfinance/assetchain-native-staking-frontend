@@ -10,6 +10,12 @@ import { Dispatch } from "redux"
 import { useSelector } from 'react-redux';
 
 
+
+
+
+
+
+
 export const Login = (connectorID: ConnectorNames, chainId: number, walletName: string) => {
 
     return async (dispatch: Function) => {
@@ -102,7 +108,7 @@ export const recreateWeb3 = () => {
 
         try {
             const connectionDetails = JSON.parse(localStorage.getItem("CONNECTION_DETAILS"));
-
+            
            
 
             if (connectionDetails) {
@@ -141,6 +147,7 @@ export const recreateWeb3 = () => {
                         });
 
                         account = connection.account;
+                        
 
                         window.APPWEB3 = await new web3(web3.givenProvider);
 
@@ -202,6 +209,10 @@ export const DisconnectFromWallet = async () => {
 
         removeAddress();
 
+      
+        
+
+
         window.sessionStorage.removeItem(connectorLocalStorageKey);
         window.localStorage.removeItem("CONNECTION_DETAILS");
        
@@ -209,6 +220,15 @@ export const DisconnectFromWallet = async () => {
         DashboardReducerAction.dispatch({
             type: _const.PRISTINE,
         });
+
+        DashboardReducerAction.dispatch({
+            type: _const.LOADINGDATA,
+            payload: false
+        });
+
+        
+
+        
 
         window.location.reload();
 
@@ -292,5 +312,7 @@ async function switchOrAddNetworkToMetamask(chainId: number) {
 
     }
 }
+
+
 
 

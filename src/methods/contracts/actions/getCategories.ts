@@ -1,5 +1,6 @@
 import _const from "methods/_const";
 import Web3 from "web3";
+import balanceFormatterCategories from "../balanceFormatterCategories";
 import GetCategoryTotalTokensStaked from "../methods/getCategoryTotalTokensStaked";
 import GetStakingCategories from "../methods/getStakingCategories";
 
@@ -17,8 +18,10 @@ function GetCategories() {
                 let apy = ((category[3] * 365)/(category[1] * 100000))*100;
                 
                 let limit = Web3.utils.fromWei(category[5].toString(), 'ether');
+                let limitFormatted = await balanceFormatterCategories(limit)
                 
                 let totalStakedInCategory = await  GetCategoryTotalTokensStaked(Number(category[1]))
+                let totalStakedInCategoryFormatted = await balanceFormatterCategories(totalStakedInCategory)
 
                 finalState.push({
                    id:i,
@@ -27,8 +30,8 @@ function GetCategories() {
                    withdrawTime:category[2],
                    tokenRewardPercent:category[3],
                    tokenPenaltyPercent:category[4],
-                   limit:limit,
-                   totalStakedInCategory:totalStakedInCategory,
+                   limit:limitFormatted,
+                   totalStakedInCategory:totalStakedInCategoryFormatted,
                    apy:Math.round(apy)
                })
             }

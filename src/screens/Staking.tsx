@@ -2,11 +2,13 @@ import React, { useEffect,useState } from 'react'
 import {Button, Input, Filter} from "components"
 import moment from 'moment';
 import Check from '../assets/icons/check.svg';
+import Uncheck from '../assets/icons/unchecked.svg';
 import { useDispatch } from 'react-redux';
 import PerformStaking from 'methods/contracts/actions/performStaking';
 import Tooltip from "@material-ui/core/Tooltip";
-import { QuestionCircleOutlined } from '@ant-design/icons';
-// import { notification } from "antd";
+import { QuestionCircleOutlined,WarningOutlined } from '@ant-design/icons';
+import { notification } from "antd";
+
 // import Web3 from "web3";
 
 
@@ -16,6 +18,7 @@ interface Props {
     categoryId?: number;   
     userXendBalance?:any; 
     address?:any;
+    action?: () => void;
 }
 
 let xendBalanceOfUser;
@@ -38,10 +41,11 @@ const InputLabel = () => {
 
 
 
-export const Staking = ({categories,categoryId,userXendBalance,address}: Props) => {
+export const Staking = ({categories,categoryId,userXendBalance,address,action}: Props) => {
     const [check, setCheck] = useState(false)
     const [amount, setAmount] = useState('0');
     const dispatch = useDispatch();
+   
    
     const [accumlatedIntrest, setAccumlatedIntrest] = useState('0.00');
     const selectedCategory = categories.filter(c => 
@@ -62,11 +66,41 @@ export const Staking = ({categories,categoryId,userXendBalance,address}: Props) 
     const performStaking = () => {
         let amountAdded: number = +amount;
         let periodStaking = Number(selectedCategory[0].period)
-        
+       
+        if(check){
+            notification['error']({
+                message: 'Invalid',
+                description: "You must agree to terms and conditions to proceed",
+                placement:"bottomRight",
+                duration:5,
+               
+              });
+
+              return;
+        }
+       
         if (amountAdded > 0  && amount !== "") {
-          
+            notification['success']({
+                message: 'Staking Funds',
+                description: "The amount of " +amount+" XEND will be staked",
+                placement:"bottomRight",
+                duration:5,
+               
+              });
             dispatch(PerformStaking({ amount: amount,period:periodStaking, client: address }))
+            action();
             
+        }else{
+           
+            notification['error']({
+                    message: 'Invalid',
+                    description: "Amount Must Be Greater than 0",
+                    placement:"bottomRight",
+                    duration:5,
+                   
+                  });
+
+            return;
         }
     }
 
@@ -93,15 +127,11 @@ export const Staking = ({categories,categoryId,userXendBalance,address}: Props) 
             <div className="stake-left">
                 <div className="left-main">
                     <p className="stake-title">XEND Staking</p>
-                    <Input
-                        name="type"
-                        label="Type"
-                        value="Locked"
-                        className="stake-type"
-                        disabled
-                    />                  
+                    <p className="stake-title">{selectedCategory[0].name}</p>
+                 
                     <Input
                         name="amount"
+                        type="number"
                         label={<InputLabel
                                
                             />}
@@ -153,12 +183,12 @@ export const Staking = ({categories,categoryId,userXendBalance,address}: Props) 
                     <p id="val">{selectedCategory[0].apy} % APR</p>
                 </div>
                 <div className="row-box">
-                    <p id="item">Est. Accumulated Interest</p>
+                    <p id="item">Est. All Time Rewards</p>
                     <p id="val">{accumlatedIntrest} XEND</p>
                 </div>
                 <div className="check">
                     <img 
-                        src={check ? "" :Check } 
+                        src={check ? Uncheck :Check } 
                         alt="check" className="check-img" 
                         onClick={() => setCheck(!check)}
                     />
@@ -168,7 +198,7 @@ export const Staking = ({categories,categoryId,userXendBalance,address}: Props) 
                     text="Stake"
                     type="button"
                     className="stake-btn"
-                    onClick={Number(amount) > 0  ? () => performStaking() : undefined  }
+                    onClick={() => performStaking()}
                    
                 />
             </div>

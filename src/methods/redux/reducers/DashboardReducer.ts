@@ -17,13 +17,16 @@ const initialState = {
     categories:[],
     userCategories:[],
     userCategoriesWithdraw:[],
-    userInfo:{}   
+    userInfo:{},
+    loadingData:false   
 };
 
 const DashboardReducer = (state = initialState, action: Action) => {
     switch (action.type) {
         case _const.ADDRESS:
             return { ...state, ...action.payload };
+        case _const.LOADINGDATA:
+            return { ...state, loadingData:action.payload };
         case _const.NATIVE_BALANCE:
             return { ...state, nativeBalance: action.payload };
         case _const.XEND_BALANCE:

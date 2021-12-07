@@ -1,6 +1,7 @@
 import abiManager from "abiManager";
 import createContract from "../contract-creator";
 import Notify from 'bnc-notify';
+import { notification } from "antd";
 
 
 interface IWithdrawAsset {
@@ -29,16 +30,17 @@ export const PerformWithdrawProtocol = async ({
 		return await stakingContract.methods['withdrawStakedTokens'](categoryId)
 			.send({ from: client })
 			.on('transactionHash', hash => {
-                console.log("TEST HIT Withdraw STAKE ",hash)
+              
 				//notifyBNC.hash(hash)
-                // notification['info']({
-                //     message: 'Staking Transaction Sent 😜',
-                //     description: hash,
-                //     placement:"bottomRight",
-                //     duration:15,
-                //     onClick: () =>
-                //     window.open(("https://testnet.bscscan.com/tx/")+hash),
-                //   });
+                notification['info']({
+                    message: 'Withdrawing Staked Funds',
+                    description: hash,
+                    placement:"bottomRight",
+                    duration:15,
+					style:{cursor:"pointer"},
+                    onClick: () =>
+                    window.open(("https://testnet.bscscan.com/tx/")+hash),
+                  });
 			})
 
 
