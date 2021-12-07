@@ -1,42 +1,43 @@
 
 //////// Packages card ///// 
-.card-cont{
-    width: 31%;
-    height: 55vh;
-    // border: 1px solid red;
-    @include flex(column, space-between, nill);
-    // gap: 2.5%;
-    @include screen("inbetween") {
-        gap: 0;
-        width: 100%;
-        // padding: 5%;
-        margin-bottom: 10vh;
-    }
-}
-.card-dets{
-    height: 10%;
-}
-.card-type{
-    @include fonts(18, 18, 500);
-    margin-bottom: 0.5rem;
-    @include screen("inbetween") {
-        margin-bottom: 0.5rem;
-    }
-    #limit{
-        color: red;
-    }
-    #total{
-        color: rgb(98, 204, 98);
-    }
-}
+// .card-cont{
+//     width: 31%;
+//     height: 55vh;
+//     // border: 1px solid red;
+//     @include flex(column, space-between, nill);
+//     // gap: 2.5%;
+//     @include screen("inbetween") {
+//         gap: 0;
+//         width: 100%;
+//         // padding: 5%;
+//         margin-bottom: 10vh;
+//     }
+// }
+// .card-dets{
+//     height: 10%;
+// }
+// .card-type{
+//     @include fonts(18, 18, 500);
+//     margin-bottom: 0.5rem;
+//     @include screen("inbetween") {
+//         margin-bottom: 0.5rem;
+//     }
+//     #limit{
+//         color: red;
+//     }
+//     #total{
+//         color: rgb(98, 204, 98);
+//     }
+// }
 .package-card {
-    width: 100%;
-    height: 88%;
-    // width: 31%;
-    // min-height: 30vh;
-    @include flex(column, space-around, nill);
-    border-radius: 8px;
+    // width: 100%;
+    // height: 88%;
+    width: 31%;
+    min-height: 30vh;
+    // @include flex(column, space-around, nill);
+    border-radius: 1rem;
     padding: 2.5%;
+    cursor: pointer;
     box-sizing: border-box;
     @include screen("inbetween") {
         height: 80%;
@@ -44,34 +45,43 @@
         padding: 5%;
         // margin-bottom: 5vh;
     }
-    &.orange-bg{
-        background-color: #FCB25B;
-    }
-    &.blue-bg{
-        background-color: #3A5CD3;
-    }
-    &.black-bg{ 
-        background-color: #939B97;
-    }
+    background-color: #272A33;
+    // &.orange-bg{
+    //     background-color: #FCB25B;
+    // }
+    // &.blue-bg{
+    //     background-color: #3A5CD3;
+    // }
+    // &.black-bg{ 
+    //     background-color: #939B97;
+    // }
 
     .card-name{
-        @include fonts(22, 20, 600);
+        @include fonts(18, 20, 400);
         margin-bottom: 2.5vh;
         @include screen("inbetween") {
             @include fonts(15, 20, 500);
         }
     }
-    #limit{
-        color: red;
+    .card-type{
+        @include fonts(18, 20, 400);
+        margin-bottom: 1rem;
+        color: #6D6D6D;
+        #limit{
+            color: white;
+        }
     }
+    
     .card-apy{
-        @include fonts(81, 90, 600);
+        @include fonts(32, 40, 500);
         margin-bottom: 10%;
         @include screen("inbetween") {
             @include fonts(50, 70, 600);
         }
         #apy{
             @include fonts(18, 20, 500);
+            color: #6D6D6D;
+            margin-left: 0.5rem;
             @include screen("inbetween") {
                 @include fonts(15, 20, 500);
             }
