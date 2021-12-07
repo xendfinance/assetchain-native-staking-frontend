@@ -57,7 +57,7 @@ export const Home = (props: Props) => {
             <Navbar />
             <main className="home-main">
                 <section className="step-1">
-                    <p id="topic">Stake XEND and Earn upto 1000% APY in XEND Token</p>
+                    <p id="topic">Stake XEND and Earn upto 100% APY in XEND Token</p>
                     <div className="locker">
                         <div className="lock-left">
                             <p id="title">Total Value Locked</p>
