@@ -66,8 +66,8 @@
 
 
 
- ////// ConnectWalletForm //////
-.wallet-form-1{
+  ////// ConnectWalletForm //////
+  .connect-wallet-form{
     // border: 1px solid red;
   #title-1{
       @include fonts(24, 31, bold);
@@ -78,12 +78,14 @@
     box-shadow: 0px 17.8125px 18.525px rgba(0, 0, 0, 0.1);
     border-radius: 5.44429px;
       @include flex(row, nill, center);
-      margin-bottom: 3vh;
+      margin-bottom: 5vh;
       padding: 1.5vw;
       box-sizing: border-box;
       cursor: pointer;
     //   border: 1px solid cyan;
       #wallet-img{
+        width: 7vw;
+        height: 10vh;
           margin-right: 2vw;
           min-width: 5vw;
           min-height: 4vh;
@@ -99,11 +101,40 @@
           }
       }
   }
-}
-
-
-////// WalletConnectedForm ////////
-.wallet-form-2{
+  .network-tab{
+    margin-bottom: 10vh;
+    #select{
+      @include fonts(18, 23, bold);
+      margin-bottom: 3vh;
+    }
+    .network{
+      @include flex(column, center, center);
+      gap: 2vh;
+      .img-box{
+        position: relative;
+        #check-img{
+          position: absolute;
+          top: -40%;
+        }
+        #network-img{
+          cursor: pointer;
+        }
+      }
+      .chain-name{
+        cursor: pointer;
+        @include fonts(18, 23, bold);
+        &.green-text{
+          color: rgb(70, 240, 70);
+          @include fonts(18, 23, bold);
+        }
+      }
+    }
+  }
+  }
+  
+  
+  ////// WalletConnectedForm ////////
+  .disconnect-wallet-form{
   .wallet-details{
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0px 17.8125px 18.525px rgba(0, 0, 0, 0.1);
@@ -140,5 +171,5 @@
       }
   }
   
-}
+  }
   

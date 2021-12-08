@@ -14,17 +14,40 @@ import { reacquireEmit } from 'methods/utils/event-fnc-recall';
 import { assignAddresses } from 'methods/utils/protocol-settings';
 import { addSettingsObjectToStorage } from 'methods/utils/intro-settings';
 import { recreateWeb3 } from 'utils/useAuth';
+import {Button, CapsuleBtn} from "components"
 
 
 
 
 
 interface WalletProps {
-	setOpen: Function
+	setOpen?: Function;
+	modal?: boolean;
+	open?: Function;
+	close?: Function;
+	icon?: string;
+	truncated?: string;
+}
+
+const ConnectWallet = () => (
+    <div className="connect-wallet">
+        <img src="/icons/connect-wallet.svg" alt="wallet" className="wallet-img" />
+        <span>Connect Wallet</span>
+    </div>
+)
+
+const CapsuleText = ({icon, truncated}: WalletProps) => {
+	return (
+		<div className="cap-text">
+			<img src={icon && icon} alt="icon" id="wall-icon" />
+			<span id="truncated">{truncated}</span>
+		</div>
+	)
+	
 }
 
 
-const Wallets: FC<WalletProps> = ({ setOpen }) => {
+const Wallets: FC<WalletProps> = ({ setOpen, modal, open, close }) => {
 	const dispatch = useDispatch();
 	const { account } = useWeb3React();
 
@@ -205,6 +228,8 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 		// }		
 
 	}, [address, walletInUse])
+	console.log("wallet logo--", walletLogo);
+	
 
 
 
@@ -214,19 +239,35 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 			<NavButton onClick={() => setOpen(true)}>
                   
 				{!address ?
-					(<div className="connect-btn">
-							<Wallet />
-						<span>Connect Wallet</span>
-					</div>
-					) : (
-						<div className="capsule-btn">
-							<div className="left-capsule">{nativeBalance}</div>							
-							<div className="right-capsule">								    
-								<img src={walletLogo} width={20} alt="" />
-							<span>{truncateAddress(address)}</span>
-							</div>
-						</div>
-					)
+				(
+					<Button
+						text={<ConnectWallet />}
+						tertiary
+						type="button"
+						onClick={() => open && open({open: true, type: "connect-wallet"})}
+					/>
+				)
+						
+				: (
+					<CapsuleBtn
+						leftText={nativeBalance}  
+						rightText={< CapsuleText icon={walletLogo} truncated={truncateAddress(address)}  />}
+						onClick={() => open && open({open: true, type: "disconnect"})}
+					/>
+				)
+					// (<div className="connect-btn">
+					// 		<Wallet />
+					// 	<span>Connect Wallet</span>
+					// </div>
+					// ) : (
+					// 	<div className="capsule-btn">
+					// 		<div className="left-capsule">{nativeBalance}</div>							
+					// 		<div className="right-capsule">								    
+					// 			<img src={walletLogo} width={20} alt="" />
+					// 		<span>{truncateAddress(address)}</span>
+					// 		</div>
+					// 	</div>
+					// )
 				}
 
 			</NavButton>
