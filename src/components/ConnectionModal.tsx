@@ -110,15 +110,11 @@ const ConnectionModal: FC<ConnectionModalProps> = ({ open, setOpen }) => {
 										
 										onClick={() => {
 
-											// 1. should connect to the right network
-											// 2. switch to correct address
-											// 3. continue with wallet connection
-
 											dispatch(Login(entry.connectorId, connectInfo.chainId, entry.title));
 
 										    window.localStorage.setItem(connectorLocalStorageKey, entry.connectorId);
 											 setOpen(false);
-											//window.location.reload();
+											
 										}
 										}>
 										<img width={40} src={entry.image} alt={entry.title} />
