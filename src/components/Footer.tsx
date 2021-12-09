@@ -12,7 +12,6 @@ export const Footer = (props: Props) => {
             </p>
             <ul className="foot-menu">
                 <li className="foot-list">About</li>
-                <li className="foot-list">Docs</li>
                 <li className="foot-list">Github</li>
             </ul>
         </footer>

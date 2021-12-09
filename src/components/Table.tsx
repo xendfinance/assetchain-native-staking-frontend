@@ -2,7 +2,7 @@
 import { FC } from "react";
 import { TableRow } from "./TableRow";
 import Tooltip from "@material-ui/core/Tooltip";
-import { QuestionCircleOutlined } from '@ant-design/icons';
+import { QuestionCircleOutlined, WarningOutlined } from '@ant-design/icons';
 import { useSelector } from "react-redux";
 
 type PaginationProps = {
@@ -62,7 +62,7 @@ export const Table: FC<TableProps> = ({
 						placement="top"
 						>
 						<div>
-						<span>Min. Withdrawal Date</span><QuestionCircleOutlined style={{ color: '#FF6600',paddingLeft:'3px' }} />
+						<span>Min. Withdrawal Date</span><WarningOutlined style={{ color: '#FF6600',paddingLeft:'3px' }} />
 						</div>
 						</Tooltip>
 						</th>
