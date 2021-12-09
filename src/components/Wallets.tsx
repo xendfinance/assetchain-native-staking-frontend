@@ -204,153 +204,33 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 
 	return (
 		<>
-			<NavButton onClick={() => setOpen(true)}>
+			<div className="ConnectWalletStyle" onClick={() => setOpen(true)}>
                   
 				{!address ?
-					(<div className="connect-btn">
+					(<div>
+						<figure>
 							<Wallet />
-						<span>Connect Wallet</span>
+						</figure>
+						<p>Connect Wallet</p>
 					</div>
 					) : (
-						<div className="capsule-btn">
-							<div className="left-capsule">{nativeBalance}</div>							
-							<div className="right-capsule">								    
-								<img src={walletLogo} width={20} alt="" />
-							<span>{truncateAddress(address)}</span>
+						<div>
+							<span>{nativeBalance}</span>
+							<div className="wallet">
+								<figure className="connected">
+									<img src={walletLogo} width={20} alt="" />
+								</figure>
+								<span>{truncateAddress(address)}</span>
 							</div>
 						</div>
 					)
 				}
 
-			</NavButton>
+			</div>
 		</>
 	)
 }
 
 export default Wallets;
 
-const NavButton = styled.button`
-	
-	box-sizing: border-box;
-	border-radius: 28px;
-	font-size: 14px;
-	font-weight: bold;
-	color: #ffff;
-	background: transparent;
-	cursor: pointer;
-	padding: 0;
-	border: none;
-
-	& .connect-btn{
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		gap: 1vw;
-		padding: 0.8vw 2vw;
-		border: 2px solid #FFFFFF;
-		border-radius: 28px;
-	}
-
-	& .capsule-btn{
-		min-width: 12rem;
-		display: flex;
-		flex-direction: row;
-
-		.left-capsule{
-		}
-		.right-capsule{
-			height: 100%;
-			display: flex;
-			align-items: center;
-			gap: 0.2vw;
-		}
-	}
-
-`
-
-
-
-const ConnectWalletStyle = styled.button`
-	border: none;
-	margin-left: 15px;
-	display: flex;
-	align-items: center;
-	background: linear-gradient(100.89deg, #9C3F00 3.11%, #FF6600 122.62%);
-	min-width: max-content;
-	max-height: 46px;
-	border-radius: 38px;
-	color: white;
-	padding: 10px;
-	font-weight: 600;
-	font-size: 12px;
-	cursor: pointer;
-	border: 2px solid red;
-
-	& > div {
-		display: inline-flex;
-		align-items: center;
-	}
-
-	& .wallet {
-		background-color: rgba(255, 255, 255, 0.2);
-		display: flex;
-		align-items: center;
-		padding: 0px;
-		border-radius: 52px;
-		margin-left: 10px;
-	}
-
-	& figure {
-		margin-right: 2px;
-		background: transparent;
-		width: 24px;
-		height: 24px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 50%;
-
-		& svg {
-			width: 18px;
-		}
-	}
-
-	& figure.connected {
-		background: white;
-	}
-
-	
-
-	& figure.connectedNetwork {
-		background: white;
-		width: 40px;
-        height:40px;
-	}
-
-	@media (min-width: 900px) {
-		// padding: 10px;
-		background: linear-gradient(
-			100.89deg, rgb(32, 66, 184) 3.11%, rgb(255, 102, 0) 122.62%);
-		font-size: 14px;
-
-		& .wallet figure {
-			& img {
-				width: 18px;
-			}
-		}
-	}
-
-	@media (min-width: 300px) {
-		padding: 10px;
-		background: linear-gradient(
-			100.89deg, rgb(32, 66, 184) 3.11%, rgb(255, 102, 0) 122.62%);
-		font-size: 14px;
-
-		& .wallet figure {
-			& img {
-				width: 18px;
-			}
-		}
-	}
-`;
 
