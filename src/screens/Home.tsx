@@ -132,6 +132,8 @@ export const Home = (props: Props) => {
                        { 
                 categories.map((entry, i) => (
                     <PackagesCard
+                    key={entry.id}
+                    categoryId={entry.id}
                     type={entry.name}
                     apy={entry.apy}
                     limit={entry.limit}

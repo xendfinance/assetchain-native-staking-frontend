@@ -45,7 +45,7 @@ export const Table: FC<TableProps> = ({
 
 	const { loadingData} = useSelector((store: any) => store.DashboardReducer)
 
-
+   
 
 	return (
 		<div {...rest} className="table-cont">
@@ -91,6 +91,7 @@ export const Table: FC<TableProps> = ({
 							  {header =="ActiveStaking"?
 							  data.map((item) => (
 								<TableRow
+								  key = {item.id}
 								  rowData = {item}
 								  type={header}
 								  address={address}
@@ -98,6 +99,7 @@ export const Table: FC<TableProps> = ({
 						     )):
 							 dataWithdraw.map((item) => (
 								<TableRow
+								  key = {item.id}
 								  rowData = {item}
 								  type={header}
 								  address={address}
@@ -149,16 +151,35 @@ export const Table: FC<TableProps> = ({
       ))}
     </table> */}
 
-				{!Boolean(data?.length) && (
+				{(!Boolean(data?.length)) && (header == "ActiveStaking")  && (
 					<div className=" empty-cont">
-						{/* <img className="empty-cont" src={lightThemeLogo} alt="" /> */}
-						{!loadingData ? (
-							<>Loading Data . . .</>
+					 
+                        {!loading && data?.length > 0 ? (
+							<>Loading Active Staking . . .</>
 						) : (
-							<p>No Available Data!</p>
+							<p>No Active Staking</p>
 						)}
+                       
+
+						
 					</div>
 				)}
+
+				{(!Boolean(dataWithdraw?.length)) && (header == "History")  && (
+						<div className=" empty-cont">
+					 
+                        {!loading && dataWithdraw?.length > 0 ? (
+							<>Loading Staking History . . .</>
+						) : (
+							<p>No Staking History</p>
+						)}
+                       
+
+						
+					</div>
+				)}
+
+
 			</div>
 
 			{/* {pagination &&

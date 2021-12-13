@@ -19,21 +19,21 @@ export const PerformStakingIntoProtocol = async ({
 	try {
 
 		let notifyBNC = Notify({
-			dappId: getDappId(97),
-			networkId: 97,
+			dappId: getDappId(56),
+			networkId: 56,
 			mobilePosition: 'bottom',
 			desktopPosition: 'bottomRight'
 		})
 
-        const xendContract = await createContract(abiManager.XENDToken, "0xA86A8b07f4059b4509C80Be1885EBb4FD8a2ac4b");
-        const stakingContract = await createContract(abiManager.XSTAKING, "0x4150f98C94BA89Ac78eC28131Be6a0c1B41224E2");
+        const xendContract = await createContract(abiManager.XENDToken, "0x4a080377f83D669D7bB83B3184a8A5E61B500608");
+        const stakingContract = await createContract(abiManager.XSTAKING, "0x3d4D0699C4Df1539Fdc42C6F9594A478c6929051");
       
 		// approve
-		await xendContract.methods['approve']('0x4150f98C94BA89Ac78eC28131Be6a0c1B41224E2', formatAmount(amount,97))
+		await xendContract.methods['approve']('0x3d4D0699C4Df1539Fdc42C6F9594A478c6929051', formatAmount(amount,56))
 			.send({ from: client })
 			.on('transactionHash', hash => {
                
-				//notifyBNC.hash(hash)
+				notifyBNC.hash(hash)
                 notification['info']({
                     message: 'Approve Transaction Sent Successfully',
                     description: hash,
@@ -41,16 +41,16 @@ export const PerformStakingIntoProtocol = async ({
 					style:{cursor:"pointer"},
                     duration:15,
                     onClick: () =>
-                    window.open(("https://testnet.bscscan.com/tx/")+hash),
+                    window.open(("https://bscscan.com/tx/")+hash),
                   });
 			})
 
 		// deposit
-		return await stakingContract.methods['stakeToken'](formatAmount(amount, 97),period)
+		return await stakingContract.methods['stakeToken'](formatAmount(amount, 56),period)
 			.send({ from: client })
 			.on('transactionHash', hash => {
               
-				//notifyBNC.hash(hash)
+				notifyBNC.hash(hash)
                 notification['info']({
                     message: 'Staking Transaction Sent Successfully',
                     description: hash,
@@ -58,7 +58,7 @@ export const PerformStakingIntoProtocol = async ({
                     placement:"bottomRight",
                     duration:15,
                     onClick: () =>
-                    window.open(("https://testnet.bscscan.com/tx/")+hash),
+                    window.open(("https://bscscan.com/tx/")+hash),
                   });
 			})
 

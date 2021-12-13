@@ -33,7 +33,7 @@ const ConnectionModal: FC<ConnectionModalProps> = ({ open, setOpen }) => {
   
     
 
-	const [connectInfo, setConnectInfo] = useState({ network: 'bsc', protocol: null, wallet: null, chainId: 97 })	
+	const [connectInfo, setConnectInfo] = useState({ network: 'bsc', protocol: null, wallet: null, chainId: 56 })	
 
 
 
@@ -57,7 +57,7 @@ const ConnectionModal: FC<ConnectionModalProps> = ({ open, setOpen }) => {
 					title="Connect Wallet"
 					desc="You can connect your wallet to start staking your XEND"
 					visible={open}
-					// width="992px"
+					//width="992px"
 					close={() => setOpen(false)}>
 					<div>
 						<div className="InfoWrapper">
@@ -76,7 +76,7 @@ const ConnectionModal: FC<ConnectionModalProps> = ({ open, setOpen }) => {
 									onClick={() => {setConnectInfo({
 										...connectInfo,
 										network: 'bsc',
-										chainId: 97,
+										chainId: 56,
 										protocol: null,										
 									})								
 								   
@@ -135,7 +135,7 @@ const ConnectionModal: FC<ConnectionModalProps> = ({ open, setOpen }) => {
 						<div className="ConnectInfoWrapper">
 							<div>
 								<p style={{ color:'#edecec' }}>Network</p>
-								{chainId === 97 ? (<p style={{ color:'#edecec' }}>Binance Smart Chain</p>) : null}							
+								{chainId === 56 ? (<p style={{ color:'#edecec' }}>Binance Smart Chain</p>) : null}							
 							</div>
 						</div>
 
