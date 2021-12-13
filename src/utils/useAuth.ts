@@ -276,22 +276,6 @@ async function switchOrAddNetworkToMetamask(chainId: number) {
 
             }
 
-
-            // add polygon
-            if (chainId === 137) {
-                params = {
-                    chainId: hexChainId,
-                    chainName: 'Polygon Mainnet',
-                    nativeCurrency: {
-                        name: 'MATIC',
-                        symbol: 'matic',
-                        decimals: 18,
-                    },
-                    rpcUrls: ['https://polygon-rpc.com'],
-                    blockExplorerUrls: ['https://polygonscan.com/'],
-                }
-            }
-
             try {
 
                 // the network is added

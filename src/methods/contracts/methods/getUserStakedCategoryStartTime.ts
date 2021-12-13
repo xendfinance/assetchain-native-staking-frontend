@@ -5,7 +5,7 @@ import createContract from "../contract-creator";
 async function GetUserStakedCategoriesStartTime(categoryId:any) {
     try {
        
-        const stakingContract = await createContract(abiManager.XSTAKING, "0x4150f98C94BA89Ac78eC28131Be6a0c1B41224E2");
+        const stakingContract = await createContract(abiManager.XSTAKING, "0x3d4D0699C4Df1539Fdc42C6F9594A478c6929051");
       
         const res = await stakingContract.methods.getTokenStakingStartTimeById(categoryId).call();
         return moment.unix(res).format("YYYY-MM-DD HH:mm");

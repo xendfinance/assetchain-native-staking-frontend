@@ -302,12 +302,14 @@
 
 
 
+//$defaultWidth: 1vw == 1%; 
 .modal-cont-connect {
 	position: relative;
 	overflow-y: auto;
 	padding: 30px;
-	/* width: 100%; */
-	/* max-width: ${({ width }) => width ? width : '640px'}; */
+	width: 100%; 
+	//max-width: if($defaultWidth > 720,50vw,75vw);
+
 	margin: auto;
 	/* margin-top: 100px; */
 	border-radius: 30px;
@@ -316,6 +318,15 @@
 	transform: scale(0.8);
 	transition: all 300ms ease;
 	/* background:#1C1D21; */
-	max-width: 50vw;
+	@media only screen and (min-width: 600px)  {
+		max-width: 50vw;
+	}
+	@media screen  and (max-width: 350px){
+		max-width: 75vw;
+	}
+
+	
+	
+	
 	box-sizing: border-box;
 }

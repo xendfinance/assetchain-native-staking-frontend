@@ -17,21 +17,21 @@ export const PerformWithdrawProtocol = async ({
 	try {
 
 		let notifyBNC = Notify({
-			dappId: getDappId(97),
-			networkId: 97,
+			dappId: getDappId(56),
+			networkId: 56,
 			mobilePosition: 'bottom',
 			desktopPosition: 'bottomRight'
 		})
 
       
-        const stakingContract = await createContract(abiManager.XSTAKING, "0x4150f98C94BA89Ac78eC28131Be6a0c1B41224E2");
+        const stakingContract = await createContract(abiManager.XSTAKING, "0x3d4D0699C4Df1539Fdc42C6F9594A478c6929051");
       
 		// deposit
 		return await stakingContract.methods['withdrawStakedTokens'](categoryId)
 			.send({ from: client })
 			.on('transactionHash', hash => {
               
-				//notifyBNC.hash(hash)
+				notifyBNC.hash(hash)
                 notification['info']({
                     message: 'Withdrawing Staked Funds',
                     description: hash,
@@ -39,7 +39,7 @@ export const PerformWithdrawProtocol = async ({
                     duration:15,
 					style:{cursor:"pointer"},
                     onClick: () =>
-                    window.open(("https://testnet.bscscan.com/tx/")+hash),
+                    window.open(("https://bscscan.com/tx/")+hash),
                   });
 			})
 
