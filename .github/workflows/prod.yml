@@ -1,4 +1,4 @@
-name: Test Stke
+name: Staking 
 on:
   push:
     branches: [main]
@@ -10,6 +10,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 14
-      - run: echo "${{ secrets.GCP_VM_PRIVATE_KEY }}" > id_rsa
+      - run: echo "${{ secrets.DEPLOY_USER_PRIVATE_KEY }}" > id_rsa
       - run: chmod -R 600 id_rsa
-      - run: ssh -i id_rsa -o StrictHostKeyChecking=no franklin@35.225.70.160 "cd /var/www/teststake.xend.finance && git pull origin main && yarn && pm2 restart parse-apps.config.js && exit"
+      - run: ssh -i id_rsa -o StrictHostKeyChecking=no deploy@34.136.145.241 "cd /var/www/stake.xend.finance && git pull origin main && yarn && pm2 restart parse-apps.config.prod.js && exit"
