@@ -78,7 +78,7 @@ export const Home = (props: Props) => {
                             <p className="val">{totalStakedContract} XEND</p>
                             <p className="amount">{totalStakedUSD}</p>
                         </div>
-                        <img src="/icons/wallet.svg" alt="wallet" className="wallet-img" />
+                        <img src="/icons/wallet.svg" alt="wallet" className="wallet-img"/>
                     </div>
                 </section>
 
