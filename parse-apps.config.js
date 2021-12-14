@@ -4,6 +4,6 @@ module.exports = {
         script      : 'npm run start:server',
         watch       : false,
         merge_logs  : true,
-        cwd         : '/var/www/teststake.xend.finance',
+        cwd         : '/var/www/stake.xend.finance',
     }]
 };
