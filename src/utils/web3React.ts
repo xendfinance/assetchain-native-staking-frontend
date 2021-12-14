@@ -4,17 +4,18 @@ import { ConnectorNames } from './types';
 import _const from '.././methods/_const';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import { DisconnectFromWallet } from './useAuth';
+import getNodeUrl from './node-url';
 
 
 
-let injected = new InjectedConnector({ supportedChainIds: [97] });
+let injected = new InjectedConnector({ supportedChainIds: [56] });
 
 
 
 export const connectorsByName = (connectorName: ConnectorNames, chainId: number) => {
     try {
 
-      
+        const rpcUrl = getNodeUrl();
         if (connectorName === ConnectorNames.Injected) {
        
             return injected;
@@ -22,10 +23,10 @@ export const connectorsByName = (connectorName: ConnectorNames, chainId: number)
     
         if (connectorName === ConnectorNames.WalletConnect) {
           
-            if(chainId === 97 ){
+            if(chainId === 56 ){
                 
                 const walletconnect = new WalletConnectProvider({
-                    rpc: { 97: 'https://data-seed-prebsc-1-s1.binance.org:8545' },
+                    rpc: { 56: rpcUrl },
                     chainId,
                     qrcodeModalOptions: {
                         mobileLinks: [

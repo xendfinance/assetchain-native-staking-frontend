@@ -17,6 +17,10 @@ function GetUserStakedCategories(ownerAddress:any) {
     return async (dispatch: Function) => {
         
         try {
+            dispatch({
+                type: _const.LOADINGDATA,
+                payload: true
+            })
 
             const categories = JSON.parse(localStorage.getItem("CATEGORIES_PROTOCOL"));
 
@@ -73,21 +77,26 @@ function GetUserStakedCategories(ownerAddress:any) {
                             APR:apy
                         })
                     }
+
+                    dispatch({
+                        type: _const.USER_CATEGORIES,
+                        payload: finalState
+                    })
+    
+                    dispatch({
+                        type: _const.USER_CATEGORIES_WITHDRAW,
+                        payload: finalStateWithdraw
+                    })
                 }
            
              
-                dispatch({
-                    type: _const.USER_CATEGORIES,
-                    payload: finalState
-                })
-
-                dispatch({
-                    type: _const.USER_CATEGORIES_WITHDRAW,
-                    payload: finalStateWithdraw
-                })
+             
             }
 
-          
+            dispatch({
+                type: _const.LOADINGDATA,
+                payload: false
+            })
           
         } catch (err) {
            

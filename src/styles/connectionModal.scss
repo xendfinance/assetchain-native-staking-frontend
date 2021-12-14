@@ -1,0 +1,332 @@
+
+.AddressContainer{
+	display: flex;
+	align-items: center;
+
+	& > div {
+		border: 1px solid  rgba(241, 237, 237, 0.6);;
+		box-sizing: border-box;
+		flex-grow: 1;
+		border-radius: 34px;
+		padding: 16px;
+		display: flex;
+		margin-right: 16px;
+		overflow-x: auto;
+		justify-content: center;
+		align-items: center;
+		
+		& > p {
+			margin: 0;
+			color: rgba(241, 237, 237, 0.6);
+		}
+	}
+}
+
+.ConnectInfoWrapper{
+	display: flex;
+	margin-bottom: 60px;
+
+	& > div {
+		height: 48px;
+		display: flex;
+		flex-direction: column;
+		flex: auto;
+		justify-content: space-between;
+	}
+}
+
+.InfoWrapper{
+	padding: 28px;
+	background:#27282C;
+	border-radius: 6px;
+	color: #edecec;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 138%;
+}
+
+.SectionWrapper{
+	margin-top: 40px;
+}
+
+.SectionBodyNetwork{
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 16px;
+
+	@media (min-width: 768px){
+		flex-direction: row;
+		
+	}
+}
+
+.CardWrapper{
+	cursor: pointer;
+	position: relative;
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 10px;
+	margin-right: 10px;
+  	height: 90px;
+	font-size: 18px;
+	font-weight: 500;
+	background: #27282C;
+	border: 1px solid rgba(0, 0, 0, 0.06);
+	box-sizing: border-box;
+	box-shadow: 0px 3.51724px 36.0517px rgba(0, 0, 0, 0.06);
+	border-radius: 14.7847px;
+	padding: 16px;
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.5;
+		background:#edecec;
+	}
+
+	@media (min-width: 768px){
+		width: 33%;
+	}
+
+	& .chain-name {
+		margin-left: 16px;
+		color: #edecec;
+	}
+
+	& .apy {
+		color: #edecec;
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	& .check {
+		position: absolute;
+		top: 0;
+		right: 0;
+		transform: translate(30%, -30%);
+	}
+}
+
+.SectionHeader{
+	display: flex;
+	margin: 16px 0px;
+	align-items: center;
+
+	& .number {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 26px;
+		width: 26px;
+		background: rgba(0, 0, 0, 0.06);
+		color:#edecec;
+		font-weight: 600;
+		font-size: 18px;
+		border-radius: 50%;
+		color:#edecec;
+	}
+
+	& .modal-title {
+		font-weight: 600;
+		font-size: 18px;
+		margin-left: 20px;
+		color:#edecec;
+	}
+}
+
+.ModalControls{
+	width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 20px;
+    margin-bottom: 5vw;
+    & .heading {
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+        text-transform: capitalize;
+        color:#edecec;
+    }
+
+    & .desc {
+        font-size: 1rem;
+        color: #edecec;
+    }
+
+    & > div:first-child {
+        flex: 1;
+        color:#edecec;
+    }
+
+    & button.close {
+        border: none;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #5e5656 !important;
+        cursor: pointer;
+
+    }
+
+        & .close-btn {
+            color: #edecec;
+        }
+}
+
+.ConnectWalletStyle{
+	border: none;
+	margin-left: 15px;
+	display: flex;
+	align-items: center;
+	background: linear-gradient(100.89deg,  #363535 3.11%, #9d9c9c 122.62%);;
+	min-width: max-content;
+	max-height: 46px;
+	border-radius: 38px;
+	color: white;
+	padding: 10px;
+	font-weight: 600;
+	font-size: 12px;
+	cursor: pointer;
+
+	& > div {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	& .wallet {
+		background-color: rgba(255, 255, 255, 0.2);
+		display: flex;
+		align-items: center;
+		padding: 0px;
+		border-radius: 52px;
+		margin-left: 10px;
+	}
+
+	& figure {
+		margin-right: 7px;
+		background: transparent;
+		width: 24px;
+		height: 24px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+
+		& svg {
+			width: 18px;
+		}
+	}
+
+	& figure.connected {
+		background: white;
+	}
+
+	
+
+	& figure.connectedNetwork {
+		background: white;
+		width: 40px;
+        height:40px;
+	}
+
+	@media (min-width: 900px) {
+		padding: 10px;
+		background: linear-gradient(
+			100.89deg,  #363535 3.11%, #9d9c9c 122.62%);
+		font-size: 14px;
+
+		& .wallet figure {
+			& img {
+				width: 18px;
+			}
+		}
+	}
+
+	@media (min-width: 300px) {
+		padding: 10px;
+		background: linear-gradient(
+			100.89deg, #363535 3.11%, #9d9c9c 122.62%);
+		font-size: 14px;
+
+		& .wallet figure {
+			& img {
+				width: 18px;
+			}
+		}
+	}
+}
+
+.CardContainer{
+	margin-top: 32px;
+	border: 1px solid  rgba(241, 237, 237, 0.6);
+	box-sizing: border-box;
+	box-shadow: 0px 3.51724px 36.0517px rgba(0, 0, 0, 0.06);
+	border-radius: 14.7847px;
+	padding: 24px;
+}
+
+.AddressInfoWrapper{
+	margin: 8px 0;
+
+	& p {
+		margin-bottom: 16px;
+	}
+}
+
+
+.ActionContainer{
+  display: flex;
+	flex-direction: column;
+	padding: 20px;
+
+	& div {
+		cursor: pointer;
+		display: flex;
+		align-items: center; 
+		margin-bottom: 10px;
+
+		& p {
+			margin-left: 8px
+		}
+	}
+
+	@media (min-width: 768px){
+		flex-direction: row;
+		justify-content: space-between;
+	}
+}
+
+
+
+//$defaultWidth: 1vw == 1%; 
+.modal-cont-connect {
+	position: relative;
+	overflow-y: auto;
+	padding: 30px;
+	width: 100%; 
+	//max-width: if($defaultWidth > 720,50vw,75vw);
+
+	margin: auto;
+	/* margin-top: 100px; */
+	border-radius: 30px;
+	min-height: 50vh;
+	/* opacity: 0; */
+	transform: scale(0.8);
+	transition: all 300ms ease;
+	/* background:#1C1D21; */
+	@media only screen and (min-width: 600px)  {
+		max-width: 50vw;
+	}
+	@media screen  and (max-width: 350px){
+		max-width: 75vw;
+	}
+
+	
+	
+	
+	box-sizing: border-box;
+}

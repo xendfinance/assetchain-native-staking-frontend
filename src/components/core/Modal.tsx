@@ -49,8 +49,9 @@ const Modal: FC<Props> = ({ children, title, desc, visible, modalId, close, widt
 
     return (
         <ModalStyles open={open} show={show} width={width} padding={padding}>
-            <div ref={bodyOfModal} className="modal-cont">
-                {title && <ModalControls>
+            
+            <div ref={bodyOfModal} className="modal-cont-connect">
+                {title && <div className="ModalControls">
                     <div>
                         <p className="heading">{title}</p>
                         <p className="desc">{desc}</p>
@@ -60,10 +61,11 @@ const Modal: FC<Props> = ({ children, title, desc, visible, modalId, close, widt
                             <Close className="close-btn" />
                         </button>
                     </div>
-                </ModalControls>}
+                </div>}
               
                 <ModalContent contentWidth={contentWidth}>{children}</ModalContent>
             </div>
+         
         </ModalStyles>
     );
 };

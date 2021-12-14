@@ -13,7 +13,7 @@ const initialState = {
     totalStakedContract: '0.00',
     totalStakedUSD: '0.00',
     connectionDetails:[],
-    networkConnect:'97',
+    networkConnect:'56',
     categories:[],
     userCategories:[],
     userCategoriesWithdraw:[],

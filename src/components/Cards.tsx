@@ -1,3 +1,5 @@
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import { Tooltip } from '@material-ui/core';
 import { Button } from 'components'
 import { url } from 'inspector'
 import React from 'react'
@@ -13,6 +15,7 @@ interface Props {
     id?: string;
     address?:any;
     totalStakedInCategory?:any;
+    categoryId?:any;
 }
 
 const renderColor = (type:any) => {
@@ -28,7 +31,26 @@ const renderColor = (type:any) => {
     }
   }
 
-export const PackagesCard = ({totalStakedInCategory,limit,type, apy, buttonText, action, backgroundImage, backgroundColor, id,address}: Props) => {
+export const PackagesCard = ({totalStakedInCategory,categoryId,limit,type, apy, buttonText, action, backgroundImage, backgroundColor, id,address}: Props) => {
+
+
+    const showInfoInWIKI = (categoryId: any) => {
+      if(categoryId == 0){
+        window.open('https://en.wikipedia.org/wiki/Nelson_Mandela', "_blank");
+        return;
+        
+      }
+
+      if(categoryId == 1){
+        window.open('https://en.wikipedia.org/wiki/Mansa_Musa', "_blank");     
+        return;
+      }
+
+      if(categoryId ==2){
+        window.open('https://en.wikipedia.org/wiki/C._Odumegwu_Ojukwu', "_blank");  
+        return;
+      }
+    }
    
     return (
         <div className={`package-card ${
@@ -36,13 +58,23 @@ export const PackagesCard = ({totalStakedInCategory,limit,type, apy, buttonText,
         }`} 
         
         style={{backgroundImage: `url(${backgroundImage})`, background: backgroundColor}}>
-            <p className="card-type">{type}</p>
-            <p className="card-type">{limit} XEND Limit</p>
-            <p className="card-type">{totalStakedInCategory} XEND Currently Staked</p>
-            <p className="card-apy">
+               <Tooltip
+                title='Learn more'
+                placement="top"
+                >  
+                <div style={{cursor:"pointer"}} onClick={() => showInfoInWIKI(categoryId)}>
+                <span className="card-type">{type}</span><QuestionCircleOutlined style={{ color: '#FF6600',paddingLeft:'3px' }} />
+                </div>
+                </Tooltip>
+                <p className="card-apy">
                 {apy}%
                 <span id="apy">APR</span>
-            </p>           
+            </p>
+            <p className="card-type-desc">Limit:</p>  
+            <p className="card-type">{limit} XEND</p>
+            <p className="card-type-desc">Currently Staked:</p>  
+            <p className="card-type">{totalStakedInCategory} XEND</p>
+                  
             <Button
                 type="button"
                 text={buttonText}

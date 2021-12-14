@@ -1,7 +1,7 @@
 import random from 'lodash/random';
 
 // Array of available nodes to connect to
-export const nodes = ["https://data-seed-prebsc-1-s1.binance.org:8545"];
+export const nodes = ["https://bsc-dataseed1.ninicoin.io", "https://bsc-dataseed1.defibit.io", "https://bsc-dataseed.binance.org"];
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const getNodeUrl = () => {

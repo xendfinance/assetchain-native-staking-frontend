@@ -13,6 +13,10 @@ import GetUserStakedCategories from 'methods/contracts/actions/getUserStakedCate
 import { notify } from 'components/core/Notifier'
 import { recreateWeb3 } from 'utils/useAuth';
 import SmallSideLoader from 'components/core/SmallSideLoader';
+import { Tooltip } from '@material-ui/core';
+import { QuestionCircleOutlined } from '@ant-design/icons';
+import MaskGroup from '../assets/icons/StakingBanner.svg';
+import arrowBanner from '../assets/icons/arrowBanner.svg';
 
 interface Props {
     
@@ -47,8 +51,14 @@ export const Home = (props: Props) => {
     useEffect(() => {
         dispatch(GetCategories());
         dispatch(GetTotalStaked());
-        dispatch(recreateWeb3());
+       
 	}, []);
+
+    const goToOriginalStaking = () => {
+        
+          window.open('https://www.deficliq.com/xend-staking/', "_blank");  
+          return;
+      }
 
 
     return (
@@ -56,15 +66,19 @@ export const Home = (props: Props) => {
            
             <Navbar />
             <main className="home-main">
+               
                 <section className="step-1">
-                    <p id="topic">Stake XEND and Earn upto 100% APY in XEND Token</p>
+                    <div style={{cursor:'pointer'}} onClick={()=> goToOriginalStaking()} className="containerBanner">
+                    <img src={MaskGroup} alt="banner" className="banner-img" />
+                    </div>
+                    
                     <div className="locker">
                         <div className="lock-left">
                             <p id="title">Total Value Locked</p>
                             <p className="val">{totalStakedContract} XEND</p>
                             <p className="amount">{totalStakedUSD}</p>
                         </div>
-                        <img src="/icons/wallet.svg" alt="wallet" className="wallet-img" />
+                        <img src="/icons/wallet.svg" alt="wallet" className="wallet-img"/>
                     </div>
                 </section>
 
@@ -72,7 +86,7 @@ export const Home = (props: Props) => {
                     {!address ? 
                         (
                             <>
-                                <p id="connect">Connect Wallet</p>
+                                <p id="connect">No wallet connected</p>
                                 <p id="dets">Connect wallet to see your balance</p>
                             </>
                         ) :
@@ -81,12 +95,28 @@ export const Home = (props: Props) => {
                                 <div className="left-2">
                                    
                                     <div className="box-2">
-                                        <p className="prop">Staking Balance</p>
+                                      
+                                        <Tooltip
+                                        title='Total XEND staked'
+                                        placement="top"
+                                        >
+                                        <div>
+                                        <span className="prop">Staking Balance</span><QuestionCircleOutlined style={{ color: '#FF6600',paddingLeft:'3px' }} />
+                                        </div>
+                                        </Tooltip>
                                         {!loadingData?<p className="val">{userInfo.staked} XEND</p>:<SmallSideLoader />}
                                         {!loadingData?<p className="amount">{userInfo.stakedUSD}</p>:<SmallSideLoader />}
                                     </div>
                                     <div className="box-2">
-                                        <p className="prop">All Time Rewards</p>
+                                        <Tooltip
+                                        title='The All Time Rewards indicate the overall reward that will be received if all active staking full rewards are paid out. Penalty reward is considered if the final duration of active staking is not reached.'
+                                        placement="top"
+                                        >
+                                        <div>
+                                        <span className="prop">All Time Rewards</span><QuestionCircleOutlined style={{ color: '#FF6600',paddingLeft:'3px' }} />
+                                        </div>
+                                        </Tooltip>
+                                        
                                         {!loadingData?<p className="val">{userInfo.reward} XEND</p>:<SmallSideLoader />}
                                         {!loadingData?<p className="amount">{userInfo.rewardUSD}</p>:<SmallSideLoader />}
                                     </div>
@@ -114,11 +144,13 @@ export const Home = (props: Props) => {
                        { 
                 categories.map((entry, i) => (
                     <PackagesCard
+                    key={entry.id}
+                    categoryId={entry.id}
                     type={entry.name}
                     apy={entry.apy}
                     limit={entry.limit}
                     totalStakedInCategory={entry.totalStakedInCategory}
-                    buttonText={address?"Stake":"Connect Wallet"}                    
+                    buttonText={address?"Stake":"No wallet connected"}                    
                     id="orange-bg"
                     action={() => setModal({open: true, type: "stake",categoryId:i})}
                     address = {address}

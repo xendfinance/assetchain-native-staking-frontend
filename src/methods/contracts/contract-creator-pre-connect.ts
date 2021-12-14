@@ -11,6 +11,7 @@ import getNodeUrl from "utils/node-url";
 async function createContractPreConnect(abi: Array<any>, contractAddress: any) {
   
   const Web3 = require('web3');
+ 
 	const web3Instance = new Web3(getNodeUrl())
 
   if (web3Instance) {
