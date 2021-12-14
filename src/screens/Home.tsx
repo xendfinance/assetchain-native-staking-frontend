@@ -68,10 +68,8 @@ export const Home = (props: Props) => {
             <main className="home-main">
                
                 <section className="step-1">
-                    <div className="containerBanner">
+                    <div style={{cursor:'pointer'}} onClick={()=> goToOriginalStaking()} className="containerBanner">
                     <img src={MaskGroup} alt="banner" className="banner-img" />
-             
-                    <div style={{cursor:'pointer'}}className="centered-banner" onClick={()=> goToOriginalStaking()}><img src={arrowBanner} className="arrowClassBanner" alt="old staking app" /></div>
                     </div>
                     
                     <div className="locker">
