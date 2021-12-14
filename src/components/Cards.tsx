@@ -66,13 +66,15 @@ export const PackagesCard = ({totalStakedInCategory,categoryId,limit,type, apy, 
                 <span className="card-type">{type}</span><QuestionCircleOutlined style={{ color: '#FF6600',paddingLeft:'3px' }} />
                 </div>
                 </Tooltip>
-            
-            <p className="card-type">{limit} XEND Limit</p>
-            <p className="card-type">{totalStakedInCategory} XEND Currently Staked</p>
-            <p className="card-apy">
+                <p className="card-apy">
                 {apy}%
                 <span id="apy">APR</span>
-            </p>           
+            </p>
+            <p className="card-type-desc">Limit:</p>  
+            <p className="card-type">{limit} XEND</p>
+            <p className="card-type-desc">Currently Staked:</p>  
+            <p className="card-type">{totalStakedInCategory} XEND</p>
+                  
             <Button
                 type="button"
                 text={buttonText}

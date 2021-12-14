@@ -15,6 +15,8 @@ import { recreateWeb3 } from 'utils/useAuth';
 import SmallSideLoader from 'components/core/SmallSideLoader';
 import { Tooltip } from '@material-ui/core';
 import { QuestionCircleOutlined } from '@ant-design/icons';
+import MaskGroup from '../assets/icons/StakingBanner.svg';
+import arrowBanner from '../assets/icons/arrowBanner.svg';
 
 interface Props {
     
@@ -52,14 +54,26 @@ export const Home = (props: Props) => {
        
 	}, []);
 
+    const goToOriginalStaking = () => {
+        
+          window.open('https://www.deficliq.com/xend-staking/', "_blank");  
+          return;
+      }
+
 
     return (
         <div className="home">
            
             <Navbar />
             <main className="home-main">
+               
                 <section className="step-1">
-                    <p id="topic">Stake XEND and Earn upto 100% APY in XEND Token</p>
+                    <div className="containerBanner">
+                    <img src={MaskGroup} alt="banner" className="banner-img" />
+             
+                    <div style={{cursor:'pointer'}}className="centered-banner" onClick={()=> goToOriginalStaking()}><img src={arrowBanner} className="arrowClassBanner" alt="old staking app" /></div>
+                    </div>
+                    
                     <div className="locker">
                         <div className="lock-left">
                             <p id="title">Total Value Locked</p>
