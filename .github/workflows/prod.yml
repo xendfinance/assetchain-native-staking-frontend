@@ -12,4 +12,4 @@ jobs:
           node-version: 14
       - run: echo "${{ secrets.DEPLOY_USER_PRIVATE_KEY }}" > id_rsa
       - run: chmod -R 600 id_rsa
-      - run: ssh -i id_rsa -o StrictHostKeyChecking=no deploy@34.136.145.241 "cd /var/www/stake.xend.finance && git pull origin main && yarn && pm2 restart parse-apps.config.prod.js && exit"
+      - run: ssh -i id_rsa -o StrictHostKeyChecking=no deploy@34.136.145.241 "cd /var/www/stake.xend.finance && git pull origin main && yarn && pm2 restart parse-apps-config.prod.js && exit"
