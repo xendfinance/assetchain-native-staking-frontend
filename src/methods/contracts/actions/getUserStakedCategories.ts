@@ -33,7 +33,7 @@ function GetUserStakedCategories(ownerAddress:any) {
                 const response = await GetUserStakedCategoriesFromContract(ownerAddress);
                 let finalState: Array<any> = [];
                 let finalStateWithdraw: Array<any> = [];
-                let RewardsTokensSummed;
+                let RewardsTokensSummed = 0;
 
                 for (let i = 0; i < response.length; i++) {
                     let category = response[i];
@@ -73,7 +73,7 @@ function GetUserStakedCategories(ownerAddress:any) {
                         })
                     }else{
 
-                        RewardsTokensSummed =+ totalRewardTokens;
+                        RewardsTokensSummed =RewardsTokensSummed+ Number(totalRewardTokens);
                         finalState.push({
                             id:category,
                             MinimumWithdrawalDate:minimumWithdrawalDate,
