@@ -30,7 +30,7 @@ export const Home = (props: Props) => {
     const closeModal = () => setModal({open: false, type: "",categoryId:null})
 
 
-	const { address,categories,userInfo,xendBalance,totalStakedContract,totalStakedUSD,loadingData} = useSelector((store: any) => store.DashboardReducer)
+	const { address,categories,userInfo,xendBalance,totalStakedContract,totalStakedUSD,loadingData,summedRewardsUserInfo,loadingDataReward} = useSelector((store: any) => store.DashboardReducer)
     
     const dispatch = useDispatch();
 
@@ -109,11 +109,24 @@ export const Home = (props: Props) => {
                                     </div>
                                     <div className="box-2">
                                         <Tooltip
-                                        title='The All Time Rewards indicate the overall reward that will be received if all active staking full rewards are paid out. Penalty reward is considered if the final duration of active staking is not reached.'
+                                        title='This shows the total rewards earned when full maturity period is reached for all active staking categories'
                                         placement="top"
                                         >
                                         <div>
                                         <span className="prop">All Time Rewards</span><QuestionCircleOutlined style={{ color: '#FF6600',paddingLeft:'3px' }} />
+                                        </div>
+                                        </Tooltip>
+                                        
+                                        {!loadingDataReward?<p className="val">{summedRewardsUserInfo.rewardsTokensSummed} XEND</p>:<SmallSideLoader />}
+                                        {!loadingDataReward?<p className="amount">{summedRewardsUserInfo.rewardsTokensSummedUSD}</p>:<SmallSideLoader />}
+                                    </div>
+                                    <div className="box-2">
+                                        <Tooltip
+                                        title='The Current Rewards indicate the overall reward that will be received if all active staking full rewards are paid out. Penalty reward is considered if the final duration of active staking is not reached.'
+                                        placement="top"
+                                        >
+                                        <div>
+                                        <span className="prop">Current Rewards</span><QuestionCircleOutlined style={{ color: '#FF6600',paddingLeft:'3px' }} />
                                         </div>
                                         </Tooltip>
                                         
