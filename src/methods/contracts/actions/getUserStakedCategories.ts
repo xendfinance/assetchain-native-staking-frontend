@@ -1,8 +1,11 @@
 
 import reduxStore from "methods/redux";
+import { getCoinGeckoPrice } from "methods/utils/get-xend-usd-price";
 import _const from "methods/_const";
 import moment from "moment";
-import { useSelector } from "react-redux";
+
+import balanceFormatterCategories from "../balanceFormatterCategories";
+import balanceFormatterXEND from "../balanceFormatterXEND";
 import GetUserStakedCategoriesFromContract from "../methods/getUserStakedCategories";
 import GetUserStakedCategoriesEndTime from "../methods/getUserStakedCategoryEndTime";
 import GetUserStakedCategoryHasWithdrawn from "../methods/getUserStakedCategoryHasWithdrawn";
@@ -11,6 +14,7 @@ import GetUserStakedCategoriesRewardTokens from "../methods/getUserStakedCategor
 import GetUserStakedCategoriesStartTime from "../methods/getUserStakedCategoryStartTime";
 import GetUserStakedCategoriesTotalTokens from "../methods/getUserStakedCategoryTotalTokens";
 import GetUserStakedCategoriesTotalTokensWithdrawn from "../methods/getUserStakedCategoryTotalTokensWithdrawn";
+
 
 
 function GetUserStakedCategories(ownerAddress:any) {
@@ -29,6 +33,8 @@ function GetUserStakedCategories(ownerAddress:any) {
                 const response = await GetUserStakedCategoriesFromContract(ownerAddress);
                 let finalState: Array<any> = [];
                 let finalStateWithdraw: Array<any> = [];
+                let RewardsTokensSummed;
+
                 for (let i = 0; i < response.length; i++) {
                     let category = response[i];
                     let startTime = await GetUserStakedCategoriesStartTime(category);
@@ -39,6 +45,7 @@ function GetUserStakedCategories(ownerAddress:any) {
                     let apy;
                     let name;
                     let minimumWithdrawalDate;
+                    
     
                     for(let i = 0; i < categories.length; i++){
                         let protocolCategory = categories[i];
@@ -65,6 +72,8 @@ function GetUserStakedCategories(ownerAddress:any) {
                             TotalWithdrawal:totalWithdrawn
                         })
                     }else{
+
+                        RewardsTokensSummed =+ totalRewardTokens;
                         finalState.push({
                             id:category,
                             MinimumWithdrawalDate:minimumWithdrawalDate,
@@ -88,10 +97,47 @@ function GetUserStakedCategories(ownerAddress:any) {
                         payload: finalStateWithdraw
                     })
                 }
+
+                dispatch({
+                    type: _const.LOADINGDATAREWARD,
+                    payload: true
+                })
+                 
+               
+                let xendUsdPrice = await getCoinGeckoPrice("xend-finance");
            
-             
+                let XENDPriceCurrent = parseFloat(xendUsdPrice); 
+           
+                let finalTokensSummedFormatted = await balanceFormatterCategories(RewardsTokensSummed);
+                let finalTokensSummedFormattedUSD = await getUSDXENDValueSummed(RewardsTokensSummed,XENDPriceCurrent);
+
+                const userTokensSummed = {
+                    rewardsTokensSummed:finalTokensSummedFormatted,
+                    rewardsTokensSummedUSD:finalTokensSummedFormattedUSD
+                }
+
+                dispatch({
+                    type: _const.USER_REWARDS_SUMMED,
+                    payload: userTokensSummed
+                })
+                
+                dispatch({
+                    type: _const.LOADINGDATAREWARD,
+                    payload: false
+                })
+
+                dispatch({
+                    type: _const.LOADINGDATA,
+                    payload: false
+                })
              
             }
+            
+          
+            dispatch({
+                type: _const.LOADINGDATAREWARD,
+                payload: false
+            })
 
             dispatch({
                 type: _const.LOADINGDATA,
@@ -105,17 +151,17 @@ function GetUserStakedCategories(ownerAddress:any) {
     };
 }
 
-// export const getUSDXENDValue = async (
-// 	amount: any,
-// 	currentPrice: number
-// 	) => {
+export const getUSDXENDValueSummed = async (
+	amount: any,
+	currentPrice: number
+	) => {
 
-//     const FinalBalance = Web3.utils.fromWei(amount.toString(), 'ether');
+   
 
-//     const USDResultXEND = await balanceFormatterXEND(Number(FinalBalance) * currentPrice);
-//     return USDResultXEND;
+    const USDResultXEND = await balanceFormatterXEND(Number(amount) * currentPrice);
+    return USDResultXEND;
 
-// }
+}
 
 
 export default GetUserStakedCategories;

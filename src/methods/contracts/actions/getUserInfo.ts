@@ -15,6 +15,11 @@ function GetUserInfo(ownerAddress:any) {
                 type: _const.LOADINGDATA,
                 payload: true
             })
+
+            dispatch({
+                type: _const.LOADINGDATAREWARD,
+                payload: true
+            })
            
             const response = await GetUserInfoFromContract(ownerAddress);
             

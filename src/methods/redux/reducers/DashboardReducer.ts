@@ -18,7 +18,10 @@ const initialState = {
     userCategories:[],
     userCategoriesWithdraw:[],
     userInfo:{},
-    loadingData:false   
+    loadingData:false ,
+    loadingDataReward:false ,
+    summedRewardsUserInfo:{rewardsTokensSummed:'0.00',
+                          rewardsTokensSummedUSD:'0.00'}  
 };
 
 const DashboardReducer = (state = initialState, action: Action) => {
@@ -26,7 +29,9 @@ const DashboardReducer = (state = initialState, action: Action) => {
         case _const.ADDRESS:
             return { ...state, ...action.payload };
         case _const.LOADINGDATA:
-            return { ...state, loadingData:action.payload };
+        return { ...state, loadingData:action.payload };
+        case _const.LOADINGDATAREWARD:
+            return { ...state, loadingDataReward:action.payload };
         case _const.NATIVE_BALANCE:
             return { ...state, nativeBalance: action.payload };
         case _const.XEND_BALANCE:
@@ -48,6 +53,8 @@ const DashboardReducer = (state = initialState, action: Action) => {
             return { ...state, userCategoriesWithdraw: action.payload };
         case _const.USER_INFO:
             return { ...state, userInfo: action.payload };
+        case _const.USER_REWARDS_SUMMED:
+            return { ...state, summedRewardsUserInfo: action.payload };
         case _const.CONNDETAILS:
             return { ...state, connectionDetails: action.payload };
        case _const.NETWORK_CONNECT:
