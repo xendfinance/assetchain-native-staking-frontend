@@ -13,11 +13,8 @@ async function GetUserStakedCategoriesRewardTokens(categoryId:any) {
         return Web3.utils.fromWei(res.toString(), 'ether');
         
     } catch (err :any) {
-        console.log(err);
-        return {
-            status: false,
-            message: err.message
-        };
+      
+        return 0;
     }
 }
 
