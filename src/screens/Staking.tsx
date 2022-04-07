@@ -41,8 +41,14 @@ const InputLabel = () => {
 
 
 
+
+
+
+
+
 export const Staking = ({categories,categoryId,userXendBalance,address,action}: Props) => {
     const [check, setCheck] = useState(false)
+    const [valueSelection, setValueSelection] = useState(false)
     const [amount, setAmount] = useState('0');
     const dispatch = useDispatch();
    
@@ -62,6 +68,24 @@ export const Staking = ({categories,categoryId,userXendBalance,address,action}: 
 
     const penaltyReward = ((selectedCategory[0].tokenPenaltyPercent * 365)/(selectedCategory[0].period * 100000))*100;
     
+    const handleFixingWithdrawalPrecisionIssue = (amountToWithdraw: any) => {
+        return String(amountToWithdraw.toString().match(/^-?\d+(?:)?/)[0]);
+    }
+    
+    const divideTotalByWalletBalance = (percentage: number) => () => {
+     
+        const newAmount = (percentage / 100) * (xendBalanceOfUser || 0);
+        setAmount(String(handleFixingWithdrawalPrecisionIssue(newAmount)));
+   
+    };
+     
+    
+   const onChangeStakeAmount= (e) => {
+    const re = /^[0-9\b]+$/;
+    if (e.target.value === '' || re.test(e.target.value)) {
+       setAmount(e.target.value)
+    }
+ }
 
     const performStaking = () => {
         let amountAdded: number = +amount;
@@ -137,9 +161,28 @@ export const Staking = ({categories,categoryId,userXendBalance,address,action}: 
                             />}
                         placeholder="Enter Stake Amount"
                         className="stake-input"
+                        value={amount}
                         
-                        onChange={(e: any) => setAmount(e.target.value)}
+                        onChange={(e: any) => onChangeStakeAmount(e)}
                     />
+                       <div
+                                    className="percentages"
+                                    style={{ marginLeft: 10, marginRight: 10 }}
+                                >
+                                    {[25, 50, 75, 100].map((e) => {
+                                        return (
+                                            <div
+                                                key={e}
+                                                className="activeValueSelection"
+                                                id={"percentageSelectId_"+e}
+                                                style={{cursor: "pointer"}}
+                                                onClick={divideTotalByWalletBalance(e)}
+                                            >
+                                                {e}%
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                 </div>
             </div>
             <div className="stake-right">

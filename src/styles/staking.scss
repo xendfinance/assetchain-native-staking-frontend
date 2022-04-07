@@ -26,6 +26,35 @@
         }
         
     }
+
+
+    .percentages {
+        margin: 1.5rem 20% 1rem;
+        display: flex;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+    }
+
+    .activeValueSelection{
+        border: 2px solid rgb(255, 102, 0);
+    border-radius: 40.8111px;
+    padding: 0.3rem 0.7rem;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: rgb(255, 102, 0);
+    }
+    .notActiveValueSelection{
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        color: rgb(255, 102, 0);
+        cursor: pointer;
+    }
+    
+
     .stake-right{
         width: 50%;
         padding: 1.5vw 2vw 3vw 2vw;
