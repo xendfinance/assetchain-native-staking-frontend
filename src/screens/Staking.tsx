@@ -69,22 +69,40 @@ export const Staking = ({categories,categoryId,userXendBalance,address,action}: 
     const penaltyReward = ((selectedCategory[0].tokenPenaltyPercent * 365)/(selectedCategory[0].period * 100000))*100;
     
     const handleFixingWithdrawalPrecisionIssue = (amountToWithdraw: any) => {
-        return String(amountToWithdraw.toString().match(/^-?\d+(?:)?/)[0]);
+        try {
+            return String(amountToWithdraw.toString().match(/^-?\d+(?:)?/)[0]);
+        } catch (error) {
+            return String('0');
+        }
+        
     }
     
     const divideTotalByWalletBalance = (percentage: number) => () => {
-     
-        const newAmount = (percentage / 100) * (xendBalanceOfUser || 0);
-        setAmount(String(handleFixingWithdrawalPrecisionIssue(newAmount)));
-   
+        try {
+            const newAmount = (percentage / 100) * (xendBalanceOfUser || 0);
+            if(newAmount){
+                setAmount(String(handleFixingWithdrawalPrecisionIssue(newAmount)));
+            }else{
+                setAmount(String('0'));
+            }
+          
+        }catch (error) {
+            setAmount(String('0'));
+        }
+    
     };
      
     
    const onChangeStakeAmount= (e) => {
-    const re = /^[0-9\b]+$/;
-    if (e.target.value === '' || re.test(e.target.value)) {
-       setAmount(e.target.value)
-    }
+       try {
+        const re = /^[0-9\b]+$/;
+        if (e.target.value === '' || re.test(e.target.value)) {
+           setAmount(e.target.value)
+        }
+       } catch (error) {
+        setAmount(String('0')) 
+       }
+   
  }
 
     const performStaking = () => {
@@ -102,8 +120,20 @@ export const Staking = ({categories,categoryId,userXendBalance,address,action}: 
 
               return;
         }
+
+        if(xendBalanceOfUser < amountAdded && xendBalanceOfUser !== ""){
+            notification['error']({
+                message: 'Invalid',
+                description: "Your XEND balance is insufficient",
+                placement:"bottomRight",
+                duration:5,
+               
+              });
+
+              return;
+        }
        
-        if (amountAdded > 0  && amount !== "") {
+        if (amountAdded > 0  && amount !== "" ) {
             notification['success']({
                 message: 'Staking Funds',
                 description: "The amount of " +amount+" XEND will be staked",
