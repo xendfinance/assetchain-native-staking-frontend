@@ -18,12 +18,13 @@ export const PerformStakingIntoProtocol = async ({
 
 	try {
 
-		let notifyBNC = Notify({
-			dappId: getDappId(56),
-			networkId: 56,
-			mobilePosition: 'bottom',
-			desktopPosition: 'bottomRight'
-		})
+		// let notifyBNC = Notify({
+		// 	dappId: getDappId(56),
+		// 	networkId: 56,
+		// 	mobilePosition: 'bottom',
+		// 	desktopPosition: 'bottomRight'
+		// })
+
 
         const xendContract = await createContract(abiManager.XENDToken, "0x4a080377f83D669D7bB83B3184a8A5E61B500608");
         const stakingContract = await createContract(abiManager.XSTAKING, "0x3d4D0699C4Df1539Fdc42C6F9594A478c6929051");
@@ -33,7 +34,8 @@ export const PerformStakingIntoProtocol = async ({
 			.send({ from: client })
 			.on('transactionHash', hash => {
                
-				notifyBNC.hash(hash)
+				//notifyBNC.hash(hash)
+				
                 notification['info']({
                     message: 'Approve Transaction Sent Successfully',
                     description: hash,
@@ -50,7 +52,7 @@ export const PerformStakingIntoProtocol = async ({
 			.send({ from: client })
 			.on('transactionHash', hash => {
               
-				notifyBNC.hash(hash)
+				//notifyBNC.hash(hash)
                 notification['info']({
                     message: 'Staking Transaction Sent Successfully',
                     description: hash,
@@ -86,8 +88,8 @@ export const formatAmount = (
 
 export const getDappId = (network: number) => {
 	switch (network) {
-		case 56: return 'a7f90c48-943a-4d3a-a8df-6ca5d0f7522a';
-		case 97: return 'a7f90c48-943a-4d3a-a8df-6ca5d0f7522a';
+		case 56: return 'ae017221-0b8d-43dc-b50a-4a7bc688063e';
+		case 97: return 'ae017221-0b8d-43dc-b50a-4a7bc688063e';
 		default: return '';
 	}
 }

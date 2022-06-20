@@ -174,7 +174,7 @@ const Wallets: FC<WalletProps> = ({ setOpen }) => {
 				const co = _const.NETWORK_CHAINID;
 				return !(typeof cc === 'string' && cc !== co);
 			} else {
-				const cc = 97;
+				const cc = 56;
 				const co = _const.NETWORK_CHAINID;
 				return !(typeof cc === 'string' && cc !== co);
 			}

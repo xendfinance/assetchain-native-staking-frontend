@@ -3717,21 +3717,21 @@ bn.js@^5.0.0, bn.js@^5.1.1, bn.js@^5.1.2, bn.js@^5.2.0:
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-5.2.0.tgz#358860674396c6997771a9d051fcc1b57d4ae002"
   integrity sha512-D7iWRBvnZE8ecXiLj/9wbxH7Tk79fAh8IHaTNq1RWRixsS02W+5qS+iE9yq6RYl0asXx5tw0bLhmT5pIfbSquw==
 
-bnc-notify@^1.9.1:
-  version "1.9.2"
-  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.9.2.tgz#f077559643ae0eed69759524dff904b7a9f2f07f"
-  integrity sha512-Eeo7NiPuZqhod2dEuL1M67SHUDVm4jExv70yubv5arexN2BhW/ruzCzklPExv/oqo8q6H4fQicQiT4jCN6zPPQ==
+bnc-notify@^1.9.5:
+  version "1.9.5"
+  resolved "https://registry.yarnpkg.com/bnc-notify/-/bnc-notify-1.9.5.tgz#232cef2af1fbce294a08d6e185b890d281aadb08"
+  integrity sha512-pjXYrWafjnOGOY7e6Mb1fY+A6tQAgroBHR5pQxokq3jYr4TYQumv2TLhc0/idqYI+G9AwsBMQJSWcZQ2jZI5AQ==
   dependencies:
     bignumber.js "^9.0.0"
-    bnc-sdk "^3.5.0"
+    bnc-sdk "4.1.0"
     lodash.debounce "^4.0.8"
     regenerator-runtime "^0.13.3"
     uuid "^3.3.3"
 
-bnc-sdk@^3.5.0:
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-3.7.0.tgz#b6472067baad41e102c4fe748ba3cc32793fca9e"
-  integrity sha512-o8vd+LLL+sBU3aE+/tmhilbtkKQpGvA9rBhvT/bszvBpAgSNzVaP3vdmNPaglDmE2WymcrqvQGf57z5l9v+rrw==
+bnc-sdk@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/bnc-sdk/-/bnc-sdk-4.1.0.tgz#b7bd280a2e0d218b003ed9d227bcc36593bd6f04"
+  integrity sha512-gbW5wRLPB7HDzXof5VrkFSDoyfuD2O9K8dOTRQl2OE/HAj3/epKyccQDtWNLNih7t234VM/sv9t6nxqRnNRJmQ==
   dependencies:
     crypto-es "^1.2.2"
     rxjs "^6.6.3"
