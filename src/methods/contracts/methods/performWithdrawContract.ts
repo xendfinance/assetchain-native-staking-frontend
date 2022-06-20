@@ -16,12 +16,12 @@ export const PerformWithdrawProtocol = async ({
 
 	try {
 
-		let notifyBNC = Notify({
-			dappId: getDappId(56),
-			networkId: 56,
-			mobilePosition: 'bottom',
-			desktopPosition: 'bottomRight'
-		})
+		// let notifyBNC = Notify({
+		// 	dappId: getDappId(56),
+		// 	networkId: 56,
+		// 	mobilePosition: 'bottom',
+		// 	desktopPosition: 'bottomRight'
+		// })
 
       
         const stakingContract = await createContract(abiManager.XSTAKING, "0x3d4D0699C4Df1539Fdc42C6F9594A478c6929051");
@@ -31,7 +31,7 @@ export const PerformWithdrawProtocol = async ({
 			.send({ from: client })
 			.on('transactionHash', hash => {
               
-				notifyBNC.hash(hash)
+				//notifyBNC.hash(hash)
                 notification['info']({
                     message: 'Withdrawing Staked Funds',
                     description: hash,

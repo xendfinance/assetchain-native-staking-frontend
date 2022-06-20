@@ -3,7 +3,7 @@ import {Button, Input, Filter} from "components"
 import moment from 'moment';
 import Check from '../assets/icons/check.svg';
 import Uncheck from '../assets/icons/unchecked.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PerformStaking from 'methods/contracts/actions/performStaking';
 import Tooltip from "@material-ui/core/Tooltip";
 import { QuestionCircleOutlined,WarningOutlined } from '@ant-design/icons';
@@ -46,11 +46,13 @@ const InputLabel = () => {
 
 
 
-export const Staking = ({categories,categoryId,userXendBalance,address,action}: Props) => {
+export const Staking = ({categories,categoryId,address,action}: Props) => {
     const [check, setCheck] = useState(false)
     const [valueSelection, setValueSelection] = useState(false)
     const [amount, setAmount] = useState('0');
     const dispatch = useDispatch();
+
+    const { xendBalance} = useSelector((store: any) => store.DashboardReducer)
    
    
     const [accumlatedIntrest, setAccumlatedIntrest] = useState('0.00');
@@ -58,7 +60,7 @@ export const Staking = ({categories,categoryId,userXendBalance,address,action}: 
         c.id == categoryId
      )
      
-    xendBalanceOfUser = userXendBalance;    
+    xendBalanceOfUser = xendBalance;    
     
 
     const currentDate = moment().format('YYYY-MM-DD HH:mm'); 
@@ -79,12 +81,17 @@ export const Staking = ({categories,categoryId,userXendBalance,address,action}: 
     
     const divideTotalByWalletBalance = (percentage: number) => () => {
         try {
-            const newAmount = (percentage / 100) * (xendBalanceOfUser || 0);
-            if(newAmount){
-                setAmount(String(handleFixingWithdrawalPrecisionIssue(newAmount)));
+            if(xendBalanceOfUser){
+                const newAmount = (percentage / 100) * (Number(xendBalanceOfUser) || 0);
+                if(newAmount){
+                    setAmount(String(handleFixingWithdrawalPrecisionIssue(newAmount)));
+                }else{
+                    setAmount(String('0'));
+                }
             }else{
                 setAmount(String('0'));
             }
+            
           
         }catch (error) {
             setAmount(String('0'));
