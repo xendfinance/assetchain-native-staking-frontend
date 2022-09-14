@@ -43,10 +43,8 @@ export const Table: FC<TableProps> = ({
 		newPage(page);
 	};
 
-	const { loadingData} = useSelector((store: any) => store.DashboardReducer)
-
-   
-
+console.log(data);
+console.log(dataWithdraw);
 	return (
 		<div {...rest} className="table-cont">
 			<div className="table-scroll overflow-x-auto">
@@ -86,70 +84,37 @@ export const Table: FC<TableProps> = ({
 						
 					</thead>
 
-					{Boolean(data?.length) && (
+					
 						<tbody className="t-body">
-							  {header =="ActiveStaking"?
-							  data.map((item) => (
-								<TableRow
-								  key = {item.id}
-								  rowData = {item}
-								  type={header}
-								  address={address}
-								></TableRow>
-						     )):
-							 dataWithdraw.map((item) => (
-								<TableRow
-								  key = {item.id}
-								  rowData = {item}
-								  type={header}
-								  address={address}
-								></TableRow>
-						     ))
-							 }
-							
-							{/* {data?.map((data: any, i: any) => (
-								<tr key={i} className="bg-primary font-normal text-sm">
-									{header?.map((item: any, i: any) =>
-										item?.component ? (
-											<td key={i}>
-												{item.component({ item: data[item?.key], data })
-												}
-												
-											</td>
-											
-										) : (
-											<td key={i}>{data[item?.key]
-											}											
-											</td>
-											
-										)
-									)}
-									 <Button                    
-								text="Withdraw"
-								type="button"
-								className="stake-btn"
-								//onClick={Number(amount) > 0  ? () => performStaking() : undefined  }
-							 	/>
-							</tr>
-							))} */}
+							{header =="ActiveStaking"?
+							  Boolean(data?.length) &&(
+								data.map((item) => (
+									<TableRow
+									key = {item.id}
+									rowData = {item}
+									type={header}
+									address={address}
+									></TableRow>
+								))
+							 ):
+								Boolean(dataWithdraw?.length) &&(
+								dataWithdraw.map((item) => (
+									<TableRow
+									key = {item.id}
+									rowData = {item}
+									type={header}
+									address={address}
+									></TableRow>
+								))
+							 )
+							}
+						
 						</tbody>
-					)}
+				
+					
 				</table>
 
-    {/* <table>
-      <tr key={"header"}>
-        {Object.keys(data[0]).map((key) => (
-          <th>{key}</th>
-        ))}
-      </tr>
-      {data.map((item) => (
-        <tr key={item.id}>
-          {Object.values(item).map((val) => (
-            <td>{val}</td>
-          ))}
-        </tr>
-      ))}
-    </table> */}
+    
 
 				{(!Boolean(data?.length)) && (header == "ActiveStaking")  && (
 					<div className=" empty-cont">

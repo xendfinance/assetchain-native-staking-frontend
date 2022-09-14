@@ -1,5 +1,3 @@
-
-import reduxStore from "methods/redux";
 import { getCoinGeckoPrice } from "methods/utils/get-xend-usd-price";
 import _const from "methods/_const";
 import moment from "moment";

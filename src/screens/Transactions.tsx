@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import {Navbar, Table, Footer} from "components"
 import { useNavigate, useLocation } from 'react-router'
-import { useDispatch, useSelector } from 'react-redux'
-import GetUserStakedCategories from 'methods/contracts/actions/getUserStakedCategories'
+import { useSelector } from 'react-redux'
 
 interface Props {
     page?: string;
@@ -13,8 +12,6 @@ export const Transactions = (props: Props) => {
     const {pathname} = useLocation()
     const { userCategories,userCategoriesWithdraw,address,loadingData} = useSelector((store: any) => store.DashboardReducer)
 
-    const dispatch = useDispatch();
- 
 
     return (
         <div className="transactions">
