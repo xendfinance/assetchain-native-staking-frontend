@@ -1,0 +1,112 @@
+export const lighttheme = {
+    //Default colors
+    // mainColor: "#E5B910",
+    mainColor: "#FFFFFF",
+    black: "#0B0E11",
+    grey: "#C4C4C4",
+    grey2: "#5E5E5E",
+    white: "#FFFFFF",
+    highlight: "#25346A",
+    highlight2: "#F4F4F4",
+    highlight3: "#FBFBFB",
+    inactive: "#CCD2E3",
+    yellow: "#E5B910",
+    flexiblegrey: "#6B6B6B",
+    textColor: "#161626",
+    textColor2: "#000000",
+    lightblackColor: "#242424",
+    rgbmix: "rgba(229, 185, 16, 0.05)",
+    cardcolor: "#FFFFFF",
+    summarybox: "#FBFCFD",
+    cardBlue: "#25346A",
+    error: "red",
+    modalText: "#000000",
+    labelText: "rgba(107, 107, 107, 1)",
+    modalContainer: "#FFFFFF",
+    headerColor: "rgba(37, 52, 106, 1)",
+    blueHeader: "rgba(37, 52, 106, 1)",
+    disabledColor: "rgba(225, 223, 215, 1)",
+    tokenbtn: "#F2F2F2",
+    edittextColor: "#FFFFFF",
+    editbutton: "#25346A",
+    walletbox: "#F4F4F4",
+  
+    //Text sizes
+    textLg: "7.125rem",
+    textMd: "40px",
+    textSmd: "2rem",
+    textSm: "24px",
+    textXs: "0.875rem",
+    textXXs: "12px",
+  
+    //Text weight
+    textNormal: 500,
+    textBold: 600,
+    textXBold: "bold",
+  };
+  
+  export const darktheme = {
+    //Default colors
+    mainColor: "#14151A",
+    black: "#0B0E11",
+    grey: "#C4C4C4",
+    grey2: "#C4C4C4",
+    white: "#FFFFFF",
+    highlight: "#2042B8",
+    highlight2: "#0B131E",
+    highlight3: "#0B131E",
+    inactive: "#CCD2E3",
+    yellow: "#E5B910",
+    flexiblegrey: "#c4c4c4",
+    textColor: "#FFFFFF",
+    textColor2: "#E5B910",
+    lightblackColor: "#C4C4C4",
+    rgbmix: "rgb(43, 47, 54, 0.6)",
+    cardcolor: "rgba(43, 47, 54, 1)",
+    summarybox: "#0B131E",
+    cardBlue: "#FFFFFF",
+    error: "red",
+    modalText: "#FFFFFF",
+    modalContainer: "rgba(20, 21, 26, 1)",
+    labelText: "rgba(196, 196, 196, 1)",
+    headerColor: "rgba(229, 185, 16, 1)",
+    blueHeader: "rgba(255, 255, 255, 1)",
+    disabledColor: "rgba(229, 185, 16, 0.2)",
+    tokenbtn: "#0B131E",
+    editbutton: "#FFFFFF",
+    walletbox: "#14151A",
+  
+    //Text sizes
+    textLg: "7.125rem",
+    textMd: "40px",
+    textSmd: "35px",
+    textSm: "28px",
+    textXs: "16px",
+    textXXs: "12px",
+  
+    //Text weight
+    textNormal: 500,
+    textBold: 600,
+    textXBold: "bold",
+  };
+  const size = {
+    mobileS: "320px",
+    mobileM: "375px",
+    mobileL: "425px",
+    tablet: "768px",
+    laptop: "1024px",
+    laptopL: "1440px",
+    desktop: "2560px",
+  };
+  
+  export const device = {
+    mobileS: `(min-width: ${size.mobileS})`,
+    mobileM: `(min-width: ${size.mobileM})`,
+    mobileL: `(min-width: ${size.mobileL})`,
+    tablet: `(min-width: ${size.tablet})`,
+    laptop: `(min-width: ${size.laptop})`,
+    laptopL: `(min-width: ${size.laptopL})`,
+    desktop: `(min-width: ${size.desktop})`,
+    desktopL: `(min-width: ${size.desktop})`,
+  };
+  

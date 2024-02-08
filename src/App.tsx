@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import { Home } from "./screens/Home";
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import { Transactions } from "screens/Transactions";
+import StakingV2  from "screens/StakingV2";
 import { useDispatch } from "react-redux";
 import { recreateWeb3 } from "utils/useAuth";
 
@@ -21,6 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/:page" element={<Transactions/>} />
+        <Route path="/stake" element={<StakingV2/>} />
       </Routes>
       </BrowserRouter>
     </div>
