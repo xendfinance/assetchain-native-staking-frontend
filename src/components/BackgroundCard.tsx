@@ -1,34 +1,31 @@
 import { useEffect } from "react";
 import styled from "styled-components";
-// import { getEstimatedRewards } from "../methods/actions";
+import { getEstimatedRewards } from "../methods/redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import rewardsIcon from "../assets/icons/rewards.svg"
 
-export const BackgroundCard = ({ label, error, errorText, ...rest }) => {
+export const BackgroundCard = () => {
   let dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getEstimatedRewards());
-  // }, []);
 
-  // const rewards = useSelector((state) => state.StakingReducer.rewards);
-  // const theme = useSelector((state) => state.General.theme);
-  
+  const { rewards } = useSelector((store: any) => store.StakingReducer);
+
+  useEffect(() => {
+    dispatch(getEstimatedRewards());
+  }, []);
+
+
 
   return (
     <CardContainer>
       <Title> Estimated Rewards</Title>
       <Value>
         {" "}
-        {10}% <Currency> APR</Currency>
+        {rewards}% <Currency> APR</Currency>
       </Value>
       <SubValue> </SubValue>
-      {/* <Badge>
-        {!theme ? (
-          <img src="./assets/darkrewards.svg" height="20" alt="scale" />
-        ) : (
-          <img src="./assets/rewards.svg" height="20" alt="scale" />
-        )}
-      </Badge> */}
-      <BackgroundImage height="100" src="./assets/rewardsbkg.svg" alt="bkg" />
+      <Badge>
+        <img src={rewardsIcon} height="20" alt="scale" />
+      </Badge>
     </CardContainer>
   );
 };
@@ -69,9 +66,4 @@ const Badge = styled.div`
   position: absolute;
   top: 0;
   right: 10%;
-`;
-const BackgroundImage = styled.img`
-  position: absolute;
-  right: 10%;
-  top: 30%;
 `;

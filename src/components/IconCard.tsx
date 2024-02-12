@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 //import { getFormDetails } from "../methods/actions";
 
+import infoIcon from "../assets/icons/info.svg"
+
 export const IconCard = ({ label, currency, icon, value, subvalue, info }) => {
   let dispatch = useDispatch();
   return (
@@ -21,7 +23,7 @@ export const IconCard = ({ label, currency, icon, value, subvalue, info }) => {
             //   )
             // }
           >
-            <img src="/assets/info.svg" alt="info" />
+            <img src={infoIcon} alt="info" />
           </InfoIcons>
         ) : null}{" "}
       </Title>

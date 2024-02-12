@@ -1,54 +1,53 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Footer, Navbar, Modal } from 'components'
+import { Footer2, Modal, Navbar2 } from 'components'
 import { IconCard } from "../components/IconCard";
 import StakingBalance from "../components/StakingBalance";
 import { StakingTitle, StakingContainer, StakingDescription } from "../styles/stakingStyles";
 import { BackgroundCard } from "../components/BackgroundCard";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import { lighttheme, darktheme } from "../styles/theme";
-// import Stake from "../stake";
-// import Unstake from "../unstake";
-// import Success from "../status/success";
-// import Failed from "../status/failed";
-// import Claim from "../status/claim";
-// import Restake from "../status/restake";
-// import { getStakingScore, getAllStaked } from "../methods/actions";
-// import { numberWithCommaswithoutdecimals } from "./../methods/helper";
-// import StakingScoreInfo from "./stakingscoreinfo";
-// import ForceUnstake from "../forceunstake";
+import Stake from "../components/stake";
+import Unstake from "../components/unstake";
+import Success from "../components/status/success";
+import Failed from "../components/status/failed";
+import Claim from "../components/status/claim";
+import Restake from "../components/status/restake";
+import { getStakingScore, getAllStaked } from "../methods/redux/actions";
+import { numberWithCommaswithoutdecimals } from "../methods/helper";
+import StakingScoreInfo from "components/staking/stakingscoreinfo";
+import ForceUnstake from "components/forceunstake";
+import ConnectionModal from "components/wallets/connectionmodal";
+
+//icons 
+import piechart from "../assets/icons/chart-pie.svg";
+import analytics from "../assets/icons/analytics.svg";
+import scale from "../assets/icons/scale.svg";
+import arbitrum from "../assets/icons/arbitrum.svg"
+
 
 
 const StakingV2 = () => {
-  //   const stakeModal = useSelector((state) => state.General.stakeModal);
-  //   const stakedStatus = useSelector(
-  //     (state) => state.StakingReducer.stakedStatus
-  //   );
-  //   const allStaked = useSelector((state) => state.StakingReducer.allStaked);
-  //   const usdQuote = useSelector((state) => state.MarketReducer.usdQuote);
-  //   const stakingScore = useSelector((state) => state.MarketReducer.stakingScore);
-  //   const ownerAddress = useSelector(
-  //     (state) => state.ConnectWalletReducer.address
-  //   );
-  //   const stakingpoints = useSelector((state) => state.General.stakingpoints);
-
   let dispatch = useDispatch();
-  const theme = true;
+  const { stakeModal, stakingpoints, theme } = useSelector((store: any) => store.General);
+  const { stakedStatus, allStaked } = useSelector((store: any) => store.StakingReducer);
+  const { usdQuote, stakingScore } = useSelector((store: any) => store.MarketReducer);
+  const { address } = useSelector((store: any) => store.ConnectWalletReducer);
 
-  //   useEffect(() => {
-  //     dispatch(getAllStaked());
-  //     {
-  //       ownerAddress ? dispatch(getStakingScore(ownerAddress)) : console.log("");
-  //     }
-  //   }, [ownerAddress]);
+  useEffect(() => {
+    dispatch(getAllStaked());
+    {
+      address ? dispatch(getStakingScore(address)) : console.log("");
+    }
+  }, [address]);
 
   return (
     <ThemeProvider theme={theme ? darktheme : lighttheme}>
-       <Navbar />
+      <Navbar2 />
       <StakingContainer className="container">
-        {/* {stakingpoints ? <StakingScoreInfo /> : null} */}
+        {stakingpoints ? <StakingScoreInfo /> : null}
         <StakingTitle>Xend Finance Staking V2 </StakingTitle>
-        <StakingDescription> Built on Arbitrum One</StakingDescription>
+        <StakingDescription> Built on <span> <img src={arbitrum} alt="arbitrum" /></span>Arbitrum One</StakingDescription>
         <div className="row">
           <div className="col-sm-12 col-lg-5">
             <StakingBalance />
@@ -59,29 +58,24 @@ const StakingV2 = () => {
                 <IconCard
                   label={"Total Staked"}
                   currency={"RWA"}
-                  icon={"./assets/scale.svg"}
-                  // value={numberWithCommaswithoutdecimals(allStaked)}
-                  // subvalue={
-                  //   "$" + numberWithCommaswithoutdecimals(usdQuote * allStaked)
-                  // }
-                  value={100}
+                  icon={scale}
+                  value={numberWithCommaswithoutdecimals(allStaked)}
                   subvalue={
-                    "$1000"
+                    "$" + numberWithCommaswithoutdecimals(usdQuote * allStaked)
                   }
                   info={false}
                 />
               </div>
               <div className="col-lg-6 col-xs-6  col-sm-6">
-                <BackgroundCard label={undefined} error={undefined} errorText={undefined} />
+                <BackgroundCard />
               </div>
               <div className="col-lg-6 col-xs-6 col-sm-6">
                 <IconCard
                   label={"Staking Score"}
                   currency={""}
-                  icon={"/assets/points.svg"}
-                  // value={numberWithCommaswithoutdecimals(stakingScore)}
-                  value={10}
-                  subvalue={0}
+                  icon={analytics}
+                  value={numberWithCommaswithoutdecimals(stakingScore)}
+                  subvalue={""}
                   info={true}
                 />
               </div>
@@ -89,9 +83,8 @@ const StakingV2 = () => {
                 <IconCard
                   label={"RWA Price"}
                   currency={""}
-                  icon={"./assets/chart-pie.svg"}
-                  // value={"$" + usdQuote}
-                  value={10}
+                  icon={piechart}
+                  value={"$" + usdQuote}
                   info={false}
                   subvalue={0}
                 />
@@ -99,61 +92,57 @@ const StakingV2 = () => {
             </div>
           </div>
         </div>
-        {/* <div className="row">
-        <div className="col-lg-12">
-          <AnnouncementSection />
-        </div>
-      </div> */}
-        {/* 
-      {stakeModal === 1 ? (
-        <Stake />
-      ) : stakeModal === 2 ? (
-        <Unstake />
-      ) : stakeModal === 5 ? (
-        <Claim />
-      ) : stakeModal === 6 ? (
-        <Restake />
-      ) : stakeModal === 7 ? (
-        <ForceUnstake />
-      ) : stakeModal === 3 ? (
-        <Success
-          title={
-            stakedStatus === 1
-              ? "Stake Successful"
-              : stakedStatus === 2
-              ? "Unstake Successful"
-              : "Claim Successful"
-          }
-          msg={
-            stakedStatus === 1
-              ? "Your stake was successful. Click on close to view your staking statistics."
-              : stakedStatus === 2
-              ? "Your unstake was successful. Click on close to view your staking statistics."
-              : "You have successfully claimed your reward"
-          }
-        />
-      ) : stakeModal === 4 ? (
-        <Failed
-          title={
-            stakedStatus === 1
-              ? "Stake Unsuccessful"
-              : stakedStatus === 2
-              ? "Unstake Unsuccessful"
-              : "Claim Unsuccessful"
-          }
-          msg={
-            stakedStatus === 1
-              ? "Your stake was Unsuccessful"
-              : stakedStatus === 2
-              ? "Your unstake was Unsuccessful"
-              : "Your claim was unsuccessful"
-          }
-        />
-      ) : (
-        <div></div>
-      )} */}
-        <Footer />
+
+        {stakeModal === 1 ? (
+          <Stake />
+        ) : stakeModal === 2 ? (
+          <Unstake />
+        ) : stakeModal === 5 ? (
+          <Claim />
+        ) : stakeModal === 6 ? (
+          <Restake />
+        ) : stakeModal === 7 ? (
+          <ForceUnstake />
+        ) : stakeModal === 3 ? (
+          <Success
+            title={
+              stakedStatus === 1
+                ? "Stake Successful"
+                : stakedStatus === 2
+                  ? "Unstake Successful"
+                  : "Claim Successful"
+            }
+            msg={
+              stakedStatus === 1
+                ? "Your stake was successful. Click on close to view your staking statistics."
+                : stakedStatus === 2
+                  ? "Your unstake was successful. Click on close to view your staking statistics."
+                  : "You have successfully claimed your reward"
+            }
+          />
+        ) : stakeModal === 4 ? (
+          <Failed
+            title={
+              stakedStatus === 1
+                ? "Stake Unsuccessful"
+                : stakedStatus === 2
+                  ? "Unstake Unsuccessful"
+                  : "Claim Unsuccessful"
+            }
+            msg={
+              stakedStatus === 1
+                ? "Your stake was Unsuccessful"
+                : stakedStatus === 2
+                  ? "Your unstake was Unsuccessful"
+                  : "Your claim was unsuccessful"
+            }
+          />
+        ) : (
+          <div></div>
+        )}
       </StakingContainer>
+      <Footer2 />
+      <ConnectionModal />
     </ThemeProvider>
   );
 };

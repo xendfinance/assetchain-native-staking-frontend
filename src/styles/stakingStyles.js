@@ -15,6 +15,7 @@ export const StakingDescription = styled.p`
   color: ${({ theme }) => theme.grey};
   line-height: 143%;
   margin-bottom: 50px;
+
 `;
 
 export const StakingContainer = styled.div`
