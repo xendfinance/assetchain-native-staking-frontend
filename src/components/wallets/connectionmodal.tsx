@@ -31,7 +31,8 @@ const ConnectionModal = () => {
     protocol: null,
     wallet: null,
     //chainId: 80001 testnet
-    chainId: 137
+    // chainId: 137
+    chainId: 42161
   });
 
   const disconnectWallet = () => {

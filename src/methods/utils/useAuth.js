@@ -198,6 +198,21 @@ async function switchOrAddNetworkToMetamask(chainId) {
           blockExplorerUrls: ["https://explorer.matic.network/"],
         };
       }
+      //connect to arbitrium
+      if (chainId === 42161) {
+        params = {
+          chainId: hexChainId,
+          chainName: "Arbitrum One",
+          nativeCurrency: {
+            name: "Ethereum",
+            symbol: "ETH",
+            decimals: 18,
+          },
+
+          rpcUrls: [process.env.REACT_APP_RPC_URL],
+          blockExplorerUrls: ["https://explorer.arbitrum.io"],
+        };
+      }
 
       // add test polygon
       if (chainId === 80001) {

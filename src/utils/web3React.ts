@@ -8,7 +8,7 @@ import getNodeUrl from './node-url';
 
 
 
-let injected = new InjectedConnector({ supportedChainIds: [56] });
+let injected = new InjectedConnector({ supportedChainIds: [56, 42161] });
 
 
 

@@ -9,7 +9,7 @@ const initialState = {
   stakeModal: 0,
   availableBalance: 0,
   hidenumbers: false,
-  tokenAddress: "0x82a0e6c02b91ec9f6ff943c0a933c03dbaa19689", //WNT token
+  tokenAddress: "0xAD4b9c1FbF4923061814dD9d5732EB703FaA53D4", //WNT token (Arbitrum)
   //tokenAddress: "0x41439f2dfb9d0c827e7316915C5a7A763b494785" CSS token
   infoModal: false,
   stakingpoints: false,
