@@ -206,12 +206,13 @@ export const unStakeAvailableToken = (
     );
     let diff = currenttimeInSeconds - timeStakedInSeconds;
 
-    if (diff < timeLimit) {
-      dispatch({
-        type: _const.UNSTAKING_TOKEN_FAILED,
-        payload: "Unstaking too much in a short period is not valid",
-      });
-    } else if (diff < period) {
+    // if (diff < timeLimit) {
+    //   dispatch({
+    //     type: _const.UNSTAKING_TOKEN_FAILED,
+    //     payload: "Unstaking too much in a short period is not valid",
+    //   });
+    // } else 
+    if (diff < period) {
       dispatch({
         type: _const.UNSTAKING_TOKEN_FAILED,
         payload: "Can't unstake within minimum lock time",

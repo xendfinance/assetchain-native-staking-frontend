@@ -100,7 +100,7 @@ export const StakingDiv = styled.div`
 `;
 export const InstructionBox = styled.div`
   padding: 20px;
-  background: ${({ theme }) => theme.walletbox};
+  background: #070E17;
   border-radius: 4px;
   margin-top: 10px;
   margin-bottom: 20px;
@@ -120,7 +120,7 @@ export const Title = styled.div`
 
 export const Value = styled.p`
   margin-bottom: 0;
-  color: ${({ theme }) => theme.highlight};
+  color: ${({ theme }) => theme.white};
   font-size: ${({ theme }) => theme.textXs};
   font-weight: ${({ theme }) => theme.textBold};
 `;

@@ -6,6 +6,7 @@ import { ButtonState } from "../reusables/button";
 import { claimUserRewards } from "../../methods/redux/actions";
 import Loader from "../reusables/loader";
 import { numberWithCommaswithoutdecimals } from "../../methods/helper";
+import claimIcon from "../../assets/icons/claim.svg";
 
 const Claim = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Claim = () => {
     <Modal visible={true} width={"30%"} title={" "}>
       <div>
         <CenterContainer>
-          <img src="/assets/claimicon.svg" alt="success" />
+          <img src={claimIcon} alt="success" />
         </CenterContainer>
         <CenterContainer>
           <Title>

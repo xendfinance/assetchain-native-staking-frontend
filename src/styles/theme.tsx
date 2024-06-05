@@ -29,7 +29,7 @@ export const lighttheme = {
     tokenbtn: "#F2F2F2",
     edittextColor: "#FFFFFF",
     editbutton: "#25346A",
-    walletbox: "#F4F4F4",
+    walletbox: "#070E17",
   
     //Text sizes
     textLg: "7.125rem",
@@ -74,7 +74,7 @@ export const lighttheme = {
     disabledColor: "rgba(229, 185, 16, 0.2)",
     tokenbtn: "#0B131E",
     editbutton: "#FFFFFF",
-    walletbox: "#14151A",
+    walletbox: "#070E17",
   
     //Text sizes
     textLg: "7.125rem",

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 import infoIcon from "../assets/icons/info.svg"
 import uptrend from "../assets/icons/uptrend.svg"
+import downtrend from "../assets/icons/downtrend.svg"
 
 export const IconCard = ({ label, currency, icon, value, subvalue, info }) => {
   let dispatch = useDispatch();
@@ -32,7 +33,7 @@ export const IconCard = ({ label, currency, icon, value, subvalue, info }) => {
         {value} <Currency> {currency}</Currency>
       </Value>
         <SubValue value={subvalue}>
-          {typeof subvalue === "number" &&<img src={uptrend} alt="up-trend" />}
+          {typeof subvalue === "number" &&<img src={subvalue > 0 ? uptrend : downtrend} alt="up-trend" />}
           {typeof subvalue === "number" && subvalue.toFixed(2)}
         </SubValue>
       <Badge>
@@ -70,7 +71,7 @@ const Currency = styled.span`
   font-size: ${({ theme }) => theme.textXXs};
 `;
 const SubValue = styled.span`
-  color: ${(value) => value > 0 ? '#5FBE91' : 'red'};
+  color: ${(value) => value > 0 ? '#5FBE91' : '#E66A62'};
   font-size: ${({ theme }) => theme.textXXs};
   position: absolute;
   bottom: 10%;

@@ -46,8 +46,8 @@ const StakingV2 = () => {
       <Navbar2 />
       <StakingContainer className="container">
         {stakingpoints ? <StakingScoreInfo /> : null}
-        <StakingTitle>Xend Finance Staking V2 </StakingTitle>
-        <StakingDescription> Built on <span> <img src={arbitrum} alt="arbitrum" /></span>Arbitrum One</StakingDescription>
+        <StakingTitle> RWA Staking <span style={{color: "#E66A62"}}> TESTNET</span> </StakingTitle>
+        <StakingDescription> Built on <span> <img src={arbitrum} alt="arbitrum" /></span>Asset Chain</StakingDescription>
         <div className="row">
           <div className="col-sm-12 col-lg-5">
             <StakingBalance />

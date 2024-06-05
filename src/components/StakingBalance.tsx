@@ -29,6 +29,8 @@ import ClaimableRewards from "./staking/claimablerewards";
 import ConnectWallet from "./wallets/connectwallet";
 import styled from "styled-components";
 
+import doublearrow from "../assets/icons/doublearrow.svg"
+
 const StakingBalance = () => {
   const dispatch = useDispatch();
 
@@ -94,9 +96,9 @@ const StakingBalance = () => {
           )}
         </ViewOption>
       </StakingDiv>
-      <div className="col-lg-3 col-sm-3">
+      {/* <div > */}
         <WalletAddress> {truncateAddress(address)}</WalletAddress>
-      </div>
+      {/* </div> */}
 
       <DescriptionContainer>
         <div>
@@ -106,6 +108,7 @@ const StakingBalance = () => {
             {hidenumbers
               ? "-----" :
               numberWithCommaswithoutdecimals(userStaked) + " RWA"}
+              <img src={doublearrow} alt="doublearrow" />
             <DescriptionSubValue>
               {" "}
               {hidenumbers ? (
@@ -127,6 +130,7 @@ const StakingBalance = () => {
             {hidenumbers
               ? "-----"
               : numberWithCommaswithoutdecimals(availableBalance) + " RWA"}
+               <img src={doublearrow} alt="doublearrow" />
             <DescriptionSubValue>
               {" "}
               {hidenumbers ? (

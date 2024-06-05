@@ -52,7 +52,7 @@ const Rewards = () => {
           </Title>
           <Value>
             {" "}
-            {numberWithCommaswithoutdecimals(pendingUserRewards)} WNT
+            {numberWithCommaswithoutdecimals(pendingUserRewards)} RWA
           </Value>
         </div>
         <div className="col-lg-1"></div>

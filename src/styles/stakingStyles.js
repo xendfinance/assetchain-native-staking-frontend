@@ -7,6 +7,7 @@ export const StakingTitle = styled.p`
   font-weight: 700;
   color: ${({ theme }) => theme.textColor};
   margin-top: 2rem;
+  margin-bottom: 1rem;
 `;
 
 export const StakingDescription = styled.p`
@@ -39,7 +40,8 @@ export const LongCardContainer = styled.div`
 `;
 export const DescriptionContainer = styled.div`
   display: block;
-
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   @media ${device.laptop} {
     display: flex;
     justify-content: space-between;
@@ -60,6 +62,7 @@ export const Description = styled.div`
   color: ${({ theme }) => theme.grey2};
   font-weight: ${({ theme }) => theme.textBold};
   font-size: ${({ theme }) => theme.textXXs};
+  margin-bottom: 0.4rem;
 `;
 export const DescriptionValue = styled.p`
   color: ${({ theme }) => theme.textColor};
@@ -71,6 +74,9 @@ export const ValueDetail = styled.p`
   color: ${({ theme }) => theme.textColor};
   font-size: ${({ theme }) => theme.textXs};
   font-weight: ${({ theme }) => theme.textBold};
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
   @media ${device.laptop} {
     font-size: ${({ theme }) => theme.textXs};
   }
@@ -84,15 +90,14 @@ export const DescriptionSubValue = styled.span`
 export const WalletAddress = styled.div`
   background: ${({ theme }) => theme.walletbox};
   color: ${({ theme }) => theme.grey2};
-  font-size: 0.6rem;
-  padding: 7px;
+  font-size: 0.8rem;
+  padding: 0.6rem;
   border-radius: 18.1224px;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
+  margin-top:1rem;
   width: 35%;
   text-align: center;
-  @media ${device.laptop} {
-    width: 80%;
-  }
+
 `;
 export const Badge = styled.div`
   padding: 5px;
