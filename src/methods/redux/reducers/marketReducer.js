@@ -2,8 +2,8 @@ import _const from "../actions/types";
 
 const initialState = {
   usdQuote: 0,
-  circulatingSupply: 0,
-  stakingScore: 0
+  percentageChange: 0,
+  stakingScore: 0,
 };
 
 const MarketReducer = (state = initialState, action) => {
@@ -11,8 +11,8 @@ const MarketReducer = (state = initialState, action) => {
     case _const.MARKET_QUOTE:
       return {
         ...state,
-        usdQuote: action.payload.usdQuote,
-        circulatingSupply: action.payload.circulatingSupply
+        usdQuote: action.payload.priceUsd,
+        percentageChange: action.payload.changePercent24Hr
       };
 
     case _const.STAKING_SCORE:

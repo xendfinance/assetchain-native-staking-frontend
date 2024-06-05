@@ -6,7 +6,7 @@ import Web3 from "web3";
 export const getMarketQuote = () => {
   return dispatch => {
     axios
-      .get("https://api-calculator.wicrypt.com/api/MarketQuote")
+      .get(`https://api.coincap.io/v2/assets/xend-finance`)
       .then(res => {
         dispatch({
           type: _const.MARKET_QUOTE,

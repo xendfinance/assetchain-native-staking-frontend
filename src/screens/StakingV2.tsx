@@ -14,7 +14,7 @@ import Failed from "../components/status/failed";
 import Claim from "../components/status/claim";
 import Restake from "../components/status/restake";
 import { getStakingScore, getAllStaked } from "../methods/redux/actions";
-import { numberWithCommaswithoutdecimals } from "../methods/helper";
+import { numberWithCommaswithoutdecimals, toFixed } from "../methods/helper";
 import StakingScoreInfo from "components/staking/stakingscoreinfo";
 import ForceUnstake from "components/forceunstake";
 import ConnectionModal from "components/wallets/connectionmodal";
@@ -31,7 +31,7 @@ const StakingV2 = () => {
   let dispatch = useDispatch();
   const { stakeModal, stakingpoints, theme } = useSelector((store: any) => store.General);
   const { stakedStatus, allStaked } = useSelector((store: any) => store.StakingReducer);
-  const { usdQuote, stakingScore } = useSelector((store: any) => store.MarketReducer);
+  const { usdQuote, percentageChange, stakingScore } = useSelector((store: any) => store.MarketReducer);
   const { address } = useSelector((store: any) => store.ConnectWalletReducer);
 
   useEffect(() => {
@@ -84,9 +84,9 @@ const StakingV2 = () => {
                   label={"RWA Price"}
                   currency={""}
                   icon={piechart}
-                  value={"$" + usdQuote}
+                  value={"$" + Number(usdQuote).toFixed(4)}
                   info={false}
-                  subvalue={0}
+                  subvalue={Number(percentageChange)}
                 />
               </div>
             </div>
