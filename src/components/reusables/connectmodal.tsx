@@ -205,7 +205,7 @@ const ModalContent = styled.div<Props>`
 `;
 
 const ModalCard = styled.div`
-  background-color: ${({ theme }) => theme.mainColor};
+  background-color: #070E17;
 `;
 
 const ModalTitle = styled.div`

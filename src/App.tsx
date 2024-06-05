@@ -3,16 +3,18 @@ import { Home } from "./screens/Home";
 import {BrowserRouter, Routes, Route} from "react-router-dom"
 import { Transactions } from "screens/Transactions";
 import StakingV2  from "screens/StakingV2";
-import { useDispatch } from "react-redux";
-import { recreateWeb3 } from "utils/useAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { recreateWeb3 } from "methods/utils/useAuth";
 
 
 function App() {
 
   const dispatch = useDispatch();
+  const {tokenAddress} = useSelector((store: any) => store.General);
+  console.log(tokenAddress, 'token')
 
   useEffect(() => {
-    dispatch(recreateWeb3());
+    dispatch(recreateWeb3(tokenAddress));
 }, []);
 
   return (

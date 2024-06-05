@@ -95,7 +95,6 @@ export const Symbol = styled.p`
   font-size: ${({ theme }) => theme.textXXs};
   color: ${({ theme }) => theme.flexiblegrey};
   font-weight: 600;
-  margin-right: 50;
 `;
 
 export const ErrMsg = styled.p`

@@ -4,6 +4,8 @@ import Modal from "../reusables/modal";
 import { ButtonContainer, CenterContainer, Msg, Title } from "./statusstyle";
 import { ButtonState } from "../reusables/button";
 import { staketogglemodal } from "../../methods/redux/actions";
+import success from "../../assets/icons/success.svg"
+
 
 const Success = ({ title, msg }) => {
   const dispatch = useDispatch();
@@ -11,7 +13,7 @@ const Success = ({ title, msg }) => {
     <Modal visible={true} width={"30%"}>
       <div>
         <CenterContainer>
-          <img alt="failed-img" src="/assets/success.svg"/>
+          <img alt="failed-img" src={success}/>
         </CenterContainer>
         <CenterContainer>
           <Title> {title}</Title> <Msg>{msg}</Msg>

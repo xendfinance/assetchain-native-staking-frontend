@@ -18,7 +18,7 @@ export const Msg = styled.p`
 
 export const Title = styled.p`
   font-size: ${({ theme }) => theme.textSm};
-  color: ${({ theme }) => theme.highlight};
+  color: ${({ theme }) => theme.white};
   margin-top: 30px;
   font-weight: 600;
 `;

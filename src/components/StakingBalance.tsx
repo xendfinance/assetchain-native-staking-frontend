@@ -31,7 +31,6 @@ import styled from "styled-components";
 
 const StakingBalance = () => {
   const dispatch = useDispatch();
-  const [connectModal, setConnectModal] = useState(false);
 
   const { availableBalance, hidenumbers, tokenAddress, theme } = useSelector((store: any) => store.General);
   const { userStaked, ids } = useSelector((store: any) => store.StakingReducer);
@@ -39,13 +38,13 @@ const StakingBalance = () => {
   const { address, ownerAddress } = useSelector((store: any) => store.ConnectWalletReducer);
 
   useEffect(() => {
-    dispatch(getAvailableBalance(tokenAddress));
+    dispatch(getAvailableBalance());
     dispatch(getMarketQuote());
     dispatch(getAllStakingIds());
     dispatch(getActionLimit());
     dispatch(getlockPeriod());
     dispatch(getPendingRewards());
-  }, [dispatch, tokenAddress, ownerAddress]);
+  }, [dispatch, ownerAddress]);
 
 
   return (
@@ -54,7 +53,7 @@ const StakingBalance = () => {
         <CardTitle>My RWA Staking</CardTitle>
         <ViewOption>
           {" "}
-          {hidenumbers ? (
+          {!hidenumbers ? (
             <HideContainer
               onClick={() =>
                 dispatch(

@@ -105,6 +105,7 @@ export const Badge = styled.div`
 export const StakingDiv = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 export const InstructionBox = styled.div`
   padding: 20px;
@@ -203,6 +204,7 @@ export const InfoTitle = styled.p`
 export const HideContainer = styled.div`
   display: flex;
   align-content: center;
+  align-items: center;
   p {
     margin-left: 10px;
     font-weight: 600;

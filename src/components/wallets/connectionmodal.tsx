@@ -7,22 +7,27 @@ import { disconnect } from "../../methods/redux/actions/contract-setup2";
 import { login } from "../../methods/utils/useAuth";
 import { connectorLocalStorageKey } from "../../methods/utils/config";
 
-import { togglemodal} from "../../methods/redux/actions";
+import { togglemodal } from "../../methods/redux/actions";
 import { WalletOption } from "./walletstyles";
 
 import walletIcon from "../../assets/icons/walletIcon.svg";
+import truncateAddress from "methods/utils/truncate-address";
 
+import arbitrum from "../../assets/icons/arbitrum.svg"
+import tokenIcon from "../../assets/icons/tokenIcon.svg"
 
 const ConnectionModal = () => {
   const dispatch = useDispatch();
 
-  const { modalState, tokenAddress} = useSelector((store: any) => store.General)
+  const { modalState, tokenAddress } = useSelector((store: any) => store.General);
+  const [walletLogo, setWalletLogo] = useState("");
   const address = useSelector(
     (store: any) => store.ConnectWalletReducer.address
   );
   const walletInUse = useSelector(
     (store: any) => store.ConnectWalletReducer.walletInUse
   );
+  const { allStaked, userStaked } = useSelector((store: any) => store.StakingReducer);
   const apys = useSelector((store: any) => store.ConnectWalletReducer.apys);
   const [selectableApys, setSelectableApys] = useState<Array<any>>([]);
 
@@ -31,8 +36,8 @@ const ConnectionModal = () => {
     protocol: null,
     wallet: null,
     //chainId: 80001 testnet
-    // chainId: 137
-    chainId: 42161
+    //chainId: 137
+    chainId: 42421
   });
 
   const disconnectWallet = () => {
@@ -44,13 +49,17 @@ const ConnectionModal = () => {
   };
 
   useEffect(() => {
-    // console.log(apys)
     if (connectInfo.network) {
       const x = apys.filter(b => b.network === connectInfo.network);
-      // console.log(x, ' the x')
       setSelectableApys(x);
     }
   }, [apys, connectInfo]);
+
+
+  useEffect(() => {
+    const connectedWallet = connectors.filter(x => x.title === walletInUse);
+    connectedWallet[0] && setWalletLogo(connectedWallet[0].image);
+  }, [address, walletInUse]);
 
   return (
     <>
@@ -66,13 +75,8 @@ const ConnectionModal = () => {
           <SectionWrapper>
             <SectionBody>
               {connectors.map((entry, i) => (
-                <WalletOption 
-                  key={i}
+                <WalletOption key={i}
                   onClick={() => {
-                    // 1. should connect to the right network
-                    // 2. switch to correct address
-                    // 3. continue with wallet connection
-
                     dispatch(
                       login(
                         entry.connectorId,
@@ -86,37 +90,35 @@ const ConnectionModal = () => {
                       connectorLocalStorageKey,
                       entry.connectorId
                     );
-
-                    // if (connectInfo.protocol) {
-                    //   changeProtocol(connectInfo.protocol);
-                    // }
-
                     // togglemodal(false);
                     //window.location.reload();
                   }}
                 >
-                  <CardWrapper
-                    key={i}
-                    
-                  >
-                    <img width={40} src={entry.image} alt={entry.title} /> 
-                  </CardWrapper>
-                  <WalletName>{entry.title}</WalletName>
+                  <div key={i} style={{ display: "flex", alignItems: "center", gap: "1rem"}} >
+                    <CardWrapper
+                      key={i}
+                      style={{ backgroundColor: entry.title.toLowerCase() === "metamask" ? "#FFD2B0" : "#d5d5d5" }}
+                    >
+                      <img src={entry.image} alt={entry.title} />
+                    </CardWrapper>
+                    <WalletName>{entry.title}</WalletName>
+                  </div>
+                  {entry.title.toLowerCase() === "madwallet" && <Recommended> Recommended</Recommended>}
                 </WalletOption>
               ))}
             </SectionBody>
           </SectionWrapper>
           <div>
             <InfoWrapper>
-              By connecting a wallet, you agree to 
+              By connecting a wallet, you agree to <br />
               <a
-                href="https://xend.finance/terms"
+                href="https://wicrypt.com/terms-condition.html"
                 target="_blank"
                 rel="noreferrer"
-                style={{ textDecoration: "underline", color: "#6F89E4" }}
+                style={{ textDecoration: "none" }}
               >
                 {" "}
-                (Xend Finance’s agreement)
+                (Xend Finance's agreement)
               </a>{" "}
             </InfoWrapper>
           </div>
@@ -131,30 +133,35 @@ const ConnectionModal = () => {
           icon={walletIcon}
         >
           <SectionWrapper>
-            <SectionBody>
-              {connectors.map((entry, i) => (
-                <div className="t-center" key={i}>
-                  <CardWrapper className={"check"} key={i} disabled={true}>
-                    {walletInUse === entry.title ? (
-                      <ActiveBox>
-                        {" "}
-                        <img src="/assets/activedot.png" alt="activedot" />{" "}
-                      </ActiveBox>
-                    ) : (
-                      ""
-                    )}
-                    <img width={40} src={entry.image} alt={entry.title} />
-                  </CardWrapper>
-                  <WalletName>{entry.title}</WalletName>
-                </div>
-              ))}
-            </SectionBody>
+            <ConnectedWalletDetail>
+              <div>
+                <DetailHeading> Wallet Connected</DetailHeading>
+                <DetailValue><span> <img height="16px" src={walletLogo} alt="arbitrum" /></span> {walletInUse}</DetailValue>
+              </div>
+              <div>
+                <DetailHeading> Network Connected</DetailHeading>
+                <DetailValue><span> <img height="16px" src={arbitrum} alt="arbitrum" /></span> Arbitrum</DetailValue>
+              </div>
+            </ConnectedWalletDetail>
+            <ConnectedWalletContainer>
+              <Address> {truncateAddress(address)}</Address>
+              <DetailHeading> Balance</DetailHeading>
+              <div className="mt-2">
+                <Balance>{userStaked}</Balance>
+                <DetailValue> ARB <span> <img height="16px" src={arbitrum} alt="wicrypt icon" /></span></DetailValue>
+              </div>
+              <div>
+                <Balance>{allStaked}</Balance>
+                <DetailValue>  RWA <span><img height="16px" src={tokenIcon} alt="wicrypt icon" /></span></DetailValue>
+              </div>
+            </ConnectedWalletContainer>
+
           </SectionWrapper>
-          <ButtonContainer>
+          <ActionContainer>
             <div onClick={disconnectWallet}>
-              <ConnectBtn>Yes</ConnectBtn>
+              <ConnectBtn>Disconnect</ConnectBtn>
             </div>
-          </ButtonContainer>
+          </ActionContainer>
         </Modal>
       )}
     </>
@@ -165,26 +172,24 @@ export default ConnectionModal;
 
 const InfoWrapper = styled.div`
   color: ${({ theme }) => theme.flexiblegrey};
-  font-size: ${({ theme }) => theme.textXXs};
+  font-size: ${({ theme }) => theme.textXs};
   text-align: center;
   margin-bottom: 20px;
   margin-top: 20px;
+  a{
+    color: ${({ theme }) => theme.highlight};
+  }
 `;
 
 const ConnectBtn = styled.div`
   padding: 11px 53px;
   border-radius: 30px;
   border: 0px;
-  background: ${({ theme }) => theme.yellow};
-  border: 1px solid #e5b910;
+  background: ${({ theme }) => theme.highlight};
   font-weight: 600;
   color: ${({ theme }) => theme.white};
 `;
 
-const RadioButton = styled.input`
-  margin-right: 10px;
-  cursor: pointer;
-`;
 
 const WalletName = styled.p`
   color: ${({ theme }) => theme.flexiblegrey};
@@ -203,9 +208,6 @@ const CardWrapper = styled.button<ICardWrapper>`
   align-items: center;
   height: 60px;
   width: 60px;
-  // width: 100%;
-  //margin-bottom: 10px;
-  // height: 78px;
   background: #d3d3d3;
   border: none;
   box-sizing: border-box;
@@ -253,18 +255,90 @@ const SectionBody = styled.div`
   }
 `;
 
-const ActiveBox = styled.div`
-  position: absolute;
-  right: -6px;
-  top: -10px;
-`;
 
-const ButtonContainer = styled.div`
-  margin-top: 10px;
-  padding: 10px;
-  padding-bottom: 0px;
+const Recommended = styled.div`
+ background: #00C0871A;
+  color: #00C087;
+  text-align:center;
+  font-size: 8px;
+  padding: 6px;
+  border-radius: 8px;
+  font-weight 600;
+`
 
-  button{
-    width: 100%;
+const ActionContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+
+  & div {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    & p {
+      margin-left: 8px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
   }
 `;
+
+
+const ConnectedWalletDetail = styled.div`
+  background: #E5B91005;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px;
+  border: 1px solid #E5B9101A;
+  margin-bottom: 10px;
+`
+
+export const ConnectedWalletContainer = styled.div`
+  background: #E5B91005;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #E5B9101A;
+  margin-bottom: 10px;
+
+  div{
+    display: flex;
+    justify-content: space-between;
+  }
+`
+
+const DetailHeading = styled.p`
+  margin-bottom: 3px;
+  color: #6B6B6B;
+  line-height: 15px;
+  font-size: 12px;
+}
+`
+
+const DetailValue = styled.p`
+  font-size: ${({ theme }) => theme.textXXs};
+  color: ${({ theme }) => theme.descriptionColor};
+  margin-bottom: 0px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`
+
+const Address = styled.p`
+  font-size: ${({ theme }) => theme.textXXs};
+  color: ${({ theme }) => theme.textColor};
+  margin-bottom: 1rem;
+`
+
+const Balance = styled.p`
+  font-size: ${({ theme }) => theme.textXs};
+  font-weight: 600;
+  line-height: 21px
+  margin-bottom: 0;
+  color: ${({ theme }) => theme.descriptionColor};
+`

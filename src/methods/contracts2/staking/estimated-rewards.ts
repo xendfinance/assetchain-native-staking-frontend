@@ -7,8 +7,8 @@ async function estimatedRewards() {
       stakingAbi,
       process.env.REACT_APP_STAKING_CONTRACT
     );
-    let estimatedRewards = await contract.methods.apy().call();
-    return estimatedRewards;
+    let rewards = await contract.methods.apr().call();
+    return rewards
   } catch (err) {
     console.log(err);
     return [];

@@ -70,12 +70,14 @@ export const stakeUserToken = (
         type: _const.STAKING_TOKEN_FAILED,
         payload: "Please enter a valid amount",
       });
-    } else if (amt > availableBalance) {
+    } 
+    else if (amt > availableBalance) {
       dispatch({
         type: _const.STAKING_TOKEN_FAILED,
         payload: "The amount cannot be greater than your available balance",
       });
-    } else if (fixedlockperiodenums.includes(stakingPeriod)) {
+    } 
+    else if (fixedlockperiodenums.includes(stakingPeriod)) {
       dispatch({
         type: _const.STAKING_TOKEN_FAILED,
         payload:
@@ -96,66 +98,52 @@ export const stakeUserToken = (
         type: _const.STAKING_TOKEN_FAILED,
         payload: "",
       });
-      var num = amt * Math.pow(10, 18);
-
-      let value = toFixed(num);
       dispatch({
         type: _const.STAKING_TOKEN,
         payload: true,
       });
-      let approve = await approveStaking(value, tokenAddress);
-      if (approve.message) {
-        dispatch(staketogglemodal(4));
-        dispatch({
-          type: _const.STAKED_STATUS,
-          payload: 1,
-        });
+
+      const res = await stakeToken(amt, lockperiod);
+      console.log(res, 'i am res')
+      if (res) {
         dispatch({
           type: _const.STAKING_TOKEN,
           payload: false,
         });
-      } else {
-        const res = await stakeToken(value, lockperiod);
-        if (res) {
+        if (res.status) {
           dispatch({
-            type: _const.STAKING_TOKEN,
-            payload: false,
+            type: _const.STAKED_STATUS,
+            payload: 1,
           });
-          if (res.status) {
-            dispatch({
-              type: _const.STAKED_STATUS,
-              payload: 1,
-            });
-            dispatch({
-              type: _const.CLEAR_DATA,
-              payload: true,
-            });
-            dispatch(staketogglemodal(3));
-            dispatch(getAllStaked());
-            dispatch(getAvailableBalance(tokenAddress));
-            dispatch(getUserStaked(ownerAddress));
-            dispatch(getAllStakingIds());
-          } else {
-            dispatch({
-              type: _const.STAKED_STATUS,
-              payload: 1,
-            });
+          dispatch({
+            type: _const.CLEAR_DATA,
+            payload: true,
+          });
+          dispatch(staketogglemodal(3));
+          dispatch(getAllStaked());
+          dispatch(getAvailableBalance());
+          dispatch(getUserStaked(ownerAddress));
+          dispatch(getAllStakingIds());
+        } else {
+          dispatch({
+            type: _const.STAKED_STATUS,
+            payload: 1,
+          });
 
-            dispatch(staketogglemodal(4));
-          }
+          dispatch(staketogglemodal(4));
         }
       }
+
     }
   };
 };
 
-export const getAvailableBalance = (tokenAddress) => {
+export const getAvailableBalance = () => {
   return async (dispatch) => {
-    let balance = await availableBalance(tokenAddress);
-    var realbalance = balance / Math.pow(10, 18);
+    let balance = await availableBalance();
     dispatch({
       type: _const.TOKEN_AVAILABLE_BALANCE,
-      payload: realbalance,
+      payload: balance,
     });
   };
 };
@@ -192,7 +180,7 @@ export const claimUserRewards = (tokenAddress) => {
       dispatch(staketogglemodal(3));
       dispatch(getPendingRewards());
       dispatch(getAllStaked());
-      dispatch(getAvailableBalance(tokenAddress));
+      dispatch(getAvailableBalance());
       dispatch(getAllStakingIds());
     } else {
       dispatch({
@@ -249,7 +237,7 @@ export const unStakeAvailableToken = (
           });
           dispatch(staketogglemodal(3));
           dispatch(getAllStaked());
-          dispatch(getAvailableBalance(tokenAddress));
+          dispatch(getAvailableBalance());
           dispatch(getUserStaked(ownerAddress));
         } else {
           dispatch({
@@ -317,7 +305,7 @@ export const forceUnlock = (stakingId, tokenAddress) => {
         });
         dispatch(staketogglemodal(3));
         dispatch(getAllStaked());
-        dispatch(getAvailableBalance(tokenAddress));
+        dispatch(getAvailableBalance());
         dispatch(getUserStaked(ownerAddress));
       } else {
         dispatch({

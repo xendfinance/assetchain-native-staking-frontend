@@ -13,7 +13,7 @@ import { Button } from "./walletstyles";
 import { togglemodal } from "../../methods/redux/actions";
 
 
-const ConnectWallet = ({ ...rest }) => {
+const ConnectWallet = () => {
   const dispatch = useDispatch();
   const { account } = useWeb3React();
 
@@ -122,9 +122,9 @@ const ConnectWallet = ({ ...rest }) => {
   return (
     <div onClick={() => dispatch(togglemodal(true))}>
       {!address ? (
-        <Button {...rest}> Connect Wallet</Button>
+        <Button> Connect Wallet</Button>
       ) : (
-        <Button {...rest}>
+        <Button>
           <span className="mr-1">
             <img src={walletLogo} width={20} alt="walletLogo" />
           </span>

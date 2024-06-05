@@ -29,7 +29,7 @@ import Info from "./info";
 // Icons
 import stakeIcon from "../../assets/icons/stake.svg";
 import infoIcon from "../../assets/icons/info.svg";
-import xendIcon from "../../assets/icons/xendIcon.svg";
+import tokenIcon from "../../assets/icons/tokenIcon.svg";
 
 const Stake = () => {
   const dispatch = useDispatch();
@@ -221,7 +221,7 @@ const Stake = () => {
                         MAX
                       </OptionButton>
 
-                      <img src={xendIcon} alt="icon" />
+                      <img height="30px" src={tokenIcon} alt="icon" />
                       <Symbol> RWA</Symbol>
                     </WalletDetailContainer>
                   </div>
@@ -274,7 +274,7 @@ const Stake = () => {
                 <ButtonState
                   fontSize={"0.8rem"}
                   buttonClass={"secondary"}
-                  label={<Loader color={"#E5B910"} />} 
+                  label={<Loader color={"#fefefe"} />} 
                   padding={""} 
                   onClick={()=> {}}                
                 />

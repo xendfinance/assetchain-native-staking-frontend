@@ -17,15 +17,12 @@ export const login = (connectorID, chainId, walletName, tokenAddress) => {
     try {
       let account;
       const connector = connectorsByName(connectorID, chainId);
-
       const dt = { chainId, connectorID, walletName };
-
       localStorage.setItem("CONNECTION_DETAILS", JSON.stringify(dt));
 
       if (connector) {
         if (connectorID === "injected") {
           await switchOrAddNetworkToMetamask(chainId);
-
           let connection = await connector.activate();
 
           account = connection.account;
@@ -50,7 +47,7 @@ export const login = (connectorID, chainId, walletName, tokenAddress) => {
           dispatch(togglemodal(false, 0));
           dispatch(getUserStaked(account));
           dispatch(getPendingRewards());
-          dispatch(getAvailableBalance(tokenAddress));
+          dispatch(getAvailableBalance());
           dispatch(getAllStakingIds());
         }
       } else {
@@ -126,7 +123,7 @@ export const recreateWeb3 = (tokenAddress) => {
             });
             dispatch(getUserStaked(account));
             dispatch(getPendingRewards());
-            dispatch(getAvailableBalance(tokenAddress));
+            dispatch(getAvailableBalance());
             dispatch(getAllStakingIds());
           }
         } else {
@@ -175,6 +172,7 @@ async function switchOrAddNetworkToMetamask(chainId) {
   const hexChainId = `0x${chainId.toString(16)}`;
   try {
     if (window.ethereum) {
+      console.log(window.ethereum,"does this work")
       // switch to the selected network
       await window.ethereum.request({
         method: "wallet_switchEthereumChain",
@@ -198,7 +196,7 @@ async function switchOrAddNetworkToMetamask(chainId) {
           blockExplorerUrls: ["https://explorer.matic.network/"],
         };
       }
-      //connect to arbitrium
+
       if (chainId === 42161) {
         params = {
           chainId: hexChainId,

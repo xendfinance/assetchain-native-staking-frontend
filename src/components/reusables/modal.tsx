@@ -194,7 +194,7 @@ const ModalContent = styled.div<Props>`
 `;
 
 const ModalCard = styled.div`
-  background-color: ${({ theme }) => theme.mainColor};
+  background-color: ${({ theme }) => theme.primary};
 `;
 
 const ModalTitle = styled.div`
@@ -202,4 +202,7 @@ const ModalTitle = styled.div`
   font-size: ${({ theme }) => theme.textXs};
   font-weight: bold;
   margin-bottom: 0;
+  align-items: center;
+  display: flex;
+  gap: 1rem;
 `;
