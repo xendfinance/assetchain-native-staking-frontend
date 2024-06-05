@@ -44,7 +44,7 @@ export const TitleContainer = styled.div`
 
 export const Title = styled.p`
   font-size: ${({ theme }) => theme.textSm};
-  color: ${({ theme }) => theme.highlight};
+  color: ${({ theme }) => theme.white};
   font-weight: 600;
 `;
 

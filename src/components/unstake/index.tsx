@@ -17,6 +17,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../reusables/loader";
 import moment from "moment";
 
+// Icons
+import unstakeIcon from "../../assets/icons/unstake.svg";
+
 const Unstake = () => {
   const dispatch = useDispatch();
   const { tokenAddress, theme} = useSelector((store: any) => store.General);
@@ -35,14 +38,14 @@ const Unstake = () => {
           {" "}
           {!theme ? (
             <img
-              src="/assets/unstakelightthemeicon.svg"
-              alt={"stake-icon"}
+              src={unstakeIcon}
+              alt={"un-stake-icon"}
               className={"mr-1"}
             />
           ) : (
             <img
-              src="/assets/unstakedarkthemeicon.svg"
-              alt={"stake-icon"}
+              src={unstakeIcon}
+              alt={"un-stake-icon"}
               className={"mr-1"}
             />
           )}{" "}
