@@ -18,7 +18,7 @@ export const toFixed = x => {
 
 export function numberWithCommaswithoutdecimals(x) {
   if (x) {
-    let number = x.toFixed(2);
+    let number = Number(x).toFixed(2);
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
   return 0;

@@ -15,7 +15,13 @@ export const Navbar2 = () => {
                 <img src="/icons/xend-logo-white.svg" alt="logo" className="logo"
                     onClick={() => navigate("/")}
                 />
-                <ConnectWallet />
+                <ConnectSection>
+                    <ConnectWallet />
+                    <Faucet target="_blank" rel="noreferrer" href="https://faucet.xendrwachain.com/" title="RWA Faucet">
+                        <img src="https://faucet.xendrwachain.com/favicon/favicon-32x32.png" alt="faucet" />
+                        <p> RWA Faucet</p>
+                    </Faucet>
+                </ConnectSection>
             </nav>
         </NavbarContainer>
     )
@@ -31,3 +37,18 @@ const NavbarContainer = styled.div`
 //   position: fixed;
 //   top: 0
 `;
+
+const ConnectSection = styled.div`
+    display: flex;
+    gap: 0.2rem;
+
+`
+
+const Faucet = styled.a`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: ${({ theme }) => theme.textXXs};
+    color: #FFFFFF;
+    text-decoration: none;
+`

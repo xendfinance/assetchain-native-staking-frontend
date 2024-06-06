@@ -46,8 +46,9 @@ const StakingV2 = () => {
       <Navbar2 />
       <StakingContainer className="container">
         {stakingpoints ? <StakingScoreInfo /> : null}
-        <StakingTitle> RWA Staking <span style={{color: "#E66A62"}}> TESTNET</span> </StakingTitle>
-        <StakingDescription> Built on <span> <img src={arbitrum} alt="arbitrum" /></span>Asset Chain</StakingDescription>
+        <StakingTitle> RWA Staking <span style={{color: "#E66A62"}}> (TESTNET)</span> </StakingTitle>
+        <StakingDescription> Built on <span> <img src={"https://testnet.xendrwachain.com/logo-dark.svg"} alt="arbitrum" /></span></StakingDescription>
+        {/* <StakingDescription> Built on <span> <img src={"https://testnet.xendrwachain.com/logo-dark.svg"} alt="arbitrum" /></span>Asset Chain</StakingDescription> */}
         <div className="row">
           <div className="col-sm-12 col-lg-5">
             <StakingBalance />
@@ -84,9 +85,9 @@ const StakingV2 = () => {
                   label={"RWA Price"}
                   currency={""}
                   icon={piechart}
-                  value={"$" + Number(usdQuote).toFixed(4)}
+                  value={"$" + usdQuote ? (Number(usdQuote).toFixed(4)) : 0 }
                   info={false}
-                  subvalue={Number(percentageChange)}
+                  subvalue={percentageChange ? Number(percentageChange) : 0 }
                 />
               </div>
             </div>

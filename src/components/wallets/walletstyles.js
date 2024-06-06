@@ -11,6 +11,8 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  justify-content: center;
+
 
   &:disabled {
     background-color: ${({ theme }) => theme.disabledColor};

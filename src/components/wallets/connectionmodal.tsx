@@ -112,7 +112,7 @@ const ConnectionModal = () => {
             <InfoWrapper>
               By connecting a wallet, you agree to <br />
               <a
-                href="https://wicrypt.com/terms-condition.html"
+                href="https://xend.finance/terms"
                 target="_blank"
                 rel="noreferrer"
                 style={{ textDecoration: "none" }}

@@ -11,8 +11,8 @@ const MarketReducer = (state = initialState, action) => {
     case _const.MARKET_QUOTE:
       return {
         ...state,
-        usdQuote: action.payload.priceUsd,
-        percentageChange: action.payload.changePercent24Hr
+        usdQuote: action.payload.price,
+        percentageChange: action.payload.usd_24h_change
       };
 
     case _const.STAKING_SCORE:
