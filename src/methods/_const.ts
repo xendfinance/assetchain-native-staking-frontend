@@ -37,7 +37,8 @@ export default {
     CATEGORIES: 'CATEGORIES',
     USER_INFO: 'USERINFO',
     USER_REWARDS_SUMMED: 'USER_REWARDS_SUMMED',
-    
+    SIGNATURE: "SIGNATURE",
+    APYS: "ALL_APYS",
    
   };
   

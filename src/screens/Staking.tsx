@@ -56,7 +56,7 @@ export const Staking = ({categories,categoryId,address,action}: Props) => {
    
    
     const [accumlatedIntrest, setAccumlatedIntrest] = useState('0.00');
-    const selectedCategory = categories.filter(c => 
+    const selectedCategory = categories?.filter(c => 
         c.id == categoryId
      )
      
