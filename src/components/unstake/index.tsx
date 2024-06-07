@@ -22,7 +22,7 @@ import unstakeIcon from "../../assets/icons/unstake.svg";
 
 const Unstake = () => {
   const dispatch = useDispatch();
-  const { tokenAddress, theme} = useSelector((store: any) => store.General);
+  const { theme} = useSelector((store: any) => store.General);
   const { unstakingToken } = useSelector((store: any) => store.LoaderReducer);
   const { stakingInfo, userStaked, timeLimit,period, stakingPeriod, unstakingFailedMsg    } = useSelector((store: any) => store.StakingReducer);
 

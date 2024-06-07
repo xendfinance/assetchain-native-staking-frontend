@@ -22,7 +22,7 @@ function App() {
      
       <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<StakingV2/>} />
         <Route path="/:page" element={<Transactions/>} />
         <Route path="/stake" element={<StakingV2/>} />
       </Routes>
