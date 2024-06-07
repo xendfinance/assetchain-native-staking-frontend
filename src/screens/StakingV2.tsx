@@ -23,7 +23,7 @@ import ConnectionModal from "components/wallets/connectionmodal";
 import piechart from "../assets/icons/chart-pie.svg";
 import analytics from "../assets/icons/analytics.svg";
 import scale from "../assets/icons/scale.svg";
-import arbitrum from "../assets/icons/arbitrum.svg"
+import assetChain from "../assets/icons/assetChain.svg"
 
 
 
@@ -47,7 +47,7 @@ const StakingV2 = () => {
       <StakingContainer className="container">
         {stakingpoints ? <StakingScoreInfo /> : null}
         <StakingTitle> RWA Staking <span style={{color: "#E66A62"}}> (TESTNET)</span> </StakingTitle>
-        <StakingDescription> Built on <span> <img src={"https://testnet.xendrwachain.com/logo-dark.svg"} alt="asset-chain" /></span></StakingDescription>
+        <StakingDescription> Built on <span> <img height="30px" src={assetChain} alt="asset-chain" /></span></StakingDescription>
 
         <div className="row">
           <div className="col-sm-12 col-lg-5">
