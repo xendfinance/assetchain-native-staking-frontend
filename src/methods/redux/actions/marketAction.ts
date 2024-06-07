@@ -22,7 +22,7 @@ export const getMarketQuote = () => {
 export const getStakingScore = address => {
   return dispatch => {
     axios
-      .get(`https://oracle.wicrypt.com/score/${Web3.utils.toChecksumAddress(address)}`)
+      .get(`${process.env.REACT_APP_STAKING_SCORE_URL}${Web3.utils.toChecksumAddress(address)}`)
       .then(res => {
         dispatch({
           type: _const.STAKING_SCORE,

@@ -12,6 +12,9 @@ export const StakingTitle = styled.p`
 
 export const StakingDescription = styled.p`
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: ${({ theme }) => theme.textXs};
   color: ${({ theme }) => theme.grey};
   line-height: 143%;

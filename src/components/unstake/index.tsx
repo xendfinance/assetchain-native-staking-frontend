@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "../reusables/modal";
 import {
   InstructionBox,
@@ -12,7 +12,7 @@ import {
   ErrMsg,
 } from "./unstakestyle";
 import { ButtonState } from "../reusables/button";
-import { unStakeAvailableToken } from "../../methods/redux/actions";
+import { clearError, unStakeAvailableToken } from "../../methods/redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../reusables/loader";
 import moment from "moment";
@@ -22,11 +22,16 @@ import unstakeIcon from "../../assets/icons/unstake.svg";
 
 const Unstake = () => {
   const dispatch = useDispatch();
-  const { tokenAddress, theme} = useSelector((store: any) => store.General);
+  const { theme} = useSelector((store: any) => store.General);
   const { unstakingToken } = useSelector((store: any) => store.LoaderReducer);
   const { stakingInfo, userStaked, timeLimit,period, stakingPeriod, unstakingFailedMsg    } = useSelector((store: any) => store.StakingReducer);
 
 
+  useEffect(()=> {
+    dispatch(clearError())
+  }, [])
+
+  
   let timeBefore =
     (new Date(Number(stakingInfo[2])).getTime() +
       stakingPeriod[Number(stakingInfo[3])]) *
@@ -103,7 +108,6 @@ const Unstake = () => {
                 onClick={() =>
                   dispatch(
                     unStakeAvailableToken(
-                      tokenAddress,
                       stakingInfo[2],
                       timeLimit,
                       period,
