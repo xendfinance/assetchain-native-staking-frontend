@@ -47,8 +47,8 @@ const StakingV2 = () => {
       <StakingContainer className="container">
         {stakingpoints ? <StakingScoreInfo /> : null}
         <StakingTitle> RWA Staking <span style={{color: "#E66A62"}}> (TESTNET)</span> </StakingTitle>
-        <StakingDescription> Built on <span> <img src={"https://testnet.xendrwachain.com/logo-dark.svg"} alt="arbitrum" /></span></StakingDescription>
-        {/* <StakingDescription> Built on <span> <img src={"https://testnet.xendrwachain.com/logo-dark.svg"} alt="arbitrum" /></span>Asset Chain</StakingDescription> */}
+        <StakingDescription> Built on <span> <img src={"https://testnet.xendrwachain.com/logo-dark.svg"} alt="asset-chain" /></span></StakingDescription>
+
         <div className="row">
           <div className="col-sm-12 col-lg-5">
             <StakingBalance />

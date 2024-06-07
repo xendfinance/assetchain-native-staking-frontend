@@ -113,7 +113,7 @@ const Audited = styled.a`
 `
 const footerData = [
     { id: 1, link: "https://web.facebook.com/XendFinance", icon: fbk, title: "Facebook" },
-    { id: 2, link: "", icon: instagram, title: "Instagram" },
+    { id: 2, link: "https://www.instagram.com/xend.finance/?hl=en", icon: instagram, title: "Instagram" },
     { id: 3, link: "https://t.me/xendFinance", icon: telegram, title: "Telegram" },
     { id: 4, link: "https://x.com/xendfinance", icon: twitter, title: "Twitter" },
     { id: 5, link: "https://www.youtube.com/channel/UCcR2lTpYwCws-axra4AAO8Q/featured", icon: youtube, title: "Youtube" },
