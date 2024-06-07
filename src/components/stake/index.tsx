@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Modal from "../reusables/modal";
 import {
   OptionButton,
@@ -17,6 +17,7 @@ import {
 } from "./stakestyle";
 import { ButtonState } from "../reusables/button";
 import {
+  clearError,
   getFormDetails,
   stakeUserToken,
   toggletermsandconditions,
@@ -36,6 +37,10 @@ const Stake = () => {
   const { stakeType, termsandconditions, amttoStake, theme, availableBalance, tokenAddress, infoModal} = useSelector((store: any) => store.General);
   const { rewards, stakingFailedMsg, stakingInfo, timeLimit } = useSelector((store: any) => store.StakingReducer);
   const { stakingToken } = useSelector((store: any) => store.LoaderReducer);
+  
+  useEffect(()=> {
+    dispatch(clearError())
+  }, [])
 
   return (
     <React.Fragment>
@@ -289,7 +294,6 @@ const Stake = () => {
                       stakeUserToken(
                         amttoStake,
                         stakeType,
-                        tokenAddress,
                         termsandconditions,
                         availableBalance,
                         stakingInfo[3]

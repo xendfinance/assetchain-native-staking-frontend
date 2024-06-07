@@ -3,7 +3,6 @@ import getTotalStaking from "../../contracts2/staking/total-staked";
 import getUserStaking from "../../contracts2/staking/user-staked";
 import estimatedRewards from "../../contracts2/staking/estimated-rewards";
 import stakeToken from "../../contracts2/staking/stake-tokens";
-import approveStaking from "../../contracts2/staking/approve-staking";
 import availableBalance from "../../contracts2/staking/available-balance";
 import unstakeToken from "../../contracts2/staking/unstake-token";
 import pendingRewards from "../../contracts2/staking/pending-rewards";
@@ -12,7 +11,6 @@ import stakingIds from "../../contracts2/staking/staking-id";
 import stakingInfo from "../../contracts2/staking/staking-info";
 import actionLimit from "../../contracts2/staking/action-limit";
 import lockperiod from "../../contracts2/staking/lock-period";
-import { toFixed } from "../../helper";
 import { staketogglemodal } from "./generalActions";
 import retrieveAddress from "../../utils/retrieve-address";
 import unLock from "../../contracts2/staking/force-unlock";
@@ -53,7 +51,6 @@ export const getEstimatedRewards = () => {
 export const stakeUserToken = (
   amt,
   lockperiod,
-  tokenAddress,
   termsandconditions,
   availableBalance,
   stakingPeriod
@@ -193,7 +190,6 @@ export const claimUserRewards = (tokenAddress) => {
 };
 
 export const unStakeAvailableToken = (
-  tokenAddress,
   stakingPeriod,
   timeLimit,
   period,
@@ -206,12 +202,12 @@ export const unStakeAvailableToken = (
     );
     let diff = currenttimeInSeconds - timeStakedInSeconds;
 
-    // if (diff < timeLimit) {
-    //   dispatch({
-    //     type: _const.UNSTAKING_TOKEN_FAILED,
-    //     payload: "Unstaking too much in a short period is not valid",
-    //   });
-    // } else 
+    if (diff < timeLimit) {
+      dispatch({
+        type: _const.UNSTAKING_TOKEN_FAILED,
+        payload: "Unstaking too much in a short period is not valid",
+      });
+    } else 
     if (diff < period) {
       dispatch({
         type: _const.UNSTAKING_TOKEN_FAILED,
@@ -328,3 +324,17 @@ export const reStake = (tokenAddress) => {
     }
   };
 };
+
+
+export const clearError = () =>{
+  return (dispatch) =>{
+    dispatch({
+      type: _const.STAKING_TOKEN_FAILED,
+      payload: "",
+    });
+    dispatch({
+      type:  _const.UNSTAKING_TOKEN_FAILED,
+      payload: "",
+    });
+  }
+}
