@@ -3,10 +3,6 @@ import getTotalStaking from "../../contracts2/staking/total-staked";
 import getUserStaking from "../../contracts2/staking/user-staked";
 import estimatedRewards from "../../contracts2/staking/estimated-rewards";
 import stakeToken from "../../contracts2/staking/stake-tokens";
-<<<<<<< HEAD
-=======
-import approveStaking from "../../contracts2/staking/approve-staking";
->>>>>>> 481826c010685a5a4d4b81abbbbf1a0c127f463c
 import availableBalance from "../../contracts2/staking/available-balance";
 import unstakeToken from "../../contracts2/staking/unstake-token";
 import pendingRewards from "../../contracts2/staking/pending-rewards";
@@ -15,10 +11,6 @@ import stakingIds from "../../contracts2/staking/staking-id";
 import stakingInfo from "../../contracts2/staking/staking-info";
 import actionLimit from "../../contracts2/staking/action-limit";
 import lockperiod from "../../contracts2/staking/lock-period";
-<<<<<<< HEAD
-=======
-import { toFixed } from "../../helper";
->>>>>>> 481826c010685a5a4d4b81abbbbf1a0c127f463c
 import { staketogglemodal } from "./generalActions";
 import retrieveAddress from "../../utils/retrieve-address";
 import unLock from "../../contracts2/staking/force-unlock";
@@ -59,10 +51,6 @@ export const getEstimatedRewards = () => {
 export const stakeUserToken = (
   amt,
   lockperiod,
-<<<<<<< HEAD
-=======
-  tokenAddress,
->>>>>>> 481826c010685a5a4d4b81abbbbf1a0c127f463c
   termsandconditions,
   availableBalance,
   stakingPeriod
@@ -113,7 +101,6 @@ export const stakeUserToken = (
       });
 
       const res = await stakeToken(amt, lockperiod);
-      console.log(res, 'i am res')
       if (res) {
         dispatch({
           type: _const.STAKING_TOKEN,
@@ -202,10 +189,6 @@ export const claimUserRewards = (tokenAddress) => {
 };
 
 export const unStakeAvailableToken = (
-<<<<<<< HEAD
-=======
-  tokenAddress,
->>>>>>> 481826c010685a5a4d4b81abbbbf1a0c127f463c
   stakingPeriod,
   timeLimit,
   period,
@@ -218,21 +201,12 @@ export const unStakeAvailableToken = (
     );
     let diff = currenttimeInSeconds - timeStakedInSeconds;
 
-<<<<<<< HEAD
     if (diff < timeLimit) {
       dispatch({
         type: _const.UNSTAKING_TOKEN_FAILED,
         payload: "Unstaking too much in a short period is not valid",
       });
     } else 
-=======
-    // if (diff < timeLimit) {
-    //   dispatch({
-    //     type: _const.UNSTAKING_TOKEN_FAILED,
-    //     payload: "Unstaking too much in a short period is not valid",
-    //   });
-    // } else 
->>>>>>> 481826c010685a5a4d4b81abbbbf1a0c127f463c
     if (diff < period) {
       dispatch({
         type: _const.UNSTAKING_TOKEN_FAILED,
@@ -349,7 +323,6 @@ export const reStake = (tokenAddress) => {
     }
   };
 };
-<<<<<<< HEAD
 
 
 export const clearError = () =>{
@@ -364,5 +337,3 @@ export const clearError = () =>{
     });
   }
 }
-=======
->>>>>>> 481826c010685a5a4d4b81abbbbf1a0c127f463c
