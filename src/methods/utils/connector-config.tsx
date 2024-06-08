@@ -6,12 +6,12 @@ import MadWallet from "./images/madwallet.svg";
 // import CoinBase from "./images/coinbase.svg";
 
 const connectors: Config[] = [
-  {
-    title: "MadWallet",
-    icon: "madwallet",
-    image: MadWallet,
-    connectorId: ConnectorNames.Injected
-  },
+  // {
+  //   title: "MadWallet",
+  //   icon: "madwallet",
+  //   image: MadWallet,
+  //   connectorId: ConnectorNames.Injected
+  // },
   {
     title: "Metamask",
     icon: "metamask",
