@@ -13,7 +13,7 @@ import { WalletOption } from "./walletstyles";
 import walletIcon from "../../assets/icons/walletIcon.svg";
 import truncateAddress from "methods/utils/truncate-address";
 
-import arbitrum from "../../assets/icons/arbitrum.svg"
+import assetChain from "../../assets/icons/assetChain.svg"
 import tokenIcon from "../../assets/icons/tokenIcon.svg"
 
 const ConnectionModal = () => {
@@ -140,7 +140,7 @@ const ConnectionModal = () => {
               </div>
               <div>
                 <DetailHeading> Network Connected</DetailHeading>
-                <DetailValue><span> <img height="16px" src={arbitrum} alt="arbitrum" /></span> Arbitrum</DetailValue>
+                <DetailValue><span> <img height="20px" src={assetChain} alt="asset chain" /></span> </DetailValue>
               </div>
             </ConnectedWalletDetail>
             <ConnectedWalletContainer>
@@ -148,7 +148,7 @@ const ConnectionModal = () => {
               <DetailHeading> Balance</DetailHeading>
               <div className="mt-2">
                 <Balance>{userStaked}</Balance>
-                <DetailValue> ARB <span> <img height="16px" src={arbitrum} alt="wicrypt icon" /></span></DetailValue>
+                <DetailValue>  RWA <span> <img height="16px" src={tokenIcon} alt="wicrypt icon" /></span></DetailValue>
               </div>
               <div>
                 <Balance>{allStaked}</Balance>

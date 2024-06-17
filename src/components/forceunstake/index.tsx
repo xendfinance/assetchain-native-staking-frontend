@@ -79,7 +79,7 @@ const ForceUnstake = () => {
               <ButtonState
                 fontSize={"0.8rem"}
                 buttonClass="secondary"
-                label={<Loader color={"#E5B910"} />}
+                label={<Loader color={"#FEFEFE"} />}
                 padding=""
                 onClick={()=> {}}
               />

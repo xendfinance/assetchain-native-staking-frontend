@@ -71,7 +71,7 @@ const Currency = styled.span`
   font-size: ${({ theme }) => theme.textXXs};
 `;
 const SubValue = styled.span`
-  color: ${(value) => value > 0 ? '#5FBE91' : '#E66A62'};
+  color: ${(props) => props.value > 0 ? '#5FBE91' : '#E66A62'};
   font-size: ${({ theme }) => theme.textXXs};
   position: absolute;
   bottom: 10%;
