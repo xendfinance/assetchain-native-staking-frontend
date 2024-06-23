@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-//import { getFormDetails } from "../methods/actions";
+import { getFormDetails } from "../methods/redux/actions";
 
 import infoIcon from "../assets/icons/info.svg"
 import uptrend from "../assets/icons/uptrend.svg"
@@ -16,14 +16,14 @@ export const IconCard = ({ label, currency, icon, value, subvalue, info }) => {
         {info ? (
           <InfoIcons
             className="col-lg-4"
-            // onClick={() =>
-            //   dispatch(
-            //     getFormDetails({
-            //       props: ["stakingpoints"],
-            //       value: true,
-            //     })
-            //   )
-            // }
+            onClick={() =>
+              dispatch(
+                getFormDetails({
+                  props: ["stakingpoints"],
+                  value: true,
+                })
+              )
+            }
           >
             <img src={infoIcon} alt="info" />
           </InfoIcons>

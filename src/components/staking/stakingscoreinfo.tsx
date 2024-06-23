@@ -12,11 +12,7 @@ const StakingScoreInfo = () => {
     <SmallModal theme={theme}>
       <div>
         <div className="t-center mb-3">
-          {!theme ? (
-            <img src="/assets/lightInfo.svg" alt="info-icon" />
-          ) : (
-            <img src="/assets/darkinfo.svg" alt="info-icon" />
-          )}
+          <img src="/icons/info.svg" alt="info-icon" />
         </div>
 
         <div>
@@ -24,11 +20,13 @@ const StakingScoreInfo = () => {
           <InfoTitle> Staking Score</InfoTitle>
           <InfoMsg>
             {" "}
-            Staking score is determined by the average amount of tokens held
-            during the last 12 months. The higher the staked lockup period, the
-            higher the staking score. The higher the staking score, the higher
-            the rewards earned during staking. Higher staking scores also leads
-            to higher number of $WNT which can be mined from the Hotspot Hub.
+            The staking score is determined by the average amount of tokens held during the last 12 months. 
+            The higher the staked lockup period, the higher the staking score. 
+            The higher the staking score, the greater the Asset Chain ecosystem activities, rewards, and discounts the user can access. 
+            A higher staking score means increased voting power in governance, up-voting asset validators/authenticators, and discounts in the asset tokenization process. 
+            It also improves the chances for ecosystem airdrops, among many other benefits.
+
+
           </InfoMsg>
         </div>
         <div>
