@@ -6,7 +6,7 @@ import Web3 from "web3";
 export const getMarketQuote = () => {
   return dispatch => {
     axios
-      .get(`https://price.xendrwachain.com/api/v1/price`)
+      .get(`${process.env.REACT_APP_TOKEN_PRICE}`)
       .then(res => {
         dispatch({
           type: _const.MARKET_QUOTE,
