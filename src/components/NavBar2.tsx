@@ -18,7 +18,7 @@ export const Navbar2 = () => {
                 <ConnectSection>
                     <ConnectWallet />
                     <Faucet target="_blank" rel="noreferrer" href="https://faucet.assetchain.org/" title="RWA Faucet">
-                        <img src="https://faucet.xendrwachain.com/favicon/favicon-32x32.png" alt="faucet" />
+                        <img src="https://faucet.assetchain.org/favicon/favicon-32x32.png" alt="faucet" />
                         <p> RWA Faucet</p>
                     </Faucet>
                 </ConnectSection>

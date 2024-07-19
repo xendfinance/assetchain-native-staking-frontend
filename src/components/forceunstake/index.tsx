@@ -61,7 +61,7 @@ const ForceUnstake = () => {
 
       <CurrentStakeContainer>
         <Text> Estimated Return</Text>
-        <Value> {numberWithCommaswithoutdecimals(estimatedAmt)}WNT</Value>
+        <Value> {numberWithCommaswithoutdecimals(estimatedAmt)}RWA</Value>
       </CurrentStakeContainer>
 
       <div>

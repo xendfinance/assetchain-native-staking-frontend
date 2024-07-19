@@ -14,22 +14,22 @@ const Earnings = () => {
 
   return (
     <LongCardContainer>
-      <CardTitle> WNT Stats</CardTitle>
+      <CardTitle> RWA Stats</CardTitle>
       <DescriptionContainer>
         <div>
-          <Description> WNT PRICE</Description>
+          <Description> RWA PRICE</Description>
           <DescriptionValue> ${usdQuote} </DescriptionValue>
         </div>
 
         {/* <div>
           <Description> DAILY REWARDS</Description>
-          <DescriptionValue>0 WNT</DescriptionValue>
+          <DescriptionValue>0 RWA</DescriptionValue>
         </div> */}
         {/* <div>
           <Description> CIRCULATING SUPPLY</Description>
           <DescriptionValue>
             {" "}
-            {numberWithCommaswithoutdecimals(circulatingSupply)}WNT
+            {numberWithCommaswithoutdecimals(circulatingSupply)}RWA
           </DescriptionValue>
         </div> */}
       </DescriptionContainer>

@@ -25,7 +25,7 @@ const Restake = () => {
           <Title>
             {" "}
             You are restaking{" "}
-            {numberWithCommaswithoutdecimals(pendingUserRewards)} WNT
+            {numberWithCommaswithoutdecimals(pendingUserRewards)} RWA
           </Title>{" "}
           <Msg>
             You will not be able to claim rewards within 24 hours if you do
@@ -46,7 +46,7 @@ const Restake = () => {
               <ButtonState
                 fontSize={"0.8rem"}
                 buttonClass={"secondary"}
-                label={"Restake WNT now"}
+                label={"Restake RWA now"}
                 padding={""}  
                 onClick={() => dispatch(reStake(tokenAddress))}
               />

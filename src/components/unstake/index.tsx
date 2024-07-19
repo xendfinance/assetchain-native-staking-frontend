@@ -65,7 +65,7 @@ const Unstake = () => {
       </TitleContainer>
       <CurrentStakeContainer>
         <Text> Current Unstake Return</Text>
-        <Value> {userStaked.toFixed(2)}WNT</Value>
+        <Value> {userStaked.toFixed(2)}RWA</Value>
       </CurrentStakeContainer>
       {stakingInfo[3] === "0" ? null : (
         <CurrentStakeContainer>

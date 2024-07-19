@@ -51,7 +51,7 @@ const Home = () => {
             <div className="col-lg-6 col-xs-6 col-sm-6">
               <IconCard
                 label={"Total Staked"}
-                currency={"WNT"}
+                currency={"RWA"}
                 icon={"./assets/scale.svg"}
                 value={numberWithCommaswithoutdecimals(allStaked)}
                 subvalue={
@@ -74,7 +74,7 @@ const Home = () => {
             </div>
             <div className="col-lg-6 col-xs-6 col-sm-6">
               <IconCard
-                label={"WNT Price"}
+                label={"RWA Price"}
                 currency={""}
                 icon={"./assets/chart-pie.svg"}
                 value={"$" + usdQuote}

@@ -93,7 +93,6 @@ const StakingV2 = () => {
             </div>
           </div>
         </div>
-
         {stakeModal === 1 ? (
           <Stake />
         ) : stakeModal === 2 ? (

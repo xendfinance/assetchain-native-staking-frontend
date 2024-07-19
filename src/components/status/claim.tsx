@@ -25,7 +25,7 @@ const Claim = () => {
           <Title>
             {" "}
             You are claiming{" "}
-            {numberWithCommaswithoutdecimals(pendingUserRewards)} WNT
+            {numberWithCommaswithoutdecimals(pendingUserRewards)} RWA
           </Title>{" "}
           <Msg>
             You will not be able to claim rewards within 24 hours if you do
@@ -46,7 +46,7 @@ const Claim = () => {
               <ButtonState
                 fontSize={"0.8rem"}
                 buttonClass={"secondary"}
-                label={"Claim WNT now"}
+                label={"Claim RWA Now"}
                 onClick={() => dispatch(claimUserRewards(tokenAddress))}
                 padding=""
               />
