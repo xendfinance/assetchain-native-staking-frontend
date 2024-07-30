@@ -16,11 +16,12 @@ export const Navbar2 = () => {
                     onClick={() => navigate("/")}
                 />
                 <ConnectSection>
-                    <ConnectWallet />
+                    <Faucet style={{color: `#ed7e5c`}} target="_blank" href="http://leaderboard.assetchain.org/"> Leaderboard</Faucet>
                     <Faucet target="_blank" rel="noreferrer" href="https://faucet.assetchain.org/" title="RWA Faucet">
-                        <img src="https://faucet.assetchain.org/favicon/favicon-32x32.png" alt="faucet" />
+                        <img height="12px" src="https://faucet.assetchain.org/favicon/favicon-32x32.png" alt="faucet" />
                         <p> RWA Faucet</p>
                     </Faucet>
+                    <ConnectWallet />
                 </ConnectSection>
             </nav>
         </NavbarContainer>
@@ -40,15 +41,17 @@ const NavbarContainer = styled.div`
 
 const ConnectSection = styled.div`
     display: flex;
-    gap: 0.2rem;
+    gap: 1rem;
+    align-items: center;
 
 `
 
 const Faucet = styled.a`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     font-size: ${({ theme }) => theme.textXXs};
     color: #FFFFFF;
     text-decoration: none;
+    cursor: pointer;
 `
