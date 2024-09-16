@@ -112,12 +112,9 @@ const Audited = styled.a`
     text-decoration: none;
 `
 const footerData = [
-    { id: 1, link: "https://web.facebook.com/XendFinance", icon: fbk, title: "Facebook" },
-    { id: 2, link: "https://www.instagram.com/xend.finance/?hl=en", icon: instagram, title: "Instagram" },
-    { id: 3, link: "https://t.me/xendFinance", icon: telegram, title: "Telegram" },
-    { id: 4, link: "https://x.com/xendfinance", icon: twitter, title: "Twitter" },
-    { id: 5, link: "https://www.youtube.com/channel/UCcR2lTpYwCws-axra4AAO8Q/featured", icon: youtube, title: "Youtube" },
-    { id: 6, link: "https://www.reddit.com/r/XendFinance/", icon: reddit, title: "Reddit" },
-    { id: 7, link: "https://www.linkedin.com/company/xend-finance/", icon: linkedIn, title: "LinkedIn" },
-    { id: 8, link: "https://discord.com/invite/QGHb7jp2GV", icon: discord, title: "Discord" },
+    { id: 1, link: "https://t.me/AssetChainBuilders", icon: telegram, title: "Telegram" },
+    { id: 2, link: "https://x.com/rwaassetchain", icon: twitter, title: "Twitter" },
+    { id: 3, link: "https://www.youtube.com/@AssetChain", icon: youtube, title: "Youtube" },
+    { id: 4, link: "https://www.linkedin.com/company/theassetchain", icon: linkedIn, title: "LinkedIn" },
+    { id: 5, link: "https://discord.gg/Bd2RSPcy", icon: discord, title: "Discord" },
 ]
