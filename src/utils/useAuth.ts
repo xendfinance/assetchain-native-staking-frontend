@@ -23,7 +23,7 @@ export const Login = (connectorID: ConnectorNames, chainId: number, walletName: 
             let account: any = null;
             
           
-            const connector: any = connectorsByName(connectorID, chainId);
+            const connector: any = await connectorsByName(connectorID, chainId);
 
             const dt = { chainId, connectorID, walletName }
 
@@ -122,7 +122,7 @@ export const recreateWeb3 = () => {
                 })
 
 
-                const connector: any = connectorsByName(connectionDetails.connectorID, connectionDetails.chainId);
+                const connector: any = await connectorsByName(connectionDetails.connectorID, connectionDetails.chainId);
 
                 if (connector) {
 

@@ -46,8 +46,7 @@ const StakingBalance = () => {
     dispatch(getActionLimit());
     dispatch(getlockPeriod());
     dispatch(getPendingRewards());
-  }, [dispatch, ownerAddress]);
-
+  }, [dispatch, address]);
 
   return (
     <CardContainer>

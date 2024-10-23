@@ -1,28 +1,49 @@
 import web3 from "web3";
-import { connectorsByName } from "utils/web3React";
+import {
+  chains,
+  connectorsByName,
+  defaultChainId,
+  switchChain,
+} from "utils/web3React";
 import _const from "../_const";
 import removeAddress from "./remove-address";
 import { connectorLocalStorageKey } from "./config";
 import reduxStore from "methods/redux";
-import { getUserStaked,
+import {
+  getUserStaked,
   getPendingRewards,
   getAvailableBalance,
   getAllStakingIds,
-  togglemodal
+  togglemodal,
 } from "methods/redux/actions";
-
 
 export const login = (connectorID, chainId, walletName, tokenAddress) => {
   return async (dispatch) => {
     try {
       let account;
-      const connector = connectorsByName(connectorID, chainId);
+      const connector = await connectorsByName(connectorID, chainId);
       const dt = { chainId, connectorID, walletName };
       localStorage.setItem("CONNECTION_DETAILS", JSON.stringify(dt));
-
       if (connector) {
         if (connectorID === "injected") {
-          await switchOrAddNetworkToMetamask(chainId);
+          const _chainId = await connector.getChainId();
+          const provider = await connector.getProvider();
+
+          provider.on("accountsChanged", (addresses) => {
+            const accountSwitch = addresses[0];
+            if (accountSwitch) {
+              if (accountSwitch) {
+                dispatch({
+                  type: _const.ADDRESS,
+                  payload: { address: accountSwitch },
+                });
+              }
+            }
+          });
+          provider.on("chainChanged", async (chain) => {
+            await switchOrAddNetworkToMetamask(parseInt(chain.toString()))
+          });
+          await switchOrAddNetworkToMetamask(parseInt(_chainId.toString()));
           let connection = await connector.activate();
 
           account = connection.account;
@@ -30,16 +51,27 @@ export const login = (connectorID, chainId, walletName, tokenAddress) => {
           window.APPWEB3 = new web3(web3.givenProvider);
         }
         if (connectorID === "walletconnect") {
-          const result = await connector.enable();
-          account = result[0];
+          account = connector.accounts[0];
 
-          //very important 2 lines
-          delete connector.__proto__.request;
-          connector.hasOwnProperty("request") && delete connector.request;
-          const provider = await new web3(connector);
+          const provider = new web3(connector);
           window.APPWEB3 = provider;
+
+          connector.on("accountsChanged", (addresses) => {
+            // sessionStorage.setItem(_const.TOKEN, addresses[0]);
+            dispatch(getUserStaked(addresses[0]));
+            dispatch({
+              type: _const.ADDRESS,
+              payload: {
+                address: addresses[0],
+                walletInUse: walletName,
+                chainId,
+              },
+            });
+          });
+          // console.log(provider, 'provider')
         }
         if (account) {
+          // sessionStorage.setItem(_const.TOKEN, account);
           dispatch({
             type: _const.ADDRESS,
             payload: { address: account, walletInUse: walletName, chainId },
@@ -54,7 +86,9 @@ export const login = (connectorID, chainId, walletName, tokenAddress) => {
         console.warn("Can't find connector \n The connector config is wrong");
         console.log("");
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error, "error");
+    }
   };
 };
 
@@ -74,14 +108,15 @@ export const recreateWeb3 = (tokenAddress) => {
           payload: { address: "", walletInUse: walletName, chainId },
         });
 
-        const connector = connectorsByName(
+        const connector = await connectorsByName(
           connectionDetails.connectorID,
           connectionDetails.chainId
         );
 
         if (connector) {
           if (connectionDetails.connectorID === "injected") {
-            await switchOrAddNetworkToMetamask(connectionDetails.chainId);
+            const _chainId = await connector.getChainId();
+            await switchOrAddNetworkToMetamask(parseInt(_chainId.toString()));
 
             let connection = await connector.activate();
 
@@ -99,24 +134,33 @@ export const recreateWeb3 = (tokenAddress) => {
               }
             });
 
+            connection.provider.on("chainChanged", async (chain) => {
+              await switchOrAddNetworkToMetamask(parseInt(chain.toString()))
+            });
+
             account = connection.account;
 
             window.APPWEB3 = await new web3(web3.givenProvider);
           }
-
           if (connectionDetails.connectorID === "walletconnect") {
-            const result = await connector.enable();
-            account = result[0];
-
-            // very important 2 lines
-            delete connector.__proto__.request;
-            connector.hasOwnProperty("request") && delete connector.request;
-
-            const provider = await new web3(connector);
-
+            account = connector.accounts[0];
+            connector.on("accountsChanged", (addresses) => {
+              // sessionStorage.setItem(_const.TOKEN, addresses[0]);
+              dispatch(getUserStaked(addresses[0]));
+              dispatch({
+                type: _const.ADDRESS,
+                payload: {
+                  address: addresses[0],
+                  walletInUse: walletName,
+                  chainId,
+                },
+              });
+            });
+            const provider = new web3(connector);
             window.APPWEB3 = provider;
           }
           if (account) {
+            // sessionStorage.setItem(_const.TOKEN, account);
             dispatch({
               type: _const.ADDRESS,
               payload: { address: account },
@@ -172,12 +216,16 @@ async function switchOrAddNetworkToMetamask(chainId) {
   const hexChainId = `0x${chainId.toString(16)}`;
   try {
     if (window.ethereum) {
-      console.log(window.ethereum,"does this work")
+      if (!chains.map((c) => c.chainId).includes(chainId)) {
+        await switchChain(defaultChainId, window.ethereum);
+      }
       // switch to the selected network
-      await window.ethereum.request({
-        method: "wallet_switchEthereumChain",
-        params: [{ chainId: hexChainId }],
-      });
+      // await window.ethereum.request({
+      //   method: "wallet_switchEthereumChain",
+      //   params: [{ chainId: hexChainId }],
+      // });
+    } else {
+      alert("Install an Injected Wallet!");
     }
   } catch (e) {
     if (e.code === 4902) {

@@ -3,16 +3,18 @@ import styled from "styled-components";
 
 
 //icons
-import infoIcon from "../assets/icons/footerLogo.svg"
+import infoIcon from "../assets/icons/logo-dark.svg"
 import fbk from "../assets/icons/fbk.svg"
 import instagram from "../assets/icons/instagram.svg"
 import telegram from "../assets/icons/telegram.svg"
 import twitter from "../assets/icons/twitter.svg"
 import youtube from "../assets/icons/youtube.svg"
 import reddit from "../assets/icons/reddit.svg"
-import linkedIn from "../assets/icons/linkedIn.svg"
-import discord from "../assets/icons/discord.svg"
+import linkedIn from "../assets/icons/Linkedin.svg"
+import discord from "../assets/icons/Discord.svg"
 import shield from "../assets/icons/shield.svg"
+import Github from "../assets/icons/Github.png"
+import Medium from "../assets/icons/medium.png"
 
 
 export const Footer2 = () => {
@@ -21,9 +23,9 @@ export const Footer2 = () => {
         <FooterContainer>
             <Footer>
                 <div>
-                    <img src={infoIcon} alt="Xend Finance" />
+                    <img src={infoIcon} alt="Asset Chain" />
                     <p id="copy">
-                        &copy; {new Date().getFullYear()} Xend Finance.
+                        &copy; {new Date().getFullYear()} Asset Chain.
                     </p>
                 </div>
 
@@ -32,7 +34,7 @@ export const Footer2 = () => {
                         {footerData.slice(0, 4).map((footer) => (
                             <FooterItem href={footer.link} key={footer.id} rel="noreferrer"
                             target="_blank">
-                                <img src={footer.icon} alt={footer.title} />
+                                <img src={footer.icon} alt={footer.title} width="25px" />
                                 <p>{footer.title}</p>
                             </FooterItem>
                         ))}
@@ -41,7 +43,7 @@ export const Footer2 = () => {
                         {footerData.slice(4).map((footer) => (
                             <FooterItem href={footer.link} key={footer.id} rel="noreferrer"
                             target="_blank">
-                                <img src={footer.icon} alt={footer.title} />
+                                <img src={footer.icon} alt={footer.title} width="25px" />
                                 <p>{footer.title}</p>
                             </FooterItem>
                         ))}
@@ -49,7 +51,7 @@ export const Footer2 = () => {
                 </Socials>
             </Footer>
             <Audited
-            href="https://drive.google.com/file/d/1npX5uQXUhMNXec1r3XQIMwOJB_bzFjix/view"
+            href="https://drive.google.com/file/d/1Hg8-BIPcVkdS_HNA4j55BYwogAkGKKs8/view"
             rel="noreferrer"
             target="_blank" >
             Audited by Vidma
@@ -112,12 +114,12 @@ const Audited = styled.a`
     text-decoration: none;
 `
 const footerData = [
-    { id: 1, link: "https://web.facebook.com/XendFinance", icon: fbk, title: "Facebook" },
+    { id: 1, link: "https://github.com/xendfinance", icon: Github, title: "Github" },
     { id: 2, link: "https://www.instagram.com/xend.finance/?hl=en", icon: instagram, title: "Instagram" },
-    { id: 3, link: "https://t.me/xendFinance", icon: telegram, title: "Telegram" },
-    { id: 4, link: "https://x.com/xendfinance", icon: twitter, title: "Twitter" },
-    { id: 5, link: "https://www.youtube.com/channel/UCcR2lTpYwCws-axra4AAO8Q/featured", icon: youtube, title: "Youtube" },
-    { id: 6, link: "https://www.reddit.com/r/XendFinance/", icon: reddit, title: "Reddit" },
-    { id: 7, link: "https://www.linkedin.com/company/xend-finance/", icon: linkedIn, title: "LinkedIn" },
-    { id: 8, link: "https://discord.com/invite/QGHb7jp2GV", icon: discord, title: "Discord" },
+    { id: 3, link: "https://t.me/AssetChainBuilders", icon: telegram, title: "Telegram" },
+    { id: 4, link: "https://x.com/rwaassetchain", icon: twitter, title: "Twitter" },
+    { id: 5, link: "https://www.youtube.com/@AssetChain", icon: youtube, title: "Youtube" },
+    { id: 6, link: " https://medium.com/asset-chain", icon: Medium, title: "Medium" },
+    { id: 7, link: "https://www.linkedin.com/company/theassetchain", icon: linkedIn, title: "LinkedIn" },
+    { id: 8, link: "https://discord.assetchain.org", icon: discord, title: "Discord" },
 ]

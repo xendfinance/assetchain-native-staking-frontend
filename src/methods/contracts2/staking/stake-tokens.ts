@@ -16,8 +16,8 @@ async function stakeToken(amt: any, lockperiod: Number) {
       .send({ from: ownerAddress, value: amountToStake});
     return staked;
   } catch (err) {
-    console.log(err);
-    return [];
+    console.log(err)
+    throw err
   }
 }
 

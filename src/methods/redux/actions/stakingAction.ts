@@ -56,80 +56,88 @@ export const stakeUserToken = (
   stakingPeriod
 ) => {
   return async (dispatch) => {
-    const ownerAddress = retrieveAddress();
-    if (!termsandconditions) {
+    try {
+      const ownerAddress = retrieveAddress();
+      if (!termsandconditions) {
+        dispatch({
+          type: _const.STAKING_TOKEN_FAILED,
+          payload: "Kindly accept the terms to proceed",
+        });
+      } else if (amt === 0 || isNaN(amt)) {
+        dispatch({
+          type: _const.STAKING_TOKEN_FAILED,
+          payload: "Please enter a valid amount",
+        });
+      } else if (amt > availableBalance) {
+        dispatch({
+          type: _const.STAKING_TOKEN_FAILED,
+          payload: "The amount cannot be greater than your available balance",
+        });
+      } else if (fixedlockperiodenums.includes(stakingPeriod)) {
+        dispatch({
+          type: _const.STAKING_TOKEN_FAILED,
+          payload:
+            "You already have a fixed staked token on this account, wait to unstake before staking again or stake with another account.",
+        });
+      } else if (
+        stakingPeriod !== undefined &&
+        !fixedlockperiodenums.includes(stakingPeriod) &&
+        fixedlockperiodenums.includes(lockperiod)
+      ) {
+        dispatch({
+          type: _const.STAKING_TOKEN_FAILED,
+          payload:
+            "You are unable to have a fixed and flexible staking plan on the same account.",
+        });
+      } else {
+        dispatch({
+          type: _const.STAKING_TOKEN_FAILED,
+          payload: "",
+        });
+        dispatch({
+          type: _const.STAKING_TOKEN,
+          payload: true,
+        });
+
+        const res = await stakeToken(amt, lockperiod);
+        if (res) {
+          dispatch({
+            type: _const.STAKING_TOKEN,
+            payload: false,
+          });
+          if (res.status) {
+            dispatch({
+              type: _const.STAKED_STATUS,
+              payload: 1,
+            });
+            dispatch({
+              type: _const.CLEAR_DATA,
+              payload: true,
+            });
+            dispatch(staketogglemodal(3));
+            dispatch(getAllStaked());
+            dispatch(getAvailableBalance());
+            dispatch(getUserStaked(ownerAddress));
+            dispatch(getAllStakingIds());
+          } else {
+            dispatch({
+              type: _const.STAKED_STATUS,
+              payload: 1,
+            });
+
+            dispatch(staketogglemodal(4));
+          }
+        }
+      }
+    } catch (error: any) {
       dispatch({
         type: _const.STAKING_TOKEN_FAILED,
-        payload: "Kindly accept the terms to proceed",
-      });
-    } else if (amt === 0 || isNaN(amt)) {
-      dispatch({
-        type: _const.STAKING_TOKEN_FAILED,
-        payload: "Please enter a valid amount",
-      });
-    } 
-    else if (amt > availableBalance) {
-      dispatch({
-        type: _const.STAKING_TOKEN_FAILED,
-        payload: "The amount cannot be greater than your available balance",
-      });
-    } 
-    else if (fixedlockperiodenums.includes(stakingPeriod)) {
-      dispatch({
-        type: _const.STAKING_TOKEN_FAILED,
-        payload:
-          "You already have a fixed staked token on this account, wait to unstake before staking again or stake with another account.",
-      });
-    } else if (
-      (stakingPeriod !== undefined) &&
-      !fixedlockperiodenums.includes(stakingPeriod) &&
-      fixedlockperiodenums.includes(lockperiod)
-    ) {
-      dispatch({
-        type: _const.STAKING_TOKEN_FAILED,
-        payload:
-          "You are unable to have a fixed and flexible staking plan on the same account.",
-      });
-    } else {
-      dispatch({
-        type: _const.STAKING_TOKEN_FAILED,
-        payload: "",
+        payload: error.message,
       });
       dispatch({
         type: _const.STAKING_TOKEN,
-        payload: true,
+        payload: false,
       });
-
-      const res = await stakeToken(amt, lockperiod);
-      if (res) {
-        dispatch({
-          type: _const.STAKING_TOKEN,
-          payload: false,
-        });
-        if (res.status) {
-          dispatch({
-            type: _const.STAKED_STATUS,
-            payload: 1,
-          });
-          dispatch({
-            type: _const.CLEAR_DATA,
-            payload: true,
-          });
-          dispatch(staketogglemodal(3));
-          dispatch(getAllStaked());
-          dispatch(getAvailableBalance());
-          dispatch(getUserStaked(ownerAddress));
-          dispatch(getAllStakingIds());
-        } else {
-          dispatch({
-            type: _const.STAKED_STATUS,
-            payload: 1,
-          });
-
-          dispatch(staketogglemodal(4));
-        }
-      }
-
     }
   };
 };
@@ -206,8 +214,7 @@ export const unStakeAvailableToken = (
         type: _const.UNSTAKING_TOKEN_FAILED,
         payload: "Unstaking too much in a short period is not valid",
       });
-    } else 
-    if (diff < period) {
+    } else if (diff < period) {
       dispatch({
         type: _const.UNSTAKING_TOKEN_FAILED,
         payload: "Can't unstake within minimum lock time",
@@ -324,16 +331,15 @@ export const reStake = (tokenAddress) => {
   };
 };
 
-
-export const clearError = () =>{
-  return (dispatch) =>{
+export const clearError = () => {
+  return (dispatch) => {
     dispatch({
       type: _const.STAKING_TOKEN_FAILED,
       payload: "",
     });
     dispatch({
-      type:  _const.UNSTAKING_TOKEN_FAILED,
+      type: _const.UNSTAKING_TOKEN_FAILED,
       payload: "",
     });
-  }
-}
+  };
+};
