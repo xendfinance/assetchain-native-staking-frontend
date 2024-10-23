@@ -10,10 +10,10 @@ import telegram from "../assets/icons/telegram.svg"
 import twitter from "../assets/icons/twitter.svg"
 import youtube from "../assets/icons/youtube.svg"
 import reddit from "../assets/icons/reddit.svg"
-import linkedIn from "../assets/icons/Linkedin.svg"
+import linkedIn from "../assets/icons/linkedin.svg"
 import discord from "../assets/icons/Discord.svg"
 import shield from "../assets/icons/shield.svg"
-import Github from "../assets/icons/Github.png"
+import Github from "../assets/icons/github.png"
 import Medium from "../assets/icons/medium.png"
 
 
