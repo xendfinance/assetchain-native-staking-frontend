@@ -118,7 +118,7 @@ const ConnectionModal = () => {
                 style={{ textDecoration: "none" }}
               >
                 {" "}
-                (Xend Finance's agreement)
+                (Asset Chain's agreement)
               </a>{" "}
             </InfoWrapper>
           </div>

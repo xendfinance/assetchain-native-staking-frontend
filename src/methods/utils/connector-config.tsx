@@ -13,7 +13,7 @@ const connectors: Config[] = [
   //   connectorId: ConnectorNames.Injected
   // },
   {
-    title: "Metamask",
+    title: "Injected Wallets",
     icon: "metamask",
     image: Metamask,
     connectorId: ConnectorNames.Injected

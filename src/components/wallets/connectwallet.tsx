@@ -68,17 +68,18 @@ const ConnectWallet = () => {
   }, []);
 
   // runs once when the network is changed
-  useEffect(() => {
-    if (typeof window.ethereum !== "undefined") {
-      window.ethereum.on("chainChanged", () => {
-        // dispatch(connectWallet());
-        if (typeof account !== "undefined" && account) {
-          insideConnectWallet(account);
-        }
-      });
-    }
-    // eslint-disable-next-line
-  }, []);
+  // useEffect(() => {
+  //   if (typeof window.ethereum !== "undefined") {
+  //     window.ethereum.on("chainChanged", () => {
+  //       // dispatch(connectWallet());
+  //       if (typeof account !== "undefined" && account) {
+  //         insideConnectWallet(account);
+  //       }
+  //     });
+  //   }
+  //   console.log('ddsjdshj')
+  //   // eslint-disable-next-line
+  // }, []);
 
   // runs once when metamask is disconnected
   useEffect(() => {

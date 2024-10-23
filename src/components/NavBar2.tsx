@@ -12,7 +12,7 @@ export const Navbar2 = () => {
     return (
         <NavbarContainer>
             <nav>
-                <img src="/icons/xend-logo-white.svg" alt="logo" className="logo"
+                <img src="/logo-dark.svg" alt="logo" className="logo"
                     onClick={() => navigate("/")}
                 />
                 <ConnectSection>

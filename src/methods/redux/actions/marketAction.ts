@@ -20,6 +20,7 @@ export const getMarketQuote = () => {
 };
 
 export const getStakingScore = address => {
+  // console.log(address, 'scorejsdkj')
   return dispatch => {
     axios
       .get(`${process.env.REACT_APP_STAKING_SCORE_URL}${Web3.utils.toChecksumAddress(address)}`)

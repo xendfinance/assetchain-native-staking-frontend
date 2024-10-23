@@ -1,6 +1,6 @@
 import Web3Modal from "web3modal";
 import Web3 from "web3";
-import WalletConnectProvider from "@walletconnect/web3-provider";
+// import WalletConnectProvider from "@walletconnect/web3-provider";
 import removeAddress from "../../utils/remove-address";
 import _const from "../../_const";
 import { connectorLocalStorageKey } from "../../utils/config";
@@ -8,7 +8,7 @@ import { connectorLocalStorageKey } from "../../utils/config";
 export const web3Connection = async function() {
   const providerOptions = {
     walletconnect: {
-      package: WalletConnectProvider,
+      package: {},
       options: {
         rpc: {
           56: "https://bsc-dataseed1.defibit.io/",

@@ -5,6 +5,8 @@ import stakingAbi from "./abiManager/staking.json";
 //{0: walletAddress, 1: amountStaked, 2: Time from last locktime, 3: '0'}
 async function stakingInfo(id) {
   try {
+    console.log(id, 'dkdk')
+    if (!id) throw new Error('Id is undefined')
     const contract = await createContract(
       stakingAbi,
       process.env.REACT_APP_STAKING_CONTRACT

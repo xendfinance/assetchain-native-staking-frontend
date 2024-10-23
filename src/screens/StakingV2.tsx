@@ -46,7 +46,7 @@ const StakingV2 = () => {
       <Navbar2 />
       <StakingContainer className="container">
         {stakingpoints ? <StakingScoreInfo /> : null}
-        <StakingTitle> RWA Staking <span style={{color: "#E66A62"}}> (TESTNET)</span> </StakingTitle>
+        <StakingTitle> RWA Staking </StakingTitle>
         <StakingDescription> Built on <span> <img height="30px" src={assetChain} alt="asset-chain" /></span></StakingDescription>
 
         <div className="row">
