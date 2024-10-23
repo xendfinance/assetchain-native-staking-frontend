@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import ConnectWallet from "../components/wallets/connectwallet";
 import styled from "styled-components";
+import { isMainnet } from 'utils/constants';
 
 
 export const Navbar2 = () => {
@@ -16,11 +17,11 @@ export const Navbar2 = () => {
                     onClick={() => navigate("/")}
                 />
                 <ConnectSection>
-                    <Faucet style={{color: `#ed7e5c`}} target="_blank" href="http://leaderboard.assetchain.org/"> Leaderboard</Faucet>
-                    <Faucet target="_blank" rel="noreferrer" href="https://faucet.assetchain.org/" title="RWA Faucet">
+                    {!isMainnet && <Faucet style={{color: `#ed7e5c`}} target="_blank" href="http://leaderboard.assetchain.org/"> Leaderboard</Faucet>}
+                    {!isMainnet && <Faucet target="_blank" rel="noreferrer" href="https://faucet.assetchain.org/" title="RWA Faucet">
                         <img height="12px" src="https://faucet.assetchain.org/favicon/favicon-32x32.png" alt="faucet" />
                         <p> RWA Faucet</p>
-                    </Faucet>
+                    </Faucet>}
                     <ConnectWallet />
                 </ConnectSection>
             </nav>
