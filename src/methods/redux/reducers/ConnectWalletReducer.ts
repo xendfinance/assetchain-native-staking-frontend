@@ -11,7 +11,8 @@ const initialState = {
   chainId: 0,
   nativeBalance: "0.00",
   apys: [],
-  signature: ""
+  signature: "",
+  loadingWallet: false,
 };
 
 const ConnectWalletReducer = (state = initialState, action: Action) => {
@@ -19,13 +20,13 @@ const ConnectWalletReducer = (state = initialState, action: Action) => {
     case _const.ADDRESS:
       return {
         ...state,
-        ...action.payload
+        ...action.payload,
       };
 
     case _const.SIGNATURE:
       return {
         ...state,
-        signature: action.payload
+        signature: action.payload,
       };
     case _const.NATIVE_BALANCE:
       return { ...state, nativeBalance: action.payload };
@@ -34,6 +35,8 @@ const ConnectWalletReducer = (state = initialState, action: Action) => {
 
     case _const.APYS:
       return { ...state, apys: action.payload };
+    case _const.LOADING_WALLET:
+      return { ...state, loadingWallet: action.payload };
 
     default:
       return state;

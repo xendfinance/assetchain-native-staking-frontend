@@ -21,6 +21,10 @@ export const login = (connectorID, chainId, walletName, tokenAddress) => {
   return async (dispatch) => {
     try {
       let account;
+      dispatch({
+        type: _const.LOADING_WALLET,
+        payload: true,
+      });
       const connector = await connectorsByName(connectorID, chainId);
       const dt = { chainId, connectorID, walletName };
       localStorage.setItem("CONNECTION_DETAILS", JSON.stringify(dt));
@@ -88,6 +92,12 @@ export const login = (connectorID, chainId, walletName, tokenAddress) => {
       }
     } catch (error) {
       console.log(error, "error");
+    }
+    finally {
+      dispatch({
+        type: _const.LOADING_WALLET,
+        payload: false,
+      });
     }
   };
 };

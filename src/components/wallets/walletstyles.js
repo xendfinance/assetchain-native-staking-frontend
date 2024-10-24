@@ -32,3 +32,15 @@ export const WalletOption = styled.div`
   padding: 0.5rem;
   cursor: pointer;
 `;
+
+export const CenteredDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+export const Content = styled.div`
+  padding: 20px;
+  border-radius: 8px;
+`;

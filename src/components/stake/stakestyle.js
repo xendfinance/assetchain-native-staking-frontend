@@ -1,5 +1,16 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import { device } from "../../styles/theme";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const OptionButton = styled.div`
   text-align: center;
@@ -98,13 +109,40 @@ export const Symbol = styled.p`
 `;
 
 export const ErrMsg = styled.p`
+  /* Typography */
   font-size: ${({ theme }) => theme.textXXs};
-  background-color: ${({ theme }) => theme.error};
-  border-radius: 6px;
-  padding: 5px;
-  color: ${({ theme }) => theme.white};
-  text-align: center;
   font-weight: 600;
+  text-align: center;
+
+  /* Colors */
+  background-color: rgba(239, 68, 68, 0.3);
+  color: ${({ theme }) => theme.white};
+
+  /* Layout & Spacing */
+  border-radius: 6px;
+  padding: 6px 8px;
+  margin: ${({ margin }) => margin || '8px 0'};
+  width: ${({ width }) => width || 'auto'};
+
+  /* Animation */
+  animation: ${fadeIn} 0.2s ease-out;
+
+  /* Accessibility */
+  &[role='alert'] {
+    position: relative;
+  }
+
+  /* Optional: Hover state for interactive error messages */
+  ${({ interactive }) =>
+    interactive &&
+    `
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    
+    &:hover {
+      opacity: 0.9;
+    }
+  `}
 `;
 
 export const InfoIcons = styled.div`
