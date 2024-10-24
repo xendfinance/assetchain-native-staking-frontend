@@ -8,18 +8,22 @@ import { login } from "../../methods/utils/useAuth";
 import { connectorLocalStorageKey } from "../../methods/utils/config";
 
 import { togglemodal } from "../../methods/redux/actions";
-import { WalletOption } from "./walletstyles";
+import { CenteredDiv, Content, WalletOption } from "./walletstyles";
 
 import walletIcon from "../../assets/icons/walletIcon.svg";
 import truncateAddress from "methods/utils/truncate-address";
 
-import assetChain from "../../assets/icons/assetChain.svg"
-import tokenIcon from "../../assets/icons/tokenIcon.svg"
+import assetChain from "../../assets/icons/assetChain.svg";
+import tokenIcon from "../../assets/icons/tokenIcon.svg";
+
+import Loader from "../reusables/loader";
 
 const ConnectionModal = () => {
   const dispatch = useDispatch();
 
-  const { modalState, tokenAddress } = useSelector((store: any) => store.General);
+  const { modalState, tokenAddress } = useSelector(
+    (store: any) => store.General
+  );
   const [walletLogo, setWalletLogo] = useState("");
   const address = useSelector(
     (store: any) => store.ConnectWalletReducer.address
@@ -27,7 +31,12 @@ const ConnectionModal = () => {
   const walletInUse = useSelector(
     (store: any) => store.ConnectWalletReducer.walletInUse
   );
-  const { allStaked, userStaked } = useSelector((store: any) => store.StakingReducer);
+  const loadingWallet: boolean = useSelector(
+    (store: any) => store.ConnectWalletReducer.loadingWallet
+  );
+  const { allStaked, userStaked } = useSelector(
+    (store: any) => store.StakingReducer
+  );
   const apys = useSelector((store: any) => store.ConnectWalletReducer.apys);
   const [selectableApys, setSelectableApys] = useState<Array<any>>([]);
 
@@ -37,7 +46,7 @@ const ConnectionModal = () => {
     wallet: null,
     //chainId: 80001 testnet
     //chainId: 137
-    chainId: 42421
+    chainId: 42421,
   });
 
   const disconnectWallet = () => {
@@ -50,17 +59,74 @@ const ConnectionModal = () => {
 
   useEffect(() => {
     if (connectInfo.network) {
-      const x = apys.filter(b => b.network === connectInfo.network);
+      const x = apys.filter((b) => b.network === connectInfo.network);
       setSelectableApys(x);
     }
   }, [apys, connectInfo]);
 
-
   useEffect(() => {
-    const connectedWallet = connectors.filter(x => x.title === walletInUse);
+    const connectedWallet = connectors.filter((x) => x.title === walletInUse);
     connectedWallet[0] && setWalletLogo(connectedWallet[0].image);
   }, [address, walletInUse]);
+  function renderWallets() {
+    if (loadingWallet) {
+      return (
+        <CenteredDiv>
+          <Content>
+            <Loader color={"#fefefe"} />
+          </Content>
+        </CenteredDiv>
+      );
+    }
 
+    return connectors.map((entry, i) => (
+      <WalletOption
+        key={i}
+        onClick={() => {
+          dispatch(
+            login(
+              entry.connectorId,
+              connectInfo.chainId,
+              entry.title,
+              tokenAddress
+            )
+          );
+
+          window.localStorage.setItem(
+            connectorLocalStorageKey,
+            entry.connectorId
+          );
+          // togglemodal(false);
+          //window.location.reload();
+        }}
+      >
+        <div
+          key={i}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+          }}
+        >
+          <CardWrapper
+            key={i}
+            style={{
+              backgroundColor:
+                entry.title.toLowerCase() === "metamask"
+                  ? "#FFD2B0"
+                  : "#d5d5d5",
+            }}
+          >
+            <img src={entry.image} alt={entry.title} />
+          </CardWrapper>
+          <WalletName>{entry.title}</WalletName>
+        </div>
+        {entry.title.toLowerCase() === "madwallet" && (
+          <Recommended> Recommended</Recommended>
+        )}
+      </WalletOption>
+    ))
+  }
   return (
     <>
       {!address ? (
@@ -74,38 +140,7 @@ const ConnectionModal = () => {
         >
           <SectionWrapper>
             <SectionBody>
-              {connectors.map((entry, i) => (
-                <WalletOption key={i}
-                  onClick={() => {
-                    dispatch(
-                      login(
-                        entry.connectorId,
-                        connectInfo.chainId,
-                        entry.title,
-                        tokenAddress
-                      )
-                    );
-
-                    window.localStorage.setItem(
-                      connectorLocalStorageKey,
-                      entry.connectorId
-                    );
-                    // togglemodal(false);
-                    //window.location.reload();
-                  }}
-                >
-                  <div key={i} style={{ display: "flex", alignItems: "center", gap: "1rem"}} >
-                    <CardWrapper
-                      key={i}
-                      style={{ backgroundColor: entry.title.toLowerCase() === "metamask" ? "#FFD2B0" : "#d5d5d5" }}
-                    >
-                      <img src={entry.image} alt={entry.title} />
-                    </CardWrapper>
-                    <WalletName>{entry.title}</WalletName>
-                  </div>
-                  {entry.title.toLowerCase() === "madwallet" && <Recommended> Recommended</Recommended>}
-                </WalletOption>
-              ))}
+              {renderWallets()}
             </SectionBody>
           </SectionWrapper>
           <div>
@@ -136,11 +171,22 @@ const ConnectionModal = () => {
             <ConnectedWalletDetail>
               <div>
                 <DetailHeading> Wallet Connected</DetailHeading>
-                <DetailValue><span> <img height="16px" src={walletLogo} alt="arbitrum" /></span> {walletInUse}</DetailValue>
+                <DetailValue>
+                  <span>
+                    {" "}
+                    <img height="16px" src={walletLogo} alt="arbitrum" />
+                  </span>{" "}
+                  {walletInUse}
+                </DetailValue>
               </div>
               <div>
                 <DetailHeading> Network Connected</DetailHeading>
-                <DetailValue><span> <img height="20px" src={assetChain} alt="asset chain" /></span> </DetailValue>
+                <DetailValue>
+                  <span>
+                    {" "}
+                    <img height="20px" src={assetChain} alt="asset chain" />
+                  </span>{" "}
+                </DetailValue>
               </div>
             </ConnectedWalletDetail>
             <ConnectedWalletContainer>
@@ -148,14 +194,26 @@ const ConnectionModal = () => {
               <DetailHeading> Balance</DetailHeading>
               <div className="mt-2">
                 <Balance>{userStaked}</Balance>
-                <DetailValue>  RWA <span> <img height="16px" src={tokenIcon} alt="wicrypt icon" /></span></DetailValue>
+                <DetailValue>
+                  {" "}
+                  RWA{" "}
+                  <span>
+                    {" "}
+                    <img height="16px" src={tokenIcon} alt="wicrypt icon" />
+                  </span>
+                </DetailValue>
               </div>
               <div>
                 <Balance>{allStaked}</Balance>
-                <DetailValue>  RWA <span><img height="16px" src={tokenIcon} alt="wicrypt icon" /></span></DetailValue>
+                <DetailValue>
+                  {" "}
+                  RWA{" "}
+                  <span>
+                    <img height="16px" src={tokenIcon} alt="wicrypt icon" />
+                  </span>
+                </DetailValue>
               </div>
             </ConnectedWalletContainer>
-
           </SectionWrapper>
           <ActionContainer>
             <div onClick={disconnectWallet}>
@@ -176,7 +234,7 @@ const InfoWrapper = styled.div`
   text-align: center;
   margin-bottom: 20px;
   margin-top: 20px;
-  a{
+  a {
     color: ${({ theme }) => theme.highlight};
   }
 `;
@@ -189,7 +247,6 @@ const ConnectBtn = styled.div`
   font-weight: 600;
   color: ${({ theme }) => theme.white};
 `;
-
 
 const WalletName = styled.p`
   color: ${({ theme }) => theme.flexiblegrey};
@@ -204,7 +261,7 @@ interface ICardWrapper {
 const CardWrapper = styled.button<ICardWrapper>`
   cursor: pointer;
   position: relative;
-  display: ${p => (p.show === false ? "none" : "flex")};
+  display: ${(p) => (p.show === false ? "none" : "flex")};
   align-items: center;
   height: 60px;
   width: 60px;
@@ -226,7 +283,7 @@ const CardWrapper = styled.button<ICardWrapper>`
   ]
 
   & .apy {
-    color: ${p => p.theme.fontAlt};
+    color: ${(p) => p.theme.fontAlt};
     font-size: 14px;
     font-weight: 600;
   }
@@ -255,7 +312,6 @@ const SectionBody = styled.div`
   }
 `;
 
-
 const Recommended = styled.div`
  background: #00C0871A;
   color: #00C087;
@@ -264,7 +320,7 @@ const Recommended = styled.div`
   padding: 6px;
   border-radius: 8px;
   font-weight 600;
-`
+`;
 
 const ActionContainer = styled.div`
   display: flex;
@@ -287,29 +343,28 @@ const ActionContainer = styled.div`
   }
 `;
 
-
 const ConnectedWalletDetail = styled.div`
-  background: #E5B91005;
+  background: #e5b91005;
   padding: 10px;
   display: flex;
   justify-content: space-between;
   border-radius: 8px;
-  border: 1px solid #E5B9101A;
+  border: 1px solid #e5b9101a;
   margin-bottom: 10px;
-`
+`;
 
 export const ConnectedWalletContainer = styled.div`
-  background: #E5B91005;
+  background: #e5b91005;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #E5B9101A;
+  border: 1px solid #e5b9101a;
   margin-bottom: 10px;
 
-  div{
+  div {
     display: flex;
     justify-content: space-between;
   }
-`
+`;
 
 const DetailHeading = styled.p`
   margin-bottom: 3px;
@@ -317,7 +372,7 @@ const DetailHeading = styled.p`
   line-height: 15px;
   font-size: 12px;
 }
-`
+`;
 
 const DetailValue = styled.p`
   font-size: ${({ theme }) => theme.textXXs};
@@ -327,13 +382,13 @@ const DetailValue = styled.p`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-`
+`;
 
 const Address = styled.p`
   font-size: ${({ theme }) => theme.textXXs};
   color: ${({ theme }) => theme.textColor};
   margin-bottom: 1rem;
-`
+`;
 
 const Balance = styled.p`
   font-size: ${({ theme }) => theme.textXs};
@@ -341,4 +396,4 @@ const Balance = styled.p`
   line-height: 21px
   margin-bottom: 0;
   color: ${({ theme }) => theme.descriptionColor};
-`
+`;
