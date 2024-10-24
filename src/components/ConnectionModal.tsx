@@ -61,8 +61,8 @@ const ConnectionModal: FC<ConnectionModalProps> = ({ open, setOpen }) => {
 					close={() => setOpen(false)}>
 					<div>
 						<div className="InfoWrapper">
-							By connecting a wallet, you agree and acknowledge that you have read and accept Xend Finance's
-							&nbsp; <a href="#" style={{ textDecoration: "underline", color: "#6F89E4" }}>Terms of Service</a> and <a href="#" style={{ textDecoration: "underline", color: "#6F89E4" }}>Privacy Policy</a>
+							By connecting a wallet, you agree and acknowledge that you have read and accept Assetchain's
+							&nbsp; <a href="https://xend.finance/terms" style={{ textDecoration: "underline", color: "#6F89E4" }}>Terms of Service</a> and <a href="https://xend.finance/policy" style={{ textDecoration: "underline", color: "#6F89E4" }}>Privacy Policy</a>
 						</div>
 					</div>
 

@@ -1,44 +1,47 @@
-![Logo](https://xend.finance/assets-2/logo.svg)
+# Asset Chain Staking Client
 
+## Table of content
+- [Description](https://github.com/xendfinance/assetchain-native-staking-frontend#description)
+- [Getting Started](https://github.com/xendfinance/assetchain-native-staking-frontend#getting-started)
+- [Contributing](https://github.com/xendfinance/assetchain-native-staking-frontend#contributing)
+- [License](https://github.com/xendfinance/assetchain-native-staking-frontend#license)
+- [Support](https://github.com/xendfinance/assetchain-native-staking-frontend#support)
 
-# Xend Staking
+## Description
+This repository contains the client for Asset Chain native RWA staking. It allows users to stake RWA and earn a dynamic APR based on the total amount of RWA in the staking pool. 
 
+## Getting Started
+To get started, follow the steps below:
 
-Xend Finance Staking protocol
-Xend Finance has composed staking DeFi protocols on Binance Smart Chain and Earn upto 100% APY in XEND Token.
+1. Clone this repo
+  ``` bash
+  git clone https://github.com/xendfinance/assetchain-native-staking-frontend.git
+  ```
+2. cd into the project
+3. Install the project's dependencies
+  
+  ``` bash
+  yarn install
+  npm install
+  ```
+4. Run the dev server
+   
+  ``` bash
+  yarn start
+  ```
+5. Start development
 
-## Authors
+## Contributing
 
-- [@kayalbertus](https://github.com/KayAlbertus)
+See [CONTRIBUTING.md](https://github.com/xendfinance/assetchain-native-staking-frontend/CONTRIBUTING.md) for contribution and pull request protocol. We expect contributors to follow our guide when submitting code or comments.
 
+## License
 
+[![License: GPL v3.0](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-## Binance Smart Chain
+This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
 
+## Support
 
-#### Staking Mainnet
-Name | Contract
---- | ---
-Staking | https://bscscan.com/address/0x3d4D0699C4Df1539Fdc42C6F9594A478c6929051#code
-
-
-
-
-
-#### XEND Mainnet
-
-Name | Contract
---- | ---
-XEND | https://bscscan.com/address/0x4a080377f83D669D7bB83B3184a8A5E61B500608#code
-
-
-
-## 🔗 Social Media Links
-[![portfolio](https://img.shields.io/badge/github-0A66C2?style=for-the-badge&logo=github&logoColor=white)](https://github.com/xendfinance)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/xend-finance/mycompany/)
-[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/xendfinance)
-[![discord](https://img.shields.io/badge/discord-0A66C2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/QPH2M3nbku)
-[![telegram](https://img.shields.io/badge/telegram-0A66C2?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/xendFinance)
-
-
-
+For questions or suggestions, just say Hi on [Telegram](https://t.me/xendfinancedevs).<br/>
+We're always glad to help.

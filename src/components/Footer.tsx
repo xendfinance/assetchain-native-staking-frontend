@@ -7,14 +7,14 @@ interface Props {
 export const Footer = (props: Props) => {
     const openGithub = () => {
        
-          window.open('https://github.com/xendfinance/xStake-FrontEnd', "_blank");  
+          window.open('https://github.com/xendfinance', "_blank");  
           return;
       }
 
     return (
         <footer>
             <p id="copy">
-                Copyright &copy; Xend Finance {new Date().getFullYear()}. All rights reserved.
+                Copyright &copy; Asset Chain {new Date().getFullYear()}. All rights reserved.
             </p>
             <ul className="foot-menu">
                 <li className="foot-list">About</li>
