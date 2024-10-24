@@ -3,26 +3,31 @@ import { useNavigate } from "react-router-dom"
 import ConnectWallet from "../components/wallets/connectwallet";
 import styled from "styled-components";
 import { isMainnet } from 'utils/constants';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Add icons for hamburger and close
+import { FaBars, FaTimes } from 'react-icons/fa'; 
 
 export const Navbar2 = () => {
     const navigate = useNavigate()
 
     const [connectModal, setConnectModal] = useState(false);
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track hamburger menu
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
+        if (!isMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
     }
 
     return (
         <NavbarContainer>
-            <nav>
+            <NavContent>
                 <Logo src="/logo-dark.svg" alt="logo"
                     onClick={() => navigate("/")}
                 />
                 <HamburgerIcon onClick={toggleMenu}>
-                    {isMenuOpen ? <FaTimes /> : <FaBars />} {/* Toggle between hamburger and close icon */}
+                    {isMenuOpen ? <FaTimes /> : <FaBars />}
                 </HamburgerIcon>
                 <ConnectSection isMenuOpen={isMenuOpen}>
                     {!isMainnet && <Faucet style={{color: `#ed7e5c`}} target="_blank" href="http://leaderboard.assetchain.org/"> Leaderboard</Faucet>}
@@ -32,7 +37,7 @@ export const Navbar2 = () => {
                     </Faucet>}
                     <ConnectWallet />
                 </ConnectSection>
-            </nav>
+            </NavContent>
         </NavbarContainer>
     )
 }
@@ -48,16 +53,22 @@ const NavbarContainer = styled.div`
   width: 100%;
   padding: 0 1rem;
 
-  nav {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-  }
-
   @media (max-width: 768px) {
     padding: 1rem;
+  }
+`;
+
+const NavContent = styled.div`
+  width: 100%;
+  max-width: 1200px;  // Limit the width on large screens
+  margin: 0 auto;  // Center the navbar horizontally
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  @media (max-width: 768px) {
+    max-width: 100%;  // Remove width limit on small screens
   }
 `;
 
@@ -76,7 +87,7 @@ const HamburgerIcon = styled.div`
   cursor: pointer;
   font-size: 1.5rem;
   z-index: 10;
-  color: #fff;
+  color: ${({ theme }) => theme.textColor}; // Customize based on your theme
 
   @media (max-width: 768px) {
     display: block;
@@ -89,8 +100,8 @@ const ConnectSection = styled.div`
     align-items: center;
 
     @media (max-width: 768px) {
-        position: absolute;
-        top: 108px;
+        position: fixed;
+        top: 0;
         right: 0;
         width: 100%;
         height: 100vh;
@@ -102,6 +113,7 @@ const ConnectSection = styled.div`
         transform: ${({ isMenuOpen }) => (isMenuOpen ? "translateX(0)" : "translateX(100%)")};
         transition: transform 0.3s ease-in-out;
         z-index: 5;
+        overflow: hidden; // Ensure no scroll within the menu
     }
 `
 
