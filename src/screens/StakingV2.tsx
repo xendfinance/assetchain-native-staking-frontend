@@ -85,7 +85,8 @@ const StakingV2 = () => {
                   label={"RWA Price"}
                   currency={""}
                   icon={piechart}
-                  value={"$" + usdQuote ? (Number(usdQuote).toFixed(4)) : 0 }
+                  // value={"$" + usdQuote ? (Number(usdQuote).toFixed(4)) : 0 }
+                  value={`---`}
                   info={false}
                   subvalue={percentageChange ? Number(percentageChange) : 0 }
                 />
