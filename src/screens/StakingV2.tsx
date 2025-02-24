@@ -88,7 +88,8 @@ const StakingV2 = () => {
                   // value={"$" + usdQuote ? (Number(usdQuote).toFixed(4)) : 0 }
                   value={`---`}
                   info={false}
-                  subvalue={percentageChange ? Number(percentageChange) : 0 }
+                  // subvalue={percentageChange ? Number(percentageChange) : 0 }
+                  subvalue={'---'}
                 />
               </div>
             </div>
