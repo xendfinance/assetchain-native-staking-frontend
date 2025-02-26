@@ -1,0 +1,47 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install OpenVPN
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openvpn
+
+      - name: Configure OpenVPN
+        run: |
+          echo "${{ secrets.ASSETCHAIN_PROD_VPN_CONFIG }}" > ~/config.ovpn.encoded
+          echo "${{ secrets.ASSETCHAIN_PROD_VPN_AUTH }}" > ~/auth.txt.encoded
+          sudo base64 -d ~/config.ovpn.encoded > config.ovpn
+          sudo base64 -d ~/auth.txt.encoded > auth.txt
+          sudo cp config.ovpn /etc/openvpn/
+          sudo cp auth.txt /etc/openvpn/
+        
+      - name: Connect to OpenVPN
+        run: |
+          sudo openvpn --config /etc/openvpn/config.ovpn --auth-user-pass /etc/openvpn/auth.txt &
+          sleep 10
+
+      - name: Setup SSH
+        run: |
+          echo "${{ secrets.ASSETCHAIN_SSH_PRIVATE_KEY }}" > id_rsa
+          chmod -R 600 id_rsa
+         
+      - name: Deploy Liquidity pool
+        run: |
+           ssh -i id_rsa -o StrictHostKeyChecking=no -p ${{ secrets.ASSETCHAIN_PROD_SSH_PORT }} ${{ secrets.DEPLOY_USER }}@10.0.101.68 "cd /var/www/stake.assetchain.org && git pull origin main && pm2 restart assetchain-stake && exit"
+
+
+      - name: Clear Credentials
+        if: always()
+        run: |
+          sudo rm ~/config.ovpn.encoded ~/auth.txt.encoded /etc/openvpn/config.ovpn /etc/openvpn/auth.txt 2>/dev/null
