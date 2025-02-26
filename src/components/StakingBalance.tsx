@@ -107,7 +107,7 @@ const StakingBalance = () => {
             {hidenumbers
               ? "-----" :
               numberWithCommaswithoutdecimals(userStaked) + " RWA"}
-              <img src={doublearrow} alt="doublearrow" />
+              {/* <img src={doublearrow} alt="doublearrow" /> */}
             <DescriptionSubValue>
               {" "}
               {hidenumbers ? (
@@ -115,9 +115,9 @@ const StakingBalance = () => {
               ) : (
                 <i className="fa fa-arrows-h" aria-hidden="true" />
               )}
-              {hidenumbers
+              {/* {hidenumbers
                 ? ""
-                : `$${numberWithCommaswithoutdecimals(usdQuote * userStaked)}`}
+                : `$${numberWithCommaswithoutdecimals(usdQuote * userStaked)}`} */}
             </DescriptionSubValue>{" "}
           </ValueDetail>
         </div>
@@ -129,7 +129,7 @@ const StakingBalance = () => {
             {hidenumbers
               ? "-----"
               : numberWithCommaswithoutdecimals(availableBalance) + " RWA"}
-               <img src={doublearrow} alt="doublearrow" />
+               {/* <img src={doublearrow} alt="doublearrow" /> */}
             <DescriptionSubValue>
               {" "}
               {hidenumbers ? (
@@ -137,11 +137,11 @@ const StakingBalance = () => {
               ) : (
                 <i className="fa fa-arrows-h" aria-hidden="true" />
               )}
-              {hidenumbers
+              {/* {hidenumbers
                 ? ""
                 : `$${numberWithCommaswithoutdecimals(
                   usdQuote * availableBalance
-                )}`}
+                )}`} */}
             </DescriptionSubValue>{" "}
           </ValueDetail>
         </div>
